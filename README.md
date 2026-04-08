@@ -1,4 +1,4 @@
-# @harijn72/cssvg-icons
+# cssvg-icons
 
 A premium, scalable, and SEO-ready animated SVG icon system for Next.js and React applications. Designed for developers who value performance, rich aesthetics, and ease of use.
 
@@ -15,10 +15,10 @@ A premium, scalable, and SEO-ready animated SVG icon system for Next.js and Reac
 
 ```bash
 # With npm
-npm install @harijn72/cssvg-icons
+npm install cssvg-icons
 
 # With bun
-bun add @harijn72/cssvg-icons
+bun add cssvg-icons
 ```
 
 ## 🚀 Quick Start
@@ -28,7 +28,7 @@ bun add @harijn72/cssvg-icons
 Import the icons as named components:
 
 ```tsx
-import { ArrowIcon } from "@harijn72/cssvg-icons";
+import { ArrowIcon } from "cssvg-icons";
 
 export default function App() {
   return (
@@ -44,7 +44,7 @@ export default function App() {
 If you need to iterate through all available icons (e.g., for a gallery), use the registry:
 
 ```tsx
-import { getIconRegistry } from "@harijn72/cssvg-icons/lib/icons-registry";
+import { getIconRegistry } from "cssvg-icons/lib/icons-registry";
 
 async function Gallery() {
   const icons = await getIconRegistry();
