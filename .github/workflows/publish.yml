@@ -1,0 +1,94 @@
+name: Publish to npm
+
+# ─── Triggers ────────────────────────────────────────────────────────────────
+# Runs when a PR is merged into main, OR when you push a version tag (v*).
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+# ─── Concurrency guard ───────────────────────────────────────────────────────
+# Only one publish job runs at a time; cancel any queued duplicate.
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ── 1. CI — lint + type-check + build (runs on every PR and push) ──────────
+  ci:
+    name: CI checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+  # ── 2. Publish — only when a PR is merged into main (or a tag is pushed) ──
+  publish:
+    name: Publish to npm
+    needs: ci
+    # Gate: merged PR into main  OR  direct push with a version tag
+    if: |
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true) ||
+      (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v'))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write  # required for npm provenance
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20 with npm registry
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # Bump patch version automatically when merging a PR
+      # (skip when publishing via a manually pushed tag — the tag IS the version)
+      - name: Bump patch version
+        if: github.event_name == 'pull_request'
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name  "github-actions[bot]"
+          npm version patch --no-git-tag-version
+          NEW_VERSION=$(node -p "require('./package.json').version")
+          git add package.json package-lock.json
+          git commit -m "chore: release v${NEW_VERSION} [skip ci]"
+          git push
+
+      - name: Publish (with provenance)
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
