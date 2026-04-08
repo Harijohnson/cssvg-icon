@@ -7,6 +7,9 @@ export interface IconRegistryEntry {
   description: string;
   tags: string[];
   svgPath: string;
+  link?: string;
+  credit?: string;
+  reference?: string;
 }
 
 /**

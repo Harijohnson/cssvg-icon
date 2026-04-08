@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import Link from "next/link";
+import React, { useState, useMemo, useCallback } from "react";
 import { SearchBar } from "@/components/search-bar";
 import { Card } from "@/components/ui/card";
-import { CopyButton } from "@/components/CopyButton";
 import { IconRegistryEntry } from "@/lib/icons-registry";
 import IconRenderer from "@/components/icon-renderer";
+import IconDetailModal from "@/components/IconDetailModal";
 import { cn } from "@/lib/utils";
 
 interface IconExplorerProps {
@@ -15,92 +14,76 @@ interface IconExplorerProps {
 
 export default function IconExplorer({ initialIcons }: IconExplorerProps) {
   const [search, setSearch] = useState("");
+  const [selectedIcon, setSelectedIcon] = useState<IconRegistryEntry | null>(null);
 
   const filteredIcons = useMemo(() => {
     const searchLower = search.toLowerCase();
-    return initialIcons.filter((icon) => {
-      return (
-        icon.name.toLowerCase().includes(searchLower) ||
-        icon.slug.toLowerCase().includes(searchLower) ||
-        icon.description.toLowerCase().includes(searchLower) ||
-        icon.tags.some((tag) => tag.toLowerCase().includes(searchLower))
-      );
-    });
+    return initialIcons.filter((icon) =>
+      icon.name.toLowerCase().includes(searchLower) ||
+      icon.slug.toLowerCase().includes(searchLower) ||
+      icon.description.toLowerCase().includes(searchLower) ||
+      icon.tags.some((tag) => tag.toLowerCase().includes(searchLower))
+    );
   }, [search, initialIcons]);
 
+  const handleClose = useCallback(() => setSelectedIcon(null), []);
+
   return (
-    <div className="space-y-12">
-      {/* Search Bar Section */}
-      <div className="flex justify-center max-w-2xl mx-auto px-4">
-        <SearchBar 
-          value={search} 
-          onChange={setSearch} 
-          placeholder="Search animated icons..."
-        />
-      </div>
+    <>
+      <div className="space-y-6">
+        {/* Search */}
+        <div className="flex justify-center max-w-xl mx-auto px-4">
+          <SearchBar
+            value={search}
+            onChange={setSearch}
+            placeholder="Search animated icons..."
+          />
+        </div>
 
-      {/* Grid Section */}
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-        {filteredIcons.length > 0 ? (
-          filteredIcons.map((icon) => {
-            const reactUsage = `<${icon.name}Icon />`;
-            
-            return (
-              <Link 
-                key={icon.slug} 
-                href={`/icons/${icon.slug}`}
-                className="group relative"
+        {/* Grid */}
+        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 gap-2">
+          {filteredIcons.length > 0 ? (
+            filteredIcons.map((icon) => (
+              <div
+                key={icon.slug}
+                onClick={() => setSelectedIcon(icon)}
+                className="group relative cursor-pointer"
+                role="button"
+                tabIndex={0}
+                aria-label={`Open ${icon.name} icon details`}
+                onKeyDown={(e) => e.key === "Enter" && setSelectedIcon(icon)}
               >
-                <Card
-                  className="bg-black border-zinc-800 hover:border-zinc-600 transition-all duration-300 p-4 flex flex-col items-center justify-center aspect-square"
-                >
-                  {/* Icon Preview */}
-                  <div className="flex-1 flex items-center justify-center mb-2">
-                    <IconRenderer 
-                      slug={icon.slug}
-                      className={cn(
-                        "w-8 h-8 text-white transition-transform duration-300",
-                        "group-hover:scale-125 group-hover:rotate-6"
-                      )} 
-                    />
-                  </div>
-
-                  {/* Icon Name */}
-                  <span className="text-[10px] uppercase tracking-widest font-medium text-zinc-500 group-hover:text-zinc-300 transition-colors truncate w-full text-center">
+                <Card className="bg-black border-zinc-800 hover:border-zinc-600 transition-all duration-200 p-2 flex flex-col items-center justify-center gap-1 aspect-square">
+                  <IconRenderer
+                    slug={icon.slug}
+                    className={cn(
+                      "w-5 h-5 text-white transition-transform duration-200",
+                      "group-hover:scale-110"
+                    )}
+                  />
+                  <span className="text-[8px] uppercase tracking-wide font-medium text-zinc-600 group-hover:text-zinc-400 transition-colors truncate w-full text-center">
                     {icon.name}
                   </span>
-
-                  {/* Action Overlays */}
-                  <div className="absolute inset-x-2 top-2 bottom-6 opacity-0 group-hover:opacity-100 bg-black/90 backdrop-blur-sm transition-opacity flex flex-col items-center justify-center gap-2 rounded-lg border border-zinc-700">
-                    <div className="flex flex-col gap-1.5 w-full px-4">
-                      <CopyButton 
-                        content={reactUsage}
-                        label="React"
-                        size="xs"
-                        variant="secondary"
-                        toastMessage="React snippet copied"
-                        className="w-full text-[10px] h-7 bg-white text-black hover:bg-zinc-200"
-                      />
-                      <CopyButton 
-                        content={icon.svgPath}
-                        label="SVG"
-                        size="xs"
-                        variant="outline"
-                        toastMessage="SVG source copied"
-                        className="w-full text-[10px] h-7 border-zinc-700 text-zinc-300 hover:text-white"
-                      />
-                    </div>
-                  </div>
                 </Card>
-              </Link>
-            );
-          })
-        ) : (
-          <div className="col-span-full py-20 text-center border-2 border-dashed border-zinc-900 rounded-xl">
-            <p className="text-zinc-600 font-medium">No icons match your search.</p>
-          </div>
-        )}
+
+                {/* Tooltip */}
+                <div className="pointer-events-none absolute -top-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-10">
+                  <div className="relative bg-zinc-800 text-white text-[10px] font-medium px-2 py-0.5 rounded whitespace-nowrap shadow-lg border border-zinc-700">
+                    {icon.name}
+                    <span className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-x-[3px] border-x-transparent border-t-[3px] border-t-zinc-800" />
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="col-span-full py-12 text-center border border-dashed border-zinc-900 rounded-lg">
+              <p className="text-zinc-600 text-sm">No icons match your search.</p>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+
+      <IconDetailModal icon={selectedIcon} onClose={handleClose} />
+    </>
   );
 }

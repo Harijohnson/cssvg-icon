@@ -1,0 +1,53 @@
+# Source
+app/
+components/
+public/
+styles/
+scripts/
+
+# Configuration
+.github/
+.next/
+.vscode/
+.antigravity/
+.antigravityignore/
+
+# Build and dependencies
+node_modules/
+bun.lock
+package-lock.json
+*logs*
+*.log
+
+# Environment
+.env
+.env.*
+
+# Documentation
+PRIVACY.md
+SUPPORT.md
+walkthrough.md
+implementation_plan.md
+task.md
+
+# Testing
+tests/
+jest.config.js
+cypress/
+
+
+.github
+packages
+stats
+node_modules
+tests
+scripts
+src
+build
+babel.config.js
+categories.json
+jest.config.js
+netlify.toml
+rollup.config.js
+rollup.plugins.js
+tags.json

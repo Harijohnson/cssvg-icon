@@ -1,17 +1,17 @@
 # cssvg-icons
 
-A premium, scalable, and SEO-ready animated SVG icon system for Next.js and React applications. Designed for developers who value performance, rich aesthetics, and ease of use.
+A professional, scalable, and SEO-ready animated SVG icon system for Next.js and React applications. Designed for developers who value performance, rich aesthetics, and ease of use.
 
-## ✨ Features
+## Features
 
-- **🚀 Highly Performant**: Built-in tree-shaking support ensures only the icons you use are bundled.
-- **✨ Smooth Animations**: Built-in hover animations and micro-interactions.
-- **🔍 SEO Optimized**: Includes dynamic generation and structured data support for search engines.
-- **📋 Developer Friendly**: One-click copy for React snippets and SVG source code.
-- **🎨 Minimalist Aesthetic**: Consistent pure black, white and gray theme that fits modern UI designs.
-- **🔄 Scalable Registry**: Automatically scans directory structures to discover and register new icons.
+- **Highly Performant**: Built-in tree-shaking support ensures only the icons you use are bundled.
+- **Smooth Animations**: Built-in hover animations and micro-interactions.
+- **SEO Optimized**: Includes dynamic generation and structured data support for search engines.
+- **Developer Friendly**: One-click copy for React snippets and SVG source code.
+- **Minimalist Aesthetic**: Consistent pure black, white and gray theme that fits modern UI designs.
+- **Scalable Registry**: Automatically scans directory structures to discover and register new icons.
 
-## 📦 Installation
+## Installation
 
 ```bash
 # With npm
@@ -21,7 +21,32 @@ npm install cssvg-icons
 bun add cssvg-icons
 ```
 
-## 🚀 Quick Start
+## Local Development (Docs)
+
+If you want to run the icon registry documentation locally:
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/Harijohnson/cssvg-icon.git
+   cd cssvg-icon
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   bun install
+   ```
+
+3. **Start the development server**:
+
+   ```bash
+   bun dev
+   ```
+
+   Open [http://localhost:3000](http://localhost:3000) to view the documentation.
+
+## Quick Start
 
 ### 1. Simple Usage
 
@@ -58,26 +83,60 @@ async function Gallery() {
 }
 ```
 
-## 🛠️ Adding New Icons
+## Project Architecture
 
-This project uses a folder-based automated registry. To add a new icon:
+`cssvg-icon` is built on a modular "Shadow Registry" architecture. Each icon is self-contained in its own directory, allowing for easy discovery, tree-shaking, and external attribution.
 
-1. Create a folder in `icons/[slug]/`.
-2. Add three files:
-   - `[slug].tsx`: The React component (Exported as named export).
-   - `[slug].json`: Metadata (name, description, tags).
-   - `[slug].svg`: Raw SVG source for downloads/copying.
+```text
+/icons
+  /[slug]
+    ├── [slug].tsx   # The animated React component
+    ├── [slug].json  # Detailed metadata & attribution
+    └── [slug].svg   # Raw SVG source for copying/downloading
+```
 
-Example `icon.json`:
+## Adding New Icons
+
+To add an icon to the registry, create a new folder in `icons/` using the slug name as the folder name.
+
+### 1. Metadata Schema (`[slug].json`)
+
+The JSON file defines how the icon appears in the explorer and its legal attribution.
+
 ```json
 {
-  "name": "Arrow",
-  "slug": "arrow",
-  "description": "Animated navigation arrow",
-  "tags": ["navigation", "arrow", "direction"]
+  "name": "Arrow",                // Readable name
+  "slug": "arrow",               // URL-safe identifier
+  "description": "Animated...",   // Brief description
+  "tags": ["arrow", "nav"],      // Searchable keywords
+  "credit": "Hari",               // Author name
+  "link": "https://cssvg.com/",  // Author's direct link
+  "reference": "https://..."      // Source registry reference
 }
 ```
 
-## 📄 License
+### 2. Implementation (`[slug].tsx`)
 
-MIT © [hari](https://github.com/Harijohnson)
+Icons should be implemented as functional React components that accept `color`, `size`, and `strokeWidth` props.
+
+### 3. Source (`[slug].svg`)
+
+Provide the raw SVG source code. This is used by the "Copy SVG" and "Download SVG" features in the Icon Detail Modal.
+
+## Design System
+
+The library follows a strict **Monochrome Minimalist** design system:
+- **Primary**: `bg-black` (#000000)
+- **Secondary**: `text-white` (#FFFFFF)
+- **Accents**: `text-zinc-500` (#71717A)
+- **Borders**: `border-zinc-800` (#27272A)
+
+## Legal & Support
+
+- **[License](LICENSE)**: MIT License.
+- **[Privacy Policy](PRIVACY.md)**: Transparent data usage documentation.
+- **[Support](SUPPORT.md)**: Community support and issue reporting.
+
+## License
+
+MIT

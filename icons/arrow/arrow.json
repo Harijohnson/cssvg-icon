@@ -2,5 +2,12 @@
   "name": "Arrow",
   "slug": "arrow",
   "description": "Animated arrow icon",
-  "tags": ["arrow", "direction", "navigation"]
+  "tags": [
+    "arrow",
+    "direction",
+    "navigation"
+  ],
+  "link": "https://cssvg.com/",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/"
 }

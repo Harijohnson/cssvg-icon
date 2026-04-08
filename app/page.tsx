@@ -1,6 +1,11 @@
 import React from "react";
 import { getIconRegistry } from "@/lib/icons-registry";
 import IconExplorer from "@/components/IconExplorer";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { Sidebar } from "@/components/Sidebar";
+import { TableOfContents } from "@/components/TableOfContents";
+import Link from "next/link";
 
 export const metadata = {
   title: "cssvg-icon | Minimalist Icon System",
@@ -11,59 +16,49 @@ export default async function HomePage() {
   const initialIcons = await getIconRegistry();
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-zinc-800 selection:text-white">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 border-b border-zinc-900 bg-black/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-white rounded flex items-center justify-center">
-              <span className="text-black font-bold text-xs">I</span>
-            </div>
-            <span className="font-semibold tracking-tight text-lg">cssvg-icon</span>
-          </div>
-          
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-            <a href="#" className="hover:text-white transition-colors">Icons</a>
-            <a href="#" className="hover:text-white transition-colors">Hooks</a>
-            <a href="#" className="hover:text-white transition-colors">Docs</a>
-            <a 
-              href="https://github.com" 
-              target="_blank" 
-              className="bg-zinc-900 px-3 py-1.5 rounded-md text-white hover:bg-zinc-800 transition-all border border-zinc-800"
-            >
-              GitHub
-            </a>
-          </div>
-        </div>
-      </nav>
+    <div className="min-h-screen bg-black text-white selection:bg-zinc-800 selection:text-white flex flex-col">
+      <Header />
 
-      <main className="max-w-7xl mx-auto px-6 py-20 lg:py-32">
+      <main className="grow max-w-7xl mx-auto px-6 py-12 lg:py-20 w-full">
         {/* Hero Section */}
-        <section className="text-center mb-20 space-y-6">
-          <h1 className="text-5xl lg:text-7xl font-bold tracking-tighter text-white">
-            Icons for developers.
-          </h1>
-          <p className="text-xl text-zinc-500 max-w-2xl mx-auto font-medium">
-            Clean, minimalist, and fully automated SVG icon registry built for 
-            modern web applications.
-          </p>
-        </section>
+        {/* <section className="text-center mb-24 space-y-8 animate-in fade-in slide-in-from-top-4 duration-1000"> */}
+        {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[10px] uppercase tracking-widest text-zinc-500 font-bold mb-4">
+            <span className="w-1 h-1 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+            v1.0.0 Stable
+          </div> */}
+
+        {/* <h1 className="text-5xl lg:text-8xl font-bold tracking-tighter text-white leading-tight">
+            Icons for <br />
+            <span className="text-zinc-500">developers.</span>
+          </h1> */}
+
+        {/* <p className="text-lg text-zinc-500 max-w-2xl mx-auto leading-relaxed">
+            A professional, scalable, and SEO-ready animated SVG icon system for Next.js.
+            Designed for those who value performance and rich aesthetics.
+          </p> */}
+        {/* 
+          <div className="flex items-center justify-center gap-4 pt-4">
+            <a href="#icons" className="bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-zinc-200 transition-all hover:scale-105 active:scale-95">
+              Explore Library
+            </a>
+            <Link href="/docs" className="text-zinc-400 hover:text-white transition-colors text-sm font-semibold">
+              Get Started →
+            </Link>
+          </div> */}
+        {/* </section> */}
 
         {/* Icon Explorer Section */}
-        <IconExplorer initialIcons={initialIcons} />
+        <div id="icons" className="scroll-mt-10">
+          <div className="flex items-center gap-3 mb-10 justify-center">
+            <div className="w-8 h-1 bg-white rounded-full opacity-10" />
+            <h2 className="text-2xl font-bold tracking-tight">Icon Library</h2>
+            <div className="w-8 h-1 bg-white rounded-full opacity-10" />
+          </div>
+          <IconExplorer initialIcons={initialIcons} />
+        </div>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-zinc-900 py-12 bg-black">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 text-zinc-600 text-sm">
-          <p>© 2026 cssvg-icon. Built with Next.js & Tailwind.</p>
-          <div className="flex gap-8">
-            <a href="#" className="hover:text-white transition-colors">Privacy</a>
-            <a href="#" className="hover:text-white transition-colors">License</a>
-            <a href="#" className="hover:text-white transition-colors">Support</a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
