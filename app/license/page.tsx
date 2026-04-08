@@ -5,6 +5,9 @@ import { MarkdownPage } from "@/components/MarkdownPage";
 export const metadata = {
   title: "License | cssvg-icon",
   description: "MIT License for the cssvg-icon library.",
+  alternates: {
+    canonical: "/license",
+  },
 };
 
 export default async function LicensePage() {

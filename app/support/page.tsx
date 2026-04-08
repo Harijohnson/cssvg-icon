@@ -5,6 +5,9 @@ import { MarkdownPage } from "@/components/MarkdownPage";
 export const metadata = {
   title: "Support | cssvg-icon",
   description: "Get help and support for the cssvg-icon library.",
+  alternates: {
+    canonical: "/support",
+  },
 };
 
 export default async function SupportPage() {

@@ -40,23 +40,27 @@ export function MarkdownPage({ content, title }: MarkdownPageProps) {
         <span className="font-bold text-sm text-white hidden sm:block uppercase tracking-wider">cssvg-icon</span>
       </Link>
 
+      <h1 className="text-3xl md:text-4xl font-bold tracking-tighter text-white mb-6">
+        {title}
+      </h1>
+
       <article className="prose prose-invert prose-zinc max-w-none prose-headings:scroll-mt-24 prose-headings:tracking-tighter prose-headings:font-bold prose-h1:text-4xl prose-h1:lg:text-5xl prose-h2:border-b prose-h2:border-zinc-900 prose-h2:pb-2 prose-a:text-white prose-a:underline-offset-4 prose-pre:bg-zinc-950 prose-pre:border prose-pre:border-zinc-900 prose-code:text-zinc-300 prose-code:bg-zinc-900/50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-blockquote:border-l-zinc-800 prose-blockquote:text-zinc-500">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{
-            h2: ({ node, ...props }) => {
-              const id = String(props.children)
+            h2: ({ children, ...props }) => {
+              const id = String(children)
                 .toLowerCase()
                 .replace(/[^\w\s-]/g, "")
                 .replace(/\s+/g, "-");
-              return <h2 id={id} {...props} />;
+              return <h2 id={id} {...props}>{children}</h2>;
             },
-            h3: ({ node, ...props }) => {
-              const id = String(props.children)
+            h3: ({ children, ...props }) => {
+              const id = String(children)
                 .toLowerCase()
                 .replace(/[^\w\s-]/g, "")
                 .replace(/\s+/g, "-");
-              return <h3 id={id} {...props} />;
+              return <h3 id={id} {...props}>{children}</h3>;
             },
           }}
         >

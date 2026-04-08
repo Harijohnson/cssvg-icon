@@ -3,13 +3,13 @@ import { getIconRegistry } from "@/lib/icons-registry";
 import IconExplorer from "@/components/IconExplorer";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Sidebar } from "@/components/Sidebar";
-import { TableOfContents } from "@/components/TableOfContents";
-import Link from "next/link";
 
 export const metadata = {
   title: "cssvg-icon | Minimalist Icon System",
   description: "A clean, developer-first icon registry for Next.js and Tailwind CSS.",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default async function HomePage() {
@@ -19,7 +19,7 @@ export default async function HomePage() {
     <div className="min-h-screen bg-black text-white selection:bg-zinc-800 selection:text-white flex flex-col">
       <Header />
 
-      <main className="grow max-w-7xl mx-auto px-6 py-12 lg:py-20 w-full">
+      <main className="grow max-w-ful mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 w-full">
         {/* Hero Section */}
         {/* <section className="text-center mb-24 space-y-8 animate-in fade-in slide-in-from-top-4 duration-1000"> */}
         {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[10px] uppercase tracking-widest text-zinc-500 font-bold mb-4">

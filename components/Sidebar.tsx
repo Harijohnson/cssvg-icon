@@ -4,13 +4,11 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { 
-  LayoutGrid, 
-  Layers, 
-  BookOpen, 
-  Settings,
+import {
+  LayoutGrid,
+  Layers,
   ExternalLink,
-  Code2
+  Code2,
 } from "lucide-react";
 import { DOC_NAV } from "@/lib/navigation-data";
 

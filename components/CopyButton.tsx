@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Check, Copy } from "lucide-react";
+import { Copy } from "lucide-react";
 import { toast } from "sonner";
 
 interface CopyButtonProps {

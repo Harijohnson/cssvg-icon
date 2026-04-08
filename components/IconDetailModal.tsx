@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import { X, Download } from "lucide-react";
 import { toast } from "sonner";
 import { IconRegistryEntry } from "@/lib/icons-registry";
@@ -10,25 +10,30 @@ import { Button } from "@/components/ui/button";
 interface IconDetailModalProps {
   icon: IconRegistryEntry | null;
   onClose: () => void;
+  color: string;
+  strokeWidth: number;
+  size: number;
 }
 
-const DEFAULT_COLOR = "#ffffff";
-const DEFAULT_STROKE = 2;
-const DEFAULT_SIZE = 80;
+export default function IconDetailModal({ icon, onClose, color, strokeWidth, size }: IconDetailModalProps) {
+  if (!icon) return null;
+  return <ModalContent key={icon.slug} icon={icon} onClose={onClose} color={color} strokeWidth={strokeWidth} size={size} />;
+}
 
-export default function IconDetailModal({ icon, onClose }: IconDetailModalProps) {
-  const [color, setColor] = useState(DEFAULT_COLOR);
-  const [strokeWidth, setStrokeWidth] = useState(DEFAULT_STROKE);
-  const [size, setSize] = useState(DEFAULT_SIZE);
+function ModalContent({
+  icon,
+  onClose,
+  color,
+  strokeWidth,
+  size,
+}: {
+  icon: IconRegistryEntry;
+  onClose: () => void;
+  color: string;
+  strokeWidth: number;
+  size: number;
+}) {
   const backdropRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (icon) {
-      setColor(DEFAULT_COLOR);
-      setStrokeWidth(DEFAULT_STROKE);
-      setSize(DEFAULT_SIZE);
-    }
-  }, [icon?.slug]);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
@@ -37,16 +42,15 @@ export default function IconDetailModal({ icon, onClose }: IconDetailModalProps)
   }, [onClose]);
 
   useEffect(() => {
-    document.body.style.overflow = icon ? "hidden" : "";
+    document.body.style.overflow = "hidden";
     return () => { document.body.style.overflow = ""; };
-  }, [icon]);
+  }, []);
 
   const handleBackdropClick = useCallback((e: React.MouseEvent) => {
     if (e.target === backdropRef.current) onClose();
   }, [onClose]);
 
   const getModifiedSvg = () => {
-    if (!icon) return "";
     const parser = new DOMParser();
     const doc = parser.parseFromString(icon.svgPath, "image/svg+xml");
     const svgEl = doc.querySelector("svg");
@@ -65,7 +69,6 @@ export default function IconDetailModal({ icon, onClose }: IconDetailModalProps)
   };
 
   const copyJsx = () => {
-    if (!icon) return;
     navigator.clipboard.writeText(
       `<${icon.name}Icon color="${color}" strokeWidth={${strokeWidth}} style={{ width: ${size}, height: ${size} }} />`
     );
@@ -73,7 +76,6 @@ export default function IconDetailModal({ icon, onClose }: IconDetailModalProps)
   };
 
   const downloadSvg = () => {
-    if (!icon) return;
     const blob = new Blob([getModifiedSvg()], { type: "image/svg+xml" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -82,8 +84,6 @@ export default function IconDetailModal({ icon, onClose }: IconDetailModalProps)
     a.click();
     URL.revokeObjectURL(url);
   };
-
-  if (!icon) return null;
 
   return (
     <div
@@ -138,62 +138,8 @@ export default function IconDetailModal({ icon, onClose }: IconDetailModalProps)
             </div>
           </div>
 
-          {/* Customizer + Actions */}
+          {/* Metadata + Actions */}
           <div className="flex-1 px-5 py-4 flex flex-col gap-4">
-
-            {/* Customizer */}
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-semibold uppercase tracking-widest text-zinc-500">Customizer</span>
-                <button
-                  onClick={() => { setColor(DEFAULT_COLOR); setStrokeWidth(DEFAULT_STROKE); setSize(DEFAULT_SIZE); }}
-                  className="text-[9px] text-zinc-600 hover:text-zinc-300 transition-colors border border-zinc-800 rounded px-1.5 py-0.5"
-                >
-                  Reset
-                </button>
-              </div>
-
-              {/* Color */}
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-zinc-400 w-24 shrink-0">Color</span>
-                <input
-                  type="color"
-                  value={color}
-                  onChange={(e) => setColor(e.target.value)}
-                  className="w-6 h-6 rounded border border-zinc-700 bg-transparent p-0.5 cursor-pointer shrink-0"
-                />
-                <input
-                  type="text"
-                  value={color}
-                  onChange={(e) => setColor(e.target.value)}
-                  className="flex-1 bg-zinc-900 border border-zinc-700 rounded px-2 py-1 text-xs text-zinc-300 font-mono focus:outline-none focus:border-zinc-500"
-                />
-              </div>
-
-              {/* Stroke Width */}
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-zinc-400 w-24 shrink-0">Stroke width</span>
-                <input
-                  type="range" min={0.5} max={4} step={0.5} value={strokeWidth}
-                  onChange={(e) => setStrokeWidth(Number(e.target.value))}
-                  className="flex-1 accent-white cursor-pointer h-1"
-                />
-                <span className="text-xs text-zinc-500 font-mono w-8 text-right">{strokeWidth}px</span>
-              </div>
-
-              {/* Size */}
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-zinc-400 w-24 shrink-0">Size</span>
-                <input
-                  type="range" min={16} max={200} step={8} value={size}
-                  onChange={(e) => setSize(Number(e.target.value))}
-                  className="flex-1 accent-white cursor-pointer h-1"
-                />
-                <span className="text-xs text-zinc-500 font-mono w-8 text-right">{size}px</span>
-              </div>
-            </div>
-
-            {/* Metadata Section */}
             {(icon.credit || icon.reference || icon.link) && (
               <div className="space-y-3 pt-4 border-t border-zinc-900">
                 <span className="text-[10px] font-semibold uppercase tracking-widest text-zinc-500 block">Icon Details</span>
@@ -214,9 +160,9 @@ export default function IconDetailModal({ icon, onClose }: IconDetailModalProps)
                   )}
                   {icon.link && (
                     <div className="pt-2">
-                      <a 
-                        href={icon.link} 
-                        target="_blank" 
+                      <a
+                        href={icon.link}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center justify-center w-full bg-zinc-900 border border-zinc-800 rounded-md py-2 text-[11px] text-zinc-300 hover:bg-zinc-800 hover:text-white transition-all transform hover:-translate-y-0.5"
                       >
@@ -228,7 +174,6 @@ export default function IconDetailModal({ icon, onClose }: IconDetailModalProps)
               </div>
             )}
 
-            {/* Actions */}
             <div className="flex items-center gap-2 pt-1 mt-auto">
               <Button
                 onClick={copySvg}

@@ -18,7 +18,7 @@ export async function generateStaticParams() {
       .map((file) => ({
         slug: file.replace(".md", ""),
       }));
-  } catch (error) {
+  } catch {
     return [];
   }
 }
@@ -33,22 +33,27 @@ export async function generateMetadata({ params }: PageProps) {
   return {
     title: `${title} | cssvg-icon`,
     description: `Learn about ${title} in the cssvg-icon animated SVG system.`,
+    alternates: {
+      canonical: `/docs/${slug}`,
+    },
   };
 }
 
 export default async function DocPage({ params }: PageProps) {
   const { slug } = await params;
   const filePath = path.join(process.cwd(), "content", "docs", `${slug}.md`);
+  const title = slug
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 
+  let content: string;
   try {
-    const content = await fs.readFile(filePath, "utf-8");
-    const title = slug
-      .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-
-    return <MarkdownPage content={content} title={title} />;
-  } catch (error) {
+    content = await fs.readFile(filePath, "utf-8");
+  } catch {
     notFound();
+    return null;
   }
+
+  return <MarkdownPage content={content} title={title} />;
 }
