@@ -63,7 +63,7 @@ export default function AnimatedScene({
         <animateTransform attributeName="transform" type="translate" values={"33.68,7.36;33.68,7.36;20.68,12.36;20.68,19.36;20.68,25.36"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.4125;0.6075;0.7975;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
         <animateTransform attributeName="transform" type="rotate" values={"0,0,0;0,0,0;0,0,0;0,0,0;0,0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.4125;0.6075;0.7975;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1"} additive="sum" />
         <animateTransform attributeName="transform" type="scale" values={"0.03,0.03;0.03,0.03;0.03,0.03;0.03,0.03;0.03,0.03"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.4125;0.6075;0.7975;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1"} additive="sum" />
-        <polygon points="0,-50 39.09,-31.17 48.75,11.13 21.69,45.05 -21.69,45.05 -48.75,11.13 -39.09,-31.17" transform={"translate(0,2.48)"} fill="#bcbcbc" stroke={color} strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" style={{ opacity: 1 }} />
+        <polygon points="0,-50 39.09,-31.17 48.75,11.13 21.69,45.05 -21.69,45.05 -48.75,11.13 -39.09,-31.17" transform={"translate(0,2.48)"} fill="none" stroke={color} strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" style={{ opacity: 1 }} />
       </g>
       </svg>
     </div>
