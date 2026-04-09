@@ -74,11 +74,22 @@ export default function IconExplorer({ initialIcons }: IconExplorerProps) {
               {pickerOpen && (
                 <div className="relative">
                   <div className="absolute z-40">
-                    <ChromePicker
-                      disableAlpha
-                      color={color}
-                      onChange={(val) => setColor(val.hex)}
-                    />
+                    <div className="rounded-lg overflow-hidden shadow-xl border border-zinc-700">
+                      <ChromePicker
+                        disableAlpha
+                        color={color}
+                        onChange={(val) => setColor(val.hex)}
+                      />
+                      <div className="flex justify-end bg-zinc-900 px-3 py-2 border-t border-zinc-700">
+                        <button
+                          type="button"
+                          onClick={() => setPickerOpen(false)}
+                          className="text-xs text-zinc-400 hover:text-white px-3 py-1 rounded bg-zinc-800 hover:bg-zinc-700 transition-colors"
+                        >
+                          Close
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
@@ -133,7 +144,7 @@ export default function IconExplorer({ initialIcons }: IconExplorerProps) {
                   aria-label={`Open ${icon.name} icon details`}
                   onKeyDown={(e) => e.key === "Enter" && setSelectedIcon(icon)}
                 >
-                  <Card className="bg-black border-zinc-800 hover:border-zinc-600 transition-all duration-200 p-2 flex flex-col items-center justify-center gap-1 aspect-square">
+                  <Card className="bg-black border-zinc-800 hover:border-zinc-600 transition-all duration-200 p-0 flex flex-col items-center justify-center gap-1 aspect-square">
                     <IconRenderer
                       slug={icon.slug}
                       className={cn(
@@ -144,7 +155,7 @@ export default function IconExplorer({ initialIcons }: IconExplorerProps) {
                       strokeWidth={strokeWidth}
                       size={size}
                     />
-                    <span className="text-[8px] uppercase tracking-wide font-medium text-zinc-600 group-hover:text-zinc-400 transition-colors truncate w-full text-center">
+                    <span className="text-[8px]  uppercase tracking-wide font-medium text-zinc-600 group-hover:text-zinc-400 transition-colors truncate w-full text-center">
                       {icon.name}
                     </span>
                   </Card>
