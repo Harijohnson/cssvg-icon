@@ -1,53 +1,54 @@
-# Source
+# The "files" field in package.json controls what gets published.
+# This file is a safety net — everything here is excluded even if accidentally matched.
+
+# Next.js app (not needed by consumers)
 app/
 components/
 public/
+content/
 styles/
-scripts/
 
-# Configuration
+# Config & tooling
 .github/
 .next/
 .vscode/
-.antigravity/
-.antigravityignore/
+scripts/
+next.config.*
+tailwind.config.*
+postcss.config.*
+tsconfig*.json
+eslint.config.*
+.eslintrc*
+.prettierrc*
+.editorconfig
 
-# Build and dependencies
-node_modules/
-bun.lock
+# Lock files & logs
 package-lock.json
-*logs*
+bun.lock
+yarn.lock
 *.log
+*.tsbuildinfo
 
-# Environment
+# Env
 .env
 .env.*
 
-# Documentation
+# Docs & meta
+README.md
+CONTRIBUTING.md
+EXPORT_GUIDELINES.md
+CLAUDE.md
 PRIVACY.md
 SUPPORT.md
-walkthrough.md
-implementation_plan.md
-task.md
+*.md
 
-# Testing
+# Tests
 tests/
-jest.config.js
+coverage/
+jest.config.*
 cypress/
 
-
-.github
-packages
-stats
-node_modules
-tests
-scripts
-src
-build
-babel.config.js
-categories.json
-jest.config.js
-netlify.toml
-rollup.config.js
-rollup.plugins.js
-tags.json
+# Misc
+node_modules/
+.DS_Store
+*.pem

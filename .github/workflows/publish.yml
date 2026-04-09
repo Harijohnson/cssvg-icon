@@ -1,11 +1,8 @@
-name: Publish to npm
+name: Publish
 
 # ─── Triggers ────────────────────────────────────────────────────────────────
-# Runs when a PR is merged into main, OR when you push a version tag (v*).
 on:
   push:
-    branches:
-      - main
     tags:
       - "v*"
   pull_request:
@@ -14,13 +11,12 @@ on:
       - main
 
 # ─── Concurrency guard ───────────────────────────────────────────────────────
-# Only one publish job runs at a time; cancel any queued duplicate.
 concurrency:
   group: publish-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  # ── 1. CI — lint + type-check + build (runs on every PR and push) ──────────
+  # ── 1. CI — lint + type-check + build ──────────────────────────────────────
   ci:
     name: CI checks
     runs-on: ubuntu-latest
@@ -48,11 +44,10 @@ jobs:
       - name: Build
         run: npm run build
 
-  # ── 2. Publish — only when a PR is merged into main (or a tag is pushed) ──
-  publish:
+  # ── 2. Publish to npm ──────────────────────────────────────────────────────
+  publish-npm:
     name: Publish to npm
     needs: ci
-    # Gate: merged PR into main  OR  direct push with a version tag
     if: |
       (github.event_name == 'pull_request' && github.event.pull_request.merged == true) ||
       (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v'))
@@ -82,8 +77,8 @@ jobs:
       - name: Build
         run: npm run build
 
-      # Bump patch version automatically when merging a PR
-      # (skip when publishing via a manually pushed tag — the tag IS the version)
+      # Bump patch version when merging a PR
+      # (skip for tag pushes — the tag IS the version)
       - name: Bump patch version
         if: github.event_name == 'pull_request'
         run: |
@@ -96,7 +91,56 @@ jobs:
           git pull --rebase origin main
           git push
 
-      - name: Publish (with provenance)
+      - name: Publish to npm (with provenance)
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # ── 3. Publish to GitHub Packages ─────────────────────────────────────────
+  publish-gpr:
+    name: Publish to GitHub Packages
+    needs: publish-npm   # wait for version bump commit before reading version
+    if: |
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true) ||
+      (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v'))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write  # required to publish to GitHub Packages
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+      - name: Checkout (latest — includes version bump commit)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Node.js 24 with GitHub Packages registry
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+          registry-url: "https://npm.pkg.github.com"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Regenerate index.ts
+        run: node scripts/generate-index.mjs
+
+      - name: Scope package name for GitHub Packages
+        # GitHub Packages requires a scoped name: @owner/package
+        # We patch it temporarily — does not affect the npm publish above
+        run: |
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            pkg.name = '@harijohnson/cssvg-icons';
+            pkg.publishConfig = { registry: 'https://npm.pkg.github.com' };
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+          "
+
+      - name: Publish to GitHub Packages
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
