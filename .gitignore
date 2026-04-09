@@ -1,6 +1,6 @@
-# dependencies
-/node_modules
-/.pnp
+# Dependencies
+node_modules/
+.pnp
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -8,88 +8,45 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
+# Next.js
+.next/
+out/
 
-# next.js
-/.next/
-/out/
+# Build
+build/
+dist/
 
-# production
-/build
+# Env
+.env
+.env.*
+!.env.example
 
-# misc
-.DS_Store
-*.pem
-
-# debug
+# Debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+*.log
 
-# env files
-.env*.local
-
-# typescript
+# TypeScript
 *.tsbuildinfo
 next-env.d.ts
 
+# Testing
+coverage/
 
+# OS
 .DS_Store
-.idea
-.next
-.obsidian
-.now
-.idea
-.env
-node_modules
-dist
-build
-sandbox
-stash
-coverage
-stats
-*.log
-outlined
-lucide-font
-packages/**/src/icons/*.js
-packages/**/src/icons/*.ts
-packages/**/src/icons/*.tsx
-packages/**/src/aliases/*.ts
-packages/**/src/aliases.ts
-!packages/**/src/aliases/index.ts
-packages/**/src/utils/*.ts
-!packages/shared/src/utils/*.ts
-packages/**/src/dynamicIconImports.ts
-packages/**/DynamicIcon.d.ts
-packages/**/dynamicIconImports.js
-packages/**/dynamicIconImports.d.ts
-packages/**/dynamicIconImports.d.mts
-packages/**/dynamicIconImports.js.map
-packages/**/dynamic.d.ts
-packages/**/dynamic.d.mts
-packages/**/dynamic.mjs.map
-packages/**/dynamic.mjs
-packages/**/LICENSE
-categories.json
-tags.json
+*.pem
+
+# Editor
+.vscode/
+.idea/
+
+# Vercel
 .vercel
 
-# docs
-docs/.vitepress/cache
-docs/.vitepress/dist
-docs/.vitepress/.temp
-docs/.vitepress/data/iconNodes
-docs/.vitepress/data/iconMetaData.ts
-docs/.vitepress/data/releaseMetaData.json
-docs/.vitepress/data/releaseMetadata
-docs/.vitepress/data/categoriesData.json
-docs/.vitepress/data/iconDetails
-docs/.vitepress/data/relatedIcons.json
-docs/.vitepress/data/brandStopwords.json
-docs/.vercel
-docs/.nitro
-docs/public/og/**
-!docs/public/og/general.png
-.gitignore
+# Misc
+.now
+sandbox/
+stash/
