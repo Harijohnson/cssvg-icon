@@ -45,6 +45,8 @@ export function Footer() {
           <div>
             <h4 className="text-white font-semibold text-sm mb-6 uppercase tracking-widest">Resources</h4>
             <ul className="space-y-4">
+              <li><Link href="https://github.com/Harijohnson/cssvg-icon" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white text-sm transition-colors">GitHub</Link></li>
+              <li><Link href="https://github.com/Harijohnson/cssvg-icon/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white text-sm transition-colors">Contributing</Link></li>
               <li><Link href="/privacy" className="text-zinc-500 hover:text-white text-sm transition-colors">Privacy Policy</Link></li>
               <li><Link href="/license" className="text-zinc-500 hover:text-white text-sm transition-colors">License</Link></li>
               <li><Link href="/support" className="text-zinc-500 hover:text-white text-sm transition-colors">Support</Link></li>
