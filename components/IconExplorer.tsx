@@ -20,6 +20,8 @@ export default function IconExplorer({ initialIcons }: IconExplorerProps) {
   const [strokeWidth, setStrokeWidth] = useState(2);
   const [size, setSize] = useState(56);
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [animPaused, setAnimPaused] = useState(false);
+  const [animSpeed, setAnimSpeed] = useState(1);
 
   const filteredIcons = useMemo(() => {
     const searchLower = search.toLowerCase();
@@ -184,6 +186,10 @@ export default function IconExplorer({ initialIcons }: IconExplorerProps) {
         color={color}
         strokeWidth={strokeWidth}
         size={size}
+        animPaused={animPaused}
+        setAnimPaused={setAnimPaused}
+        animSpeed={animSpeed}
+        setAnimSpeed={setAnimSpeed}
       />
     </>
   );

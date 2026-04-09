@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef, useCallback } from "react";
-import { X, Download } from "lucide-react";
+import React, { useEffect, useRef, useCallback, useState } from "react";
+import { X, Download, Pause, Play, Repeat } from "lucide-react";
 import { toast } from "sonner";
 import { IconRegistryEntry } from "@/lib/icons-registry";
 import IconRenderer from "@/components/icon-renderer";
@@ -13,12 +13,18 @@ interface IconDetailModalProps {
   color: string;
   strokeWidth: number;
   size: number;
+  animPaused: boolean;
+  setAnimPaused: (v: boolean) => void;
+  animSpeed: number;
+  setAnimSpeed: (v: number) => void;
 }
 
-export default function IconDetailModal({ icon, onClose, color, strokeWidth, size }: IconDetailModalProps) {
+export default function IconDetailModal({ icon, onClose, color, strokeWidth, size, animPaused, setAnimPaused, animSpeed, setAnimSpeed }: IconDetailModalProps) {
   if (!icon) return null;
-  return <ModalContent key={icon.slug} icon={icon} onClose={onClose} color={color} strokeWidth={strokeWidth} size={size} />;
+  return <ModalContent key={icon.slug} icon={icon} onClose={onClose} color={color} strokeWidth={strokeWidth} size={size} animPaused={animPaused} setAnimPaused={setAnimPaused} animSpeed={animSpeed} setAnimSpeed={setAnimSpeed} />;
 }
+
+const SPEED_STEPS = [0.25, 0.5, 1, 1.5, 2, 3];
 
 function ModalContent({
   icon,
@@ -26,14 +32,24 @@ function ModalContent({
   color,
   strokeWidth,
   size,
+  animPaused,
+  setAnimPaused,
+  animSpeed,
+  setAnimSpeed,
 }: {
   icon: IconRegistryEntry;
   onClose: () => void;
   color: string;
   strokeWidth: number;
   size: number;
+  animPaused: boolean;
+  setAnimPaused: (v: boolean) => void;
+  animSpeed: number;
+  setAnimSpeed: (v: number) => void;
 }) {
   const backdropRef = useRef<HTMLDivElement>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
+  const [loopOn, setLoopOn] = useState(true);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
@@ -45,6 +61,46 @@ function ModalContent({
     document.body.style.overflow = "hidden";
     return () => { document.body.style.overflow = ""; };
   }, []);
+
+  // Apply pause/unpause to SMIL animations
+  useEffect(() => {
+    const svg = previewRef.current?.querySelector("svg") as SVGSVGElement | null;
+    if (!svg) return;
+    if (animPaused) svg.pauseAnimations();
+    else svg.unpauseAnimations();
+  }, [animPaused]);
+
+  // Apply loop on/off
+  useEffect(() => {
+    const svg = previewRef.current?.querySelector("svg") as SVGSVGElement | null;
+    if (!svg) return;
+    const animEls = svg.querySelectorAll("animateTransform, animate, animateMotion");
+    animEls.forEach((el) => {
+      el.setAttribute("repeatCount", loopOn ? "indefinite" : "1");
+    });
+    // Restart by re-triggering via beginElement if available
+    if (!loopOn) {
+      animEls.forEach((el) => {
+        (el as SVGAnimationElement).beginElement?.();
+      });
+    }
+  }, [loopOn]);
+
+  // Apply speed by scaling all dur attributes
+  useEffect(() => {
+    const svg = previewRef.current?.querySelector("svg") as SVGSVGElement | null;
+    if (!svg) return;
+    const animEls = svg.querySelectorAll("animateTransform, animate, animateMotion");
+    animEls.forEach((el) => {
+      const baseDur = el.getAttribute("data-base-dur") ?? el.getAttribute("dur");
+      if (!baseDur) return;
+      if (!el.getAttribute("data-base-dur")) el.setAttribute("data-base-dur", baseDur);
+      const baseSeconds = parseFloat(baseDur);
+      if (!isNaN(baseSeconds)) {
+        el.setAttribute("dur", `${(baseSeconds / animSpeed).toFixed(3)}s`);
+      }
+    });
+  }, [animSpeed]);
 
   const handleBackdropClick = useCallback((e: React.MouseEvent) => {
     if (e.target === backdropRef.current) onClose();
@@ -121,11 +177,12 @@ function ModalContent({
         </div>
 
         {/* Body */}
-        <div className="grid grid-cols-1 md:grid-cols-2 ">
+        <div className="grid grid-cols-1 md:grid-cols-2">
 
           {/* Preview */}
-          <div className="flex items-center justify-center p-6  shrink-0 border-b md:border-b-0 md:border-r border-zinc-800/60">
+          <div className="flex items-center justify-center p-6 shrink-0 border-b md:border-b-0 md:border-r border-zinc-800/60">
             <div
+              ref={previewRef}
               className="rounded-xl border border-zinc-800 bg-zinc-900/60 flex items-center justify-center"
               style={{ width: size + 48, height: size + 48 }}
             >
@@ -158,45 +215,84 @@ function ModalContent({
                       </a>
                     </div>
                   )}
-                  {icon.link && (
-                    <div className="pt-2">
-                      <a
-                        href={icon.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center w-full bg-zinc-900 border border-zinc-800 rounded-md py-2 text-[11px] text-zinc-300 hover:bg-zinc-800 hover:text-white transition-all transform hover:-translate-y-0.5"
-                      >
-                        Open Original Site
-                      </a>
-                    </div>
-                  )}
                 </div>
               </div>
             )}
 
-            <div className="flex items-center gap-2 pt-1 mt-auto">
-              <Button
-                onClick={copySvg}
-                variant="outline"
-                size="sm"
-                className="flex-1 border-zinc-700 hover:bg-zinc-800 hover:text-white text-zinc-300 h-8 text-xs font-semibold"
-              >
-                Copy SVG
-              </Button>
-              <Button
-                onClick={copyJsx}
-                size="sm"
-                className="flex-1 bg-white text-black hover:bg-zinc-200 font-bold h-8 text-xs"
-              >
-                Copy JSX
-              </Button>
+            {/* Animation Controls */}
+            <div className="space-y-3 pt-4 border-t border-zinc-900">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-zinc-500">Animation</span>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => setLoopOn(!loopOn)}
+                    className={`flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-md transition-colors ${
+                      loopOn
+                        ? "bg-white text-black font-semibold"
+                        : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-white"
+                    }`}
+                  >
+                    <Repeat className="w-3 h-3" /> Loop
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setAnimPaused(!animPaused)}
+                    className="flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-md bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-colors"
+                  >
+                    {animPaused
+                      ? <><Play className="w-3 h-3" /> Play</>
+                      : <><Pause className="w-3 h-3" /> Pause</>
+                    }
+                  </button>
+                </div>
+              </div>
+              <div className="space-y-1.5">
+                <span className="text-[10px] text-zinc-500 block">Speed</span>
+                <div className="flex gap-1">
+                  {SPEED_STEPS.map((s) => (
+                    <button
+                      key={s}
+                      type="button"
+                      onClick={() => setAnimSpeed(s)}
+                      className={`flex-1 text-[10px] py-1 rounded transition-colors font-mono ${
+                        animSpeed === s
+                          ? "bg-white text-black font-bold"
+                          : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-white"
+                      }`}
+                    >
+                      {s}x
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2 pt-1 mt-auto">
+              <div className="flex items-center gap-2">
+                <Button
+                  onClick={copySvg}
+                  variant="outline"
+                  size="sm"
+                  className="flex-1 border-zinc-700 hover:bg-zinc-800 hover:text-white text-zinc-300 h-8 text-xs font-semibold"
+                >
+                  Copy SVG
+                </Button>
+                <Button
+                  onClick={copyJsx}
+                  size="sm"
+                  className="flex-1 bg-white text-black hover:bg-zinc-200 font-bold h-8 text-xs"
+                >
+                  Copy JSX
+                </Button>
+              </div>
               <Button
                 onClick={downloadSvg}
-                variant="ghost"
+                variant="outline"
                 size="sm"
-                className="text-zinc-500 hover:text-white hover:bg-zinc-800 h-8 px-2"
+                className="w-full border-zinc-700 hover:bg-zinc-800 hover:text-white text-zinc-300 h-8 text-xs font-semibold flex items-center gap-2"
               >
-                <Download className="w-4 h-4" />
+                <Download className="w-3.5 h-3.5" /> Download SVG
               </Button>
             </div>
           </div>
