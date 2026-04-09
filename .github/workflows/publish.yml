@@ -76,6 +76,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Regenerate index.ts
+        run: node scripts/generate-index.mjs
+
       - name: Build
         run: npm run build
 
@@ -88,7 +91,7 @@ jobs:
           git config user.name  "github-actions[bot]"
           npm version patch --no-git-tag-version
           NEW_VERSION=$(node -p "require('./package.json').version")
-          git add package.json package-lock.json
+          git add package.json package-lock.json index.ts
           git commit -m "chore: release v${NEW_VERSION} [skip ci]"
           git pull --rebase origin main
           git push
