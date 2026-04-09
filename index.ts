@@ -1,2 +1,16 @@
 export { default as ArrowRight } from "./icons/arrow-right/arrow-right";
+export { default as BellRing } from "./icons/bell-ring/bell-ring";
+export { default as Download } from "./icons/download/download";
+export { default as Heart } from "./icons/heart/heart";
+export { default as Minus } from "./icons/minus/minus";
+export { default as Pause } from "./icons/pause/pause";
+export { default as Play } from "./icons/play/play";
+export { default as Plus } from "./icons/plus/plus";
+export { default as Refresh } from "./icons/refresh/refresh";
+export { default as Search } from "./icons/search/search";
 export { default as Settings } from "./icons/settings/settings";
+export { default as Share } from "./icons/share/share";
+export { default as StarGrow } from "./icons/star-grow/star-grow";
+export { default as StarSpin } from "./icons/star-spin/star-spin";
+export { default as Trash } from "./icons/trash/trash";
+export { default as Upload } from "./icons/upload/upload";
