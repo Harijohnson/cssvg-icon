@@ -89,9 +89,28 @@ jobs:
                 ERRORS=$((ERRORS+1))
               fi
 
-              # stroke prop (no hardcoded hex)
+              # SVG width and height must be dynamic (={size}), not hardcoded 40
+              # Allow width={size} height={size} — reject width="40" height="40" hardcoded strings
+              if grep -qE 'width="[0-9]' "$TSX" || grep -qE 'height="[0-9]' "$TSX"; then
+                echo "  ❌ $TSX has hardcoded SVG width/height — use width={size} height={size}"
+                ERRORS=$((ERRORS+1))
+              fi
+
+              # No hardcoded colours — hex, rgb(), named colours (white/black) on stroke or fill
               if grep -qE 'stroke="#[0-9a-fA-F]' "$TSX"; then
                 echo "  ❌ $TSX has hardcoded hex stroke colour — use stroke={color}"
+                ERRORS=$((ERRORS+1))
+              fi
+              if grep -qE 'fill="#[0-9a-fA-F]' "$TSX"; then
+                echo "  ❌ $TSX has hardcoded hex fill colour — use fill=\"none\" or fill={color}"
+                ERRORS=$((ERRORS+1))
+              fi
+              if grep -qE 'stroke="(white|black|red|blue|green|gray|grey)"' "$TSX"; then
+                echo "  ❌ $TSX has hardcoded named stroke colour — use stroke={color}"
+                ERRORS=$((ERRORS+1))
+              fi
+              if grep -qE 'fill="(white|black|red|blue|green|gray|grey)"' "$TSX"; then
+                echo "  ❌ $TSX has hardcoded named fill colour (use fill=\"none\" or fill={color})"
                 ERRORS=$((ERRORS+1))
               fi
 
@@ -99,6 +118,32 @@ jobs:
               if grep -qE 'strokeWidth=\{[0-9]' "$TSX"; then
                 echo "  ❌ $TSX has hardcoded strokeWidth number — use strokeWidth={strokeWidth}"
                 ERRORS=$((ERRORS+1))
+              fi
+
+              # vectorEffect="non-scaling-stroke" required on all stroked paths
+              # Count path/circle/line/polyline/polygon/ellipse/rect elements with stroke
+              STROKED=$(grep -cE '<(path|circle|line|polyline|polygon|ellipse|rect)[^>]*stroke=\{color\}' "$TSX" || true)
+              NON_SCALING=$(grep -c 'vectorEffect="non-scaling-stroke"' "$TSX" || true)
+              if [ "$STROKED" -gt 0 ] && [ "$NON_SCALING" -lt "$STROKED" ]; then
+                echo "  ❌ $TSX: $STROKED stroked element(s) but only $NON_SCALING have vectorEffect=\"non-scaling-stroke\" — all stroked shapes must use absolute stroke width"
+                ERRORS=$((ERRORS+1))
+              else
+                if [ "$STROKED" -gt 0 ]; then
+                  echo "  ✅ All $STROKED stroked element(s) have vectorEffect=\"non-scaling-stroke\""
+                fi
+              fi
+
+              # Animation duration must be exactly 4s for all animate/animateTransform elements
+              BAD_DUR=$(grep -oE 'dur="[^"]+"' "$TSX" | grep -v 'dur="4s"' || true)
+              if [ -n "$BAD_DUR" ]; then
+                echo "  ❌ $TSX has animation duration other than 4s:"
+                echo "$BAD_DUR" | sed 's/^/     /'
+                ERRORS=$((ERRORS+1))
+              else
+                # Make sure there is at least one animation
+                if grep -qE '<animate|<animateTransform' "$TSX"; then
+                  echo "  ✅ Animation duration is 4s"
+                fi
               fi
 
               # default export
@@ -117,13 +162,37 @@ jobs:
             else
               echo "  ✅ $JSON exists"
 
-              # Required JSON fields
-              for field in name slug description tags credit; do
+              # Required JSON fields (credit is optional, link is required)
+              for field in name slug description tags link; do
                 if ! grep -q "\"$field\"" "$JSON"; then
                   echo "  ❌ $JSON missing required field: $field"
                   ERRORS=$((ERRORS+1))
                 fi
               done
+
+              # tags must be a JSON array (not a plain string)
+              TAGS_TYPE=$(node -e "const t=require('./$JSON').tags; console.log(Array.isArray(t)?'array':typeof t)" 2>/dev/null || echo "")
+              if [ "$TAGS_TYPE" != "array" ]; then
+                echo "  ❌ $JSON 'tags' must be an array, got: $TAGS_TYPE"
+                ERRORS=$((ERRORS+1))
+              else
+                TAGS_LEN=$(node -e "console.log(require('./$JSON').tags.length)" 2>/dev/null || echo "0")
+                if [ "$TAGS_LEN" -lt 1 ]; then
+                  echo "  ❌ $JSON 'tags' array must have at least one entry"
+                  ERRORS=$((ERRORS+1))
+                else
+                  echo "  ✅ tags is a valid array ($TAGS_LEN entries)"
+                fi
+              fi
+
+              # Warn if link value is empty
+              JSON_LINK=$(node -e "console.log(require('./$JSON').link || '')" 2>/dev/null || echo "")
+              if [ -z "$JSON_LINK" ]; then
+                echo "  ❌ $JSON 'link' field is empty — must be a valid CSSVG share URL"
+                ERRORS=$((ERRORS+1))
+              else
+                echo "  ✅ link present: $JSON_LINK"
+              fi
 
               # slug in JSON matches folder slug
               JSON_SLUG=$(node -e "console.log(require('./$JSON').slug || '')" 2>/dev/null || echo "")
