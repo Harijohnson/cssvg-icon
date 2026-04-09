@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { ChromePicker } from "react-color";
 import { SearchBar } from "@/components/search-bar";
 import { Card } from "@/components/ui/card";
@@ -20,8 +20,7 @@ export default function IconExplorer({ initialIcons }: IconExplorerProps) {
   const [strokeWidth, setStrokeWidth] = useState(2);
   const [size, setSize] = useState(56);
   const [pickerOpen, setPickerOpen] = useState(false);
-  const [animPaused, setAnimPaused] = useState(false);
-  const [animSpeed, setAnimSpeed] = useState(1);
+  const [absoluteStroke, setAbsoluteStroke] = useState(false);
 
   const filteredIcons = useMemo(() => {
     const searchLower = search.toLowerCase();
@@ -51,7 +50,7 @@ export default function IconExplorer({ initialIcons }: IconExplorerProps) {
       <div className="flex gap-8 lg:gap-16 items-start">
 
         {/* Left sidebar controls */}
-        <aside className="hidden 2xl:block w-64 lg:w-72 shrink-0 self-start border border-zinc-900 rounded-xl bg-zinc-950 sticky top-24 z-40">
+        <aside className="hidden lg:block w-64 shrink-0 self-start border border-zinc-900 rounded-xl bg-zinc-950 sticky top-24 z-40">
           <div className="p-4 space-y-4">
             <h3 className="text-xs font-semibold uppercase tracking-widest text-zinc-500">Controls</h3>
 
@@ -121,12 +120,35 @@ export default function IconExplorer({ initialIcons }: IconExplorerProps) {
               <input
                 type="range"
                 min={16}
-                max={200}
+                max={64}
                 step={8}
                 value={size}
                 onChange={(e) => setSize(Number(e.target.value))}
                 className="w-full accent-white"
               />
+            </div>
+
+            {/* Absolute stroke width toggle */}
+            <div className="flex items-center justify-between pt-1">
+              <div className="space-y-0.5">
+                <span className="text-xs text-zinc-400 block">Absolute stroke</span>
+                <span className="text-[10px] text-zinc-600 block">Scale-independent width</span>
+              </div>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={absoluteStroke}
+                onClick={() => setAbsoluteStroke((v) => !v)}
+                className={`relative inline-flex h-5 w-9 shrink-0 rounded-full border-2 border-transparent transition-colors focus:outline-none ${
+                  absoluteStroke ? "bg-white" : "bg-zinc-700"
+                }`}
+              >
+                <span
+                  className={`pointer-events-none inline-block h-4 w-4 rounded-full bg-black shadow-lg transform transition-transform ${
+                    absoluteStroke ? "translate-x-4" : "translate-x-0"
+                  }`}
+                />
+              </button>
             </div>
           </div>
         </aside>
@@ -156,6 +178,7 @@ export default function IconExplorer({ initialIcons }: IconExplorerProps) {
                       color={color}
                       strokeWidth={strokeWidth}
                       size={size}
+                      absoluteStroke={absoluteStroke}
                     />
                     <span className="text-[8px]  uppercase tracking-wide font-medium text-zinc-600 group-hover:text-zinc-400 transition-colors truncate w-full text-center">
                       {icon.name}
@@ -186,10 +209,8 @@ export default function IconExplorer({ initialIcons }: IconExplorerProps) {
         color={color}
         strokeWidth={strokeWidth}
         size={size}
-        animPaused={animPaused}
-        setAnimPaused={setAnimPaused}
-        animSpeed={animSpeed}
-        setAnimSpeed={setAnimSpeed}
+        absoluteStroke={absoluteStroke}
+        onTagClick={setSearch}
       />
     </>
   );

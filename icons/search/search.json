@@ -3,11 +3,14 @@
   "slug": "search",
   "description": "Animated search icon",
   "tags": [
-   "find",
-   "scan",
-   "magnifier",
-   "magnifying glass",
-   "lens"
+    "search",
+    "find",
+    "magnifier",
+    "lens",
+    "scanning",
+    "lookup",
+    "query",
+    "animated search icon"
   ],
   "link": "https://cssvg.com/share/1a16a6ff-5478-4dea-845e-1e889c88caf2",
   "credit": "Hari",

@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 
 export const metadata = {
   title: "cssvg-icon | Animated SVG Icon System",
-  description: "Browse and copy animated SVG icons for Next.js and Tailwind CSS. Free, open-source, and tree-shakeable.",
+  description: "Browse and copy animated SVG icons for Next.js and Tailwind CSS. Fast, lightweight, and tree-shakeable.",
   keywords: ["animated svg icons", "react icons", "next.js icons", "tailwind icons", "svg icon library", "cssvg"],
   alternates: {
     canonical: "https://icon.cssvg.com",
@@ -15,7 +15,7 @@ export const metadata = {
     type: "website",
     url: "https://icon.cssvg.com",
     title: "cssvg-icon | Animated SVG Icon System",
-    description: "Browse and copy animated SVG icons for Next.js and Tailwind CSS. Free, open-source, and tree-shakeable.",
+    description: "Browse and copy animated SVG icons for Next.js and Tailwind CSS. Fast, lightweight, and tree-shakeable.",
     siteName: "cssvg-icon",
   },
   twitter: {
