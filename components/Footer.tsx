@@ -10,8 +10,8 @@ export function Footer() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-linear-to-r from-transparent via-zinc-800 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-12 lg:gap-8 mb-16">
-          <div className="col-span-1 md:col-span-4 lg:col-span-2 space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8 mb-16">
+          <div className="col-span-1 md:col-span-2 lg:col-span-2 space-y-6">
             <Link href="/" className="flex items-center gap-3 group">
               <Image src="/logo.png" alt="cssvg-icon Logo" width={24} height={24} />
               <span className="font-bold tracking-tighter text-xl text-white">cssvg-icon</span>
@@ -38,8 +38,20 @@ export function Footer() {
           <div>
             <h4 className="text-white font-semibold text-sm mb-6 uppercase tracking-widest">Library</h4>
             <ul className="space-y-4">
-              <li><Link href="#icons" className="text-zinc-500 hover:text-white text-sm transition-colors">Icon Search</Link></li>
-              <li><Link href="/docs" className="text-zinc-500 hover:text-white text-sm transition-colors">Installation</Link></li>
+              <li><Link href="/" className="text-zinc-500 hover:text-white text-sm transition-colors">Icon Search</Link></li>
+              <li><Link href="/docs/getting-started" className="text-zinc-500 hover:text-white text-sm transition-colors">Installation</Link></li>
+              <li><Link href="/docs/usage" className="text-zinc-500 hover:text-white text-sm transition-colors">Usage</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold text-sm mb-6 uppercase tracking-widest">Documentation</h4>
+            <ul className="space-y-4">
+              <li><Link href="/docs/introduction" className="text-zinc-500 hover:text-white text-sm transition-colors">Introduction</Link></li>
+              <li><Link href="/docs/getting-started" className="text-zinc-500 hover:text-white text-sm transition-colors">Getting Started</Link></li>
+              <li><Link href="/docs/adding-icons" className="text-zinc-500 hover:text-white text-sm transition-colors">Adding Icons</Link></li>
+              <li><Link href="/docs/architecture" className="text-zinc-500 hover:text-white text-sm transition-colors">Architecture</Link></li>
+              <li><Link href="/docs/design-system" className="text-zinc-500 hover:text-white text-sm transition-colors">Design System</Link></li>
             </ul>
           </div>
 
@@ -48,6 +60,12 @@ export function Footer() {
             <ul className="space-y-4">
               <li><Link href="/privacy" className="text-zinc-500 hover:text-white text-sm transition-colors">Privacy Policy</Link></li>
               <li><Link href="/license" className="text-zinc-500 hover:text-white text-sm transition-colors">License (MIT)</Link></li>
+              <li>
+                <a href="https://github.com/Harijohnson/cssvg-icon/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white text-sm transition-colors">
+                  Contributing
+                </a>
+              </li>
+              <li><Link href="/support" className="text-zinc-500 hover:text-white text-sm transition-colors">Support</Link></li>
             </ul>
           </div>
         </div>

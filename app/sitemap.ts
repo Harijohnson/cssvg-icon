@@ -4,31 +4,45 @@ import { MetadataRoute } from "next"
 
 import { getIconRegistry } from "@/lib/icons-registry"
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://cssvg.com").replace(/\/$/, "")
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://icon.cssvg.com").replace(/\/$/, "")
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const basePages = ["", "/docs", "/license", "/privacy", "/support"]
+  const lastModified = new Date()
 
-  // Collect documentation pages from Markdown files.
+  // Core pages
+  const corePages: MetadataRoute.Sitemap = [
+    { url: `${siteUrl}/`, lastModified, changeFrequency: "daily", priority: 1.0 },
+    { url: `${siteUrl}/docs`, lastModified, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${siteUrl}/license`, lastModified, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${siteUrl}/privacy`, lastModified, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${siteUrl}/support`, lastModified, changeFrequency: "monthly", priority: 0.5 },
+  ]
+
+  // Documentation pages
   const docsDir = path.join(process.cwd(), "content", "docs")
-  let docPages: string[] = []
+  let docPages: MetadataRoute.Sitemap = []
   try {
     const files = await fs.readdir(docsDir)
     docPages = files
       .filter((file) => file.endsWith(".md"))
-      .map((file) => `/docs/${file.replace(".md", "")}`)
+      .map((file) => ({
+        url: `${siteUrl}/docs/${file.replace(".md", "")}`,
+        lastModified,
+        changeFrequency: "weekly" as const,
+        priority: 0.8,
+      }))
   } catch {
     docPages = []
   }
 
-  // Collect dynamic icon detail pages.
+  // Icon detail pages
   const iconRegistry = await getIconRegistry()
-  const iconPages = iconRegistry.map((icon) => `/icons/${icon.slug}`)
-
-  const lastModified = new Date()
-
-  return [...basePages, ...docPages, ...iconPages].map((route) => ({
-    url: `${siteUrl}${route || "/"}`,
+  const iconPages: MetadataRoute.Sitemap = iconRegistry.map((icon) => ({
+    url: `${siteUrl}/icons/${icon.slug}`,
     lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
   }))
+
+  return [...corePages, ...docPages, ...iconPages]
 }

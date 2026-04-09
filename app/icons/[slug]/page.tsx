@@ -5,6 +5,7 @@ import { getIconRegistry, getIconBySlug } from "@/lib/icons-registry";
 import IconRenderer from "@/components/icon-renderer";
 import { CopyButton } from "@/components/CopyButton";
 import { Button } from "@/components/ui/button";
+import { Footer } from "@/components/Footer";
 import { ArrowLeft, Download } from "lucide-react";
 import Link from "next/link";
 
@@ -43,12 +44,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description,
     keywords: [...icon.tags, "svg", "animated", "icon", "cssvg"],
     alternates: {
-      canonical: `/icons/${slug}`,
+      canonical: `https://icon.cssvg.com/icons/${slug}`,
     },
     openGraph: {
       title,
       description,
       type: "website",
+      url: `https://icon.cssvg.com/icons/${slug}`,
+      siteName: "cssvg-icon",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      creator: "@cssvg_",
     },
   };
 }
@@ -168,14 +177,7 @@ export default function MyComponent() {
         </div>
       </main>
 
-      <footer className="border-t border-zinc-900 mt-20 py-20 bg-black">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-zinc-600 text-sm">
-            Ready to use in your Next.js, Vite, or Remix projects. 
-            Styled with Tailwind CSS.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
