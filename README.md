@@ -1,6 +1,14 @@
 # cssvg-icons
 
+**Live site: [icon.cssvg.com](https://icon.cssvg.com)**
+
 A professional, scalable, and SEO-ready animated SVG icon system for Next.js and React applications. Designed for developers who value performance, rich aesthetics, and ease of use.
+
+## Links
+
+- [icon.cssvg.com](https://icon.cssvg.com) — Browse & preview all icons
+- [Contributing Guide](https://github.com/Harijohnson/cssvg-icon/blob/main/CONTRIBUTING.md) — How to add icons, PR rules, export settings
+- [Export Guidelines](https://github.com/Harijohnson/cssvg-icon/blob/main/EXPORT_GUIDELINES.md) — TSX component spec
 
 ## Features
 

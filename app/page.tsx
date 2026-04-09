@@ -5,10 +5,25 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 export const metadata = {
-  title: "cssvg-icon | Minimalist Icon System",
-  description: "A clean, developer-first icon registry for Next.js and Tailwind CSS.",
+  title: "cssvg-icon | Animated SVG Icon System",
+  description: "Browse and copy animated SVG icons for Next.js and Tailwind CSS. Free, open-source, and tree-shakeable.",
+  keywords: ["animated svg icons", "react icons", "next.js icons", "tailwind icons", "svg icon library", "cssvg"],
   alternates: {
-    canonical: "/",
+    canonical: "https://icon.cssvg.com",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://icon.cssvg.com",
+    title: "cssvg-icon | Animated SVG Icon System",
+    description: "Browse and copy animated SVG icons for Next.js and Tailwind CSS. Free, open-source, and tree-shakeable.",
+    siteName: "cssvg-icon",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "cssvg-icon | Animated SVG Icon System",
+    description: "Browse and copy animated SVG icons for Next.js and Tailwind CSS.",
+    creator: "@cssvg_",
+    site: "@cssvg_",
   },
 };
 
