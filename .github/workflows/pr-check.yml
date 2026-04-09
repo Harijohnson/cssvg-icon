@@ -1,0 +1,171 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  # ── 1. Categorize PR title ──────────────────────────────────────────────────
+  title-check:
+    name: PR title prefix
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check title prefix
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          VALID_PREFIXES="feat: fix: chore: docs: refactor: style: test:"
+          MATCHED=false
+          for prefix in $VALID_PREFIXES; do
+            if echo "$PR_TITLE" | grep -qi "^${prefix}"; then
+              MATCHED=true
+              echo "✅ PR title matches prefix: $prefix"
+              break
+            fi
+          done
+          if [ "$MATCHED" = "false" ]; then
+            echo "❌ PR title must start with one of: feat: | fix: | chore: | docs: | refactor: | style: | test:"
+            echo "   Got: $PR_TITLE"
+            exit 1
+          fi
+
+  # ── 2. Icon file validation (only runs when icons/ files are changed) ───────
+  icon-check:
+    name: Icon file validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed icon folders
+        id: detect
+        run: |
+          CHANGED=$(git diff --name-only origin/main...HEAD | grep '^icons/' || true)
+          echo "changed_files<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+          SLUGS=$(echo "$CHANGED" | grep '^icons/' | awk -F'/' '{print $2}' | sort -u)
+          echo "slugs<<EOF" >> $GITHUB_OUTPUT
+          echo "$SLUGS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Validate icon structure
+        if: steps.detect.outputs.slugs != ''
+        run: |
+          ERRORS=0
+          while IFS= read -r slug; do
+            [ -z "$slug" ] && continue
+            echo "── Checking icon: $slug"
+
+            # Slug format: lowercase + hyphens only
+            if ! echo "$slug" | grep -qE '^[a-z][a-z0-9-]+$'; then
+              echo "  ❌ Slug '$slug' must be lowercase and hyphen-separated (no uppercase, no underscores)"
+              ERRORS=$((ERRORS+1))
+            fi
+
+            TSX="icons/$slug/$slug.tsx"
+            JSON="icons/$slug/$slug.json"
+
+            # TSX exists
+            if [ ! -f "$TSX" ]; then
+              echo "  ❌ Missing: $TSX"
+              ERRORS=$((ERRORS+1))
+            else
+              echo "  ✅ $TSX exists"
+
+              # use client directive
+              if ! grep -q '"use client"' "$TSX"; then
+                echo "  ❌ $TSX missing \"use client\" at top"
+                ERRORS=$((ERRORS+1))
+              fi
+
+              # viewBox 0 0 40 40
+              if ! grep -q 'viewBox="0 0 40 40"' "$TSX"; then
+                echo "  ❌ $TSX must have viewBox=\"0 0 40 40\""
+                ERRORS=$((ERRORS+1))
+              fi
+
+              # stroke prop (no hardcoded hex)
+              if grep -qE 'stroke="#[0-9a-fA-F]' "$TSX"; then
+                echo "  ❌ $TSX has hardcoded hex stroke colour — use stroke={color}"
+                ERRORS=$((ERRORS+1))
+              fi
+
+              # strokeWidth prop (no hardcoded numbers like strokeWidth={2})
+              if grep -qE 'strokeWidth=\{[0-9]' "$TSX"; then
+                echo "  ❌ $TSX has hardcoded strokeWidth number — use strokeWidth={strokeWidth}"
+                ERRORS=$((ERRORS+1))
+              fi
+
+              # default export
+              if ! grep -q 'export default function' "$TSX"; then
+                echo "  ❌ $TSX must have a default export function"
+                ERRORS=$((ERRORS+1))
+              fi
+
+              echo "  ✅ TSX checks passed"
+            fi
+
+            # JSON exists
+            if [ ! -f "$JSON" ]; then
+              echo "  ❌ Missing: $JSON"
+              ERRORS=$((ERRORS+1))
+            else
+              echo "  ✅ $JSON exists"
+
+              # Required JSON fields
+              for field in name slug description tags credit; do
+                if ! grep -q "\"$field\"" "$JSON"; then
+                  echo "  ❌ $JSON missing required field: $field"
+                  ERRORS=$((ERRORS+1))
+                fi
+              done
+
+              # slug in JSON matches folder slug
+              JSON_SLUG=$(node -e "console.log(require('./$JSON').slug || '')" 2>/dev/null || echo "")
+              if [ "$JSON_SLUG" != "$slug" ]; then
+                echo "  ❌ $JSON slug field ('$JSON_SLUG') does not match folder name ('$slug')"
+                ERRORS=$((ERRORS+1))
+              else
+                echo "  ✅ JSON slug matches folder"
+              fi
+            fi
+
+            echo ""
+          done <<< "${{ steps.detect.outputs.slugs }}"
+
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "❌ $ERRORS error(s) found. See CONTRIBUTING.md for the icon spec."
+            exit 1
+          else
+            echo "✅ All icon checks passed."
+          fi
+
+  # ── 3. Type-check + lint (always runs) ─────────────────────────────────────
+  ci:
+    name: Type-check & lint
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
