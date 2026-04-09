@@ -144,3 +144,106 @@ jobs:
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ── 4. Create GitHub Release ───────────────────────────────────────────────
+  release:
+    name: Create GitHub Release
+    needs: publish-npm   # version bump commit must exist first
+    if: |
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true) ||
+      (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v'))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # required to create releases
+    steps:
+      - name: Checkout (latest — includes version bump commit)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Read version
+        id: version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "tag=v${VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Build release notes
+        id: notes
+        run: |
+          VERSION=${{ steps.version.outputs.version }}
+
+          # Collect icon slugs from icons/ directory
+          ICONS=$(ls icons/ | tr '\n' ' ' | sed 's/ $//')
+          ICON_COUNT=$(ls icons/ | wc -l | tr -d ' ')
+
+          # Get commits since last tag (or all if no prior tag)
+          LAST_TAG=$(git tag --sort=-version:refname | grep -v "v${VERSION}" | head -1)
+          if [ -n "$LAST_TAG" ]; then
+            COMMITS=$(git log ${LAST_TAG}..HEAD --pretty=format:"- %s" --no-merges | grep -v '\[skip ci\]' || true)
+          else
+            COMMITS=$(git log --pretty=format:"- %s" --no-merges | grep -v '\[skip ci\]' | head -20 || true)
+          fi
+
+          # Write release notes to file
+          cat > release_notes.md << EOF
+          ## cssvg-icons v${VERSION}
+
+          Animated SVG icon library for React and Next.js.
+
+          **[icon.cssvg.com](https://icon.cssvg.com)** · [npm](https://www.npmjs.com/package/cssvg-icons) · [GitHub Packages](https://github.com/Harijohnson/cssvg-icon/pkgs/npm/cssvg-icons)
+
+          ---
+
+          ### Changes
+
+          ${COMMITS}
+
+          ---
+
+          ### ${ICON_COUNT} Icons Included
+
+          \`\`\`
+          ${ICONS}
+          \`\`\`
+
+          ---
+
+          ### Installation
+
+          \`\`\`bash
+          # npm
+          npm install cssvg-icons
+
+          # GitHub Packages
+          npm install @harijohnson/cssvg-icons
+          \`\`\`
+
+          ### Usage
+
+          \`\`\`tsx
+          import { Heart, Settings, ArrowRight } from "cssvg-icons";
+
+          <Heart color="#ffffff" strokeWidth={2} size={40} />
+          \`\`\`
+
+          ### Props
+
+          | Prop | Type | Default |
+          |---|---|---|
+          | \`color\` | \`string\` | \`"currentColor"\` |
+          | \`strokeWidth\` | \`number\` | \`2\` |
+          | \`size\` | \`number\` | \`40\` |
+          | \`className\` | \`string\` | \`""\` |
+          EOF
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: v${{ steps.version.outputs.version }}
+          body_path: release_notes.md
+          make_latest: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
