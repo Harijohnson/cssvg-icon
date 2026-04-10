@@ -5,4 +5,5 @@ export const DOC_NAV = [
   { name: "Architecture", href: "/docs/architecture" },
   { name: "Adding Icons", href: "/docs/adding-icons" },
   { name: "Design System", href: "/docs/design-system" },
+  { name: "Contributing", href: "/docs/contributing" },
 ];

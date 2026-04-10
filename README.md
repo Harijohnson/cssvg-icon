@@ -45,24 +45,13 @@ All icons accept the same props:
 
 ## Available Icons
 
-| Name | Import |
-|---|---|
-| ArrowRight | `import { ArrowRight } from "cssvg-icons"` |
-| BellRing | `import { BellRing } from "cssvg-icons"` |
-| Download | `import { Download } from "cssvg-icons"` |
-| Heart | `import { Heart } from "cssvg-icons"` |
-| Minus | `import { Minus } from "cssvg-icons"` |
-| Pause | `import { Pause } from "cssvg-icons"` |
-| Play | `import { Play } from "cssvg-icons"` |
-| Plus | `import { Plus } from "cssvg-icons"` |
-| Refresh | `import { Refresh } from "cssvg-icons"` |
-| Search | `import { Search } from "cssvg-icons"` |
-| Settings | `import { Settings } from "cssvg-icons"` |
-| Share | `import { Share } from "cssvg-icons"` |
-| StarGrow | `import { StarGrow } from "cssvg-icons"` |
-| StarSpin | `import { StarSpin } from "cssvg-icons"` |
-| Trash | `import { Trash } from "cssvg-icons"` |
-| Upload | `import { Upload } from "cssvg-icons"` |
+Browse the full, always-up-to-date icon library at **[icon.cssvg.com](https://icon.cssvg.com)**.
+
+All icons are named exports from `cssvg-icons`. Import any icon by its PascalCase name:
+
+```tsx
+import { ArrowRight, Heart, BellRing } from "cssvg-icons";
+```
 
 ## Local Development
 
@@ -89,19 +78,9 @@ icons/
 
 Contributions are welcome — new icons, bug fixes, and docs improvements.
 
-- Read [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide
+- Read the [Contributing Guide](https://icon.cssvg.com/docs/contributing) for the full guide
 - [Open an issue](https://github.com/Harijohnson/cssvg-icon/issues)
 - [Browse the icon explorer](https://icon.cssvg.com) to see what's already there
-
-### Adding an icon (quick start)
-
-```bash
-git checkout -b icon/<slug>
-# add icons/<slug>/<slug>.tsx, icons/<slug>/<slug>.json, icons/<slug>/<slug>.svg
-git commit -m "feat: add icon/<slug>"
-git push origin icon/<slug>
-# open a PR against main
-```
 
 ## License
 
