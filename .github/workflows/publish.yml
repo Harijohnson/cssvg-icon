@@ -9,6 +9,11 @@ on:
     types: [closed]
     branches:
       - main
+    paths:
+      - "icons/**"
+      - "index.ts"
+      - "package.json"
+      - "scripts/**"
 
 # ─── Concurrency guard ───────────────────────────────────────────────────────
 concurrency:
