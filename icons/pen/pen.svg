@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="100%" height="100%">
+  <g transform="translate(23.2,24.24) rotate(0,0,0) scale(1,1)">
+    <animateTransform attributeName="transform" type="translate" values="23.2,24.24;20.16,24.8;17.92,24.32;17.73,22.38;18.41,20.42;20.53,19.07;23.12,19.84;24.15,22.09;23.2,24.24" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.1225;0.25;0.3775;0.5;0.625;0.75;0.875;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" additive="replace" />
+    <animateTransform attributeName="transform" type="rotate" values="0,0,0;-6.29,0,0;-12.96,0,0;-10.02,0,0;-15.44,0,0;-10.2,0,0;-13.35,0,0;-10.4,0,0;0,0,0" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.1225;0.25;0.3775;0.5;0.625;0.75;0.875;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" additive="sum" />
+    <animateTransform attributeName="transform" type="scale" values="1,1;1,1;1,1;1,1;1,1;1,1;1,1;1,1;1,1" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.1225;0.25;0.3775;0.5;0.625;0.75;0.875;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" additive="sum" />
+    <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" transform="translate(-12,-12)" fill="none" stroke="#bcbcbc" stroke-width="2" vector-effect="non-scaling-stroke">
+      <animate attributeName="opacity" values="1;1;1;1;1;1;1;1;1" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.1225;0.25;0.3775;0.5;0.625;0.75;0.875;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" />
+      <animate attributeName="stroke" values="#bcbcbc;#bcbcbc;#bcbcbc;#bcbcbc;#bcbcbc;#bcbcbc;#bcbcbc;#bcbcbc;#bcbcbc" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.1225;0.25;0.3775;0.5;0.625;0.75;0.875;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" />
+      <animate attributeName="stroke-width" values="2;2;2;2;2;2;2;2;2" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.1225;0.25;0.3775;0.5;0.625;0.75;0.875;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" />
+    </path>
+  </g>
+</svg>
