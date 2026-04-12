@@ -7,6 +7,7 @@ import { ChromePicker } from "react-color";
 import { IconRegistryEntry } from "@/lib/icons-registry";
 import IconRenderer from "@/components/icon-renderer";
 import { Button } from "@/components/ui/button";
+import { Play, Pause } from "lucide-react";
 
 type Tab = "react" | "vue" | "svelte" | "name";
 
@@ -15,9 +16,13 @@ function getSnippet(
   icon: IconRegistryEntry,
   color: string,
   strokeWidth: number,
-  size: number
+  size: number,
+  animated: boolean,
+  speed: number,
 ): string {
-  const componentName = `${icon.name}Icon`;
+  const componentName = icon.name.replace(/\s+/g, "");
+  const animatedProp = !animated ? `\n      animated={false}` : "";
+  const speedProp = speed !== 1 ? `\n      speed={${speed}}` : "";
   switch (tab) {
     case "react":
       return `import ${componentName} from "cssvg-icons/${icon.slug}";
@@ -27,7 +32,7 @@ export default function App() {
     <${componentName}
       color="${color}"
       strokeWidth={${strokeWidth}}
-      size={${size}}
+      size={${size}}${animatedProp}${speedProp}
     />
   );
 }`;
@@ -40,7 +45,7 @@ import ${componentName} from "cssvg-icons/${icon.slug}";
   <${componentName}
     color="${color}"
     :stroke-width="${strokeWidth}"
-    :size="${size}"
+    :size="${size}"${!animated ? `\n    :animated="false"` : ""}${speed !== 1 ? `\n    :speed="${speed}"` : ""}
   />
 </template>`;
     case "svelte":
@@ -51,7 +56,7 @@ import ${componentName} from "cssvg-icons/${icon.slug}";
 <${componentName}
   color="${color}"
   strokeWidth={${strokeWidth}}
-  size={${size}}
+  size={${size}}${!animated ? `\n  animated={false}` : ""}${speed !== 1 ? `\n  speed={${speed}}` : ""}
 />`;
     case "name":
       return componentName;
@@ -68,12 +73,16 @@ const TABS: { key: Tab; label: string }[] = [
 export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
   const [color, setColor] = useState("#ffffff");
   const [strokeWidth, setStrokeWidth] = useState(2);
-  const [size, setSize] = useState(56);
+  const [size, setSize] = useState(120);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>("react");
   const [copied, setCopied] = useState(false);
+  const [animated, setAnimated] = useState(true);
+  const [speed, setSpeed] = useState(1);
 
-  const snippet = getSnippet(activeTab, icon, color, strokeWidth, size);
+  const SPEEDS = [0.25, 0.5, 1, 1.5, 2, 3];
+
+  const snippet = getSnippet(activeTab, icon, color, strokeWidth, size, animated, speed);
 
   const copy = () => {
     navigator.clipboard.writeText(snippet);
@@ -110,7 +119,7 @@ export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
         <div className="space-y-5 lg:sticky lg:top-28">
           {/* Preview */}
           <div className="rounded-2xl border border-zinc-800 bg-zinc-950 flex items-center justify-center aspect-square max-w-xs mx-auto lg:max-w-full">
-            <IconRenderer slug={icon.slug} color={color} strokeWidth={strokeWidth} size={size} />
+            <IconRenderer slug={icon.slug} color={color} strokeWidth={strokeWidth} size={size} animated={animated} speed={speed} />
           </div>
 
           {/* Controls */}
@@ -175,10 +184,42 @@ export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
                 <span className="font-mono text-zinc-300">{size}px</span>
               </div>
               <input
-                type="range" min={16} max={64} step={8} value={size}
+                type="range" min={16} max={200} step={8} value={size}
                 onChange={(e) => setSize(Number(e.target.value))}
                 className="w-full accent-white"
               />
+            </div>
+
+            {/* Animated */}
+            <div className="flex items-center justify-between pt-1">
+              <span className="text-xs text-zinc-400">Animated</span>
+              <button
+                type="button"
+                onClick={() => setAnimated((v) => !v)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-colors"
+              >
+                {animated ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
+                {animated ? "Pause" : "Play"}
+              </button>
+            </div>
+
+            {/* Speed */}
+            <div className="space-y-2">
+              <span className="text-xs text-zinc-400 block">Speed</span>
+              <div className="flex items-center gap-1 bg-zinc-900 border border-zinc-800 rounded-lg p-0.5">
+                {SPEEDS.map((s) => (
+                  <button
+                    key={s}
+                    type="button"
+                    onClick={() => setSpeed(s)}
+                    className={`flex-1 py-1 rounded-md text-[10px] font-semibold transition-colors ${
+                      speed === s ? "bg-zinc-700 text-white" : "text-zinc-500 hover:text-zinc-300"
+                    }`}
+                  >
+                    {s}×
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -196,7 +237,7 @@ export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
                 href={icon.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-1.5 text-xs hover:text-white transition-colors py-2 rounded-md bg-blue-900 hover:bg-blue-950 border border-transparent"
+                className="w-full flex items-center justify-center gap-1.5 text-xs font-semibold text-blue-400 hover:text-blue-300 bg-blue-950/50 hover:bg-blue-950 border border-blue-800/50 transition-colors py-2 rounded-md"
               >
                 Want more customization?
                 <svg viewBox="0 0 24 24" className="w-3 h-3 fill-none stroke-current stroke-2"><path d="M7 17L17 7M17 7H7M17 7v10" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -276,6 +317,26 @@ export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
               )}
             </div>
           )}
+
+          {/* Request a variant */}
+          <div className="rounded-xl border border-zinc-800 bg-zinc-950 p-5 space-y-3">
+            <div className="flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+              <h3 className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Missing something?</h3>
+            </div>
+            <p className="text-xs text-zinc-500 leading-relaxed">
+              Need a variant of <span className="text-zinc-300 font-medium">{icon.name}</span> or a different style? Open a GitHub issue and we&apos;ll add it to the queue.
+            </p>
+            <a
+              href={`https://github.com/Harijohnson/cssvg-icon/issues/new?template=icon-request.md&title=Icon+request:+${encodeURIComponent(icon.name)}+variant&labels=icon-request`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-1.5 w-full py-2 rounded-lg text-xs font-semibold text-blue-400 hover:text-blue-300 bg-blue-950/50 hover:bg-blue-950 border border-blue-800/50 transition-colors"
+            >
+              Request a variant
+              <svg viewBox="0 0 24 24" className="w-3 h-3 fill-none stroke-current stroke-2"><path d="M7 17L17 7M17 7H7M17 7v10" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </a>
+          </div>
         </div>
       </div>
     </main>

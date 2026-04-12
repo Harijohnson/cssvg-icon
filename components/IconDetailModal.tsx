@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useCallback, useState } from "react";
-import { X, ArrowUpRight, Download, Repeat } from "lucide-react";
+import { X, ArrowUpRight, Download, Play, Pause } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
 import { IconRegistryEntry } from "@/lib/icons-registry";
@@ -17,23 +17,23 @@ interface IconDetailModalProps {
   onTagClick?: (tag: string) => void;
 }
 
-export default function IconDetailModal({ icon, onClose, color, strokeWidth, size, absoluteStroke, onTagClick }: IconDetailModalProps) {
-  if (!icon) return null;
-  return <ModalContent key={icon.slug} icon={icon} onClose={onClose} color={color} strokeWidth={strokeWidth} size={size} absoluteStroke={absoluteStroke} onTagClick={onTagClick} />;
+export default function IconDetailModal(props: IconDetailModalProps) {
+  if (!props.icon) return null;
+  return <ModalContent key={props.icon.slug} {...props} icon={props.icon} />;
 }
 
-function ModalContent({ icon, onClose, color, strokeWidth, size, absoluteStroke, onTagClick }: {
-  icon: IconRegistryEntry;
-  onClose: () => void;
-  color: string;
-  strokeWidth: number;
-  size: number;
-  absoluteStroke?: boolean;
-  onTagClick?: (tag: string) => void;
-}) {
+function ModalContent({
+  icon,
+  onClose,
+  color,
+  strokeWidth,
+  size,
+  absoluteStroke,
+  onTagClick,
+}: IconDetailModalProps & { icon: IconRegistryEntry }) {
   const backdropRef = useRef<HTMLDivElement>(null);
-  const previewRef = useRef<HTMLDivElement>(null);
-  const [loopOn, setLoopOn] = useState(true);
+  const [animated, setAnimated] = useState(true);
+  const [speed, setSpeed] = useState(1);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
@@ -50,18 +50,9 @@ function ModalContent({ icon, onClose, color, strokeWidth, size, absoluteStroke,
     if (e.target === backdropRef.current) onClose();
   }, [onClose]);
 
-  useEffect(() => {
-    const svg = previewRef.current?.querySelector("svg") as SVGSVGElement | null;
-    if (!svg) return;
-    svg.querySelectorAll("animateTransform, animate, animateMotion").forEach((el) => {
-      el.setAttribute("repeatCount", loopOn ? "indefinite" : "1");
-      if (!loopOn) (el as SVGAnimationElement).beginElement?.();
-    });
-  }, [loopOn]);
-
   const copyJsx = () => {
     navigator.clipboard.writeText(
-      `<${icon.name}Icon color="${color}" strokeWidth={${strokeWidth}} size={${size}} />`
+      `<${icon.name.replace(/\s+/g, "")} color="${color}" strokeWidth={${strokeWidth}} size={${size}} />`
     );
     toast.success("JSX copied");
   };
@@ -85,27 +76,30 @@ function ModalContent({ icon, onClose, color, strokeWidth, size, absoluteStroke,
     URL.revokeObjectURL(url);
   };
 
+  const SPEEDS = [0.25, 0.5, 1, 1.5, 2, 3];
+  const previewSize = Math.max(size, 80);
+
   return (
     <div
       ref={backdropRef}
       onClick={handleBackdropClick}
-      className="fixed inset-0 z-50 flex items-end bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 backdrop-blur-sm"
       aria-modal="true"
       role="dialog"
     >
-      <div className="w-full bg-zinc-950 border-t border-zinc-800 rounded-t-xl animate-in slide-in-from-bottom duration-200">
+      <div className="w-full max-w-[80vw] bg-zinc-950 border-t border-x border-zinc-800 rounded-t-2xl animate-in slide-in-from-bottom duration-200">
 
-        {/* Drag handle */}
-        <div className="flex justify-center pt-2 pb-1">
+        {/* Drag handle — mobile only */}
+        <div className="flex justify-center pt-2 pb-1 sm:hidden">
           <div className="w-8 h-0.5 rounded-full bg-zinc-700" />
         </div>
 
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-2.5 border-b border-zinc-800/60">
-          <div className="flex items-center gap-3">
-            <span className="text-sm font-semibold text-white">{icon.name}</span>
+        <div className="flex items-center justify-between px-5 py-3 border-b border-zinc-800/60">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="text-sm font-semibold text-white truncate">{icon.name}</span>
             <div className="flex flex-wrap gap-1">
-              {icon.tags.map((tag) => (
+              {icon.tags.slice(0, 4).map((tag) => (
                 <button
                   key={tag}
                   type="button"
@@ -117,54 +111,106 @@ function ModalContent({ icon, onClose, color, strokeWidth, size, absoluteStroke,
               ))}
             </div>
           </div>
-          <button onClick={onClose} className="p-1.5 rounded-md text-zinc-500 hover:text-white hover:bg-zinc-800 transition-colors">
-            <X className="w-4 h-4" />
-          </button>
+          <div className="ml-3 flex items-center gap-1.5 shrink-0">
+            <a
+              href={icon.link ?? "https://cssvg.com"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-md text-[10px] font-semibold text-blue-400 hover:text-blue-300 bg-blue-950/50 hover:bg-blue-950 border border-blue-800/50 transition-colors"
+            >
+              Edit in cssvg
+              <ArrowUpRight className="w-3 h-3" />
+            </a>
+            <button
+              onClick={onClose}
+              className="p-1.5 rounded-md text-zinc-500 hover:text-white hover:bg-zinc-800 transition-colors"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
-        {/* Body */}
-        <div className="flex items-center gap-6 px-6 py-5">
-          {/* Preview */}
-          <div
-            ref={previewRef}
-            className="rounded-xl border border-zinc-800 bg-zinc-900/60 flex items-center justify-center shrink-0"
-            style={{ width: size + 32, height: size + 32 }}
+        {/* Body — side by side */}
+        <div className="flex gap-0 sm:gap-0">
+
+          {/* Left: big preview */}
+          <div className="flex flex-col items-center justify-center gap-4 p-6 border-r border-zinc-800/60 shrink-0"
+            style={{ minWidth: previewSize + 80, minHeight: previewSize + 80 }}
           >
-            <IconRenderer slug={icon.slug} color={color} strokeWidth={strokeWidth} size={size} absoluteStroke={absoluteStroke} />
+            <div
+              className="rounded-2xl border border-zinc-800 bg-zinc-900/50 flex items-center justify-center"
+              style={{ width: previewSize + 48, height: previewSize + 48 }}
+            >
+              <IconRenderer
+                slug={icon.slug}
+                color={color}
+                strokeWidth={strokeWidth}
+                size={previewSize}
+                absoluteStroke={absoluteStroke}
+                animated={animated}
+                speed={speed}
+              />
+            </div>
+
+            {/* Play/Pause + Speed */}
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setAnimated((v) => !v)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-colors"
+              >
+                {animated ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
+                {animated ? "Pause" : "Play"}
+              </button>
+              <div className="flex items-center gap-1 bg-zinc-900 border border-zinc-800 rounded-lg p-0.5">
+                {SPEEDS.map((s) => (
+                  <button
+                    key={s}
+                    type="button"
+                    onClick={() => setSpeed(s)}
+                    className={`px-2 py-1 rounded-md text-[10px] font-semibold transition-colors ${
+                      speed === s ? "bg-zinc-700 text-white" : "text-zinc-500 hover:text-zinc-300"
+                    }`}
+                  >
+                    {s}×
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* Actions */}
-          <div className="flex flex-col gap-2 flex-1 min-w-0">
+          {/* Right: actions */}
+          <div className="flex flex-col justify-center gap-3 p-6 flex-1 min-w-0">
+
+            {icon.description && (
+              <p className="text-xs text-zinc-500 leading-relaxed">{icon.description}</p>
+            )}
+
             <button
               onClick={copyJsx}
-              className="w-full bg-white text-black hover:bg-zinc-200 font-bold h-9 text-xs rounded-md transition-colors"
+              className="w-full bg-white text-black hover:bg-zinc-200 font-bold h-9 text-xs rounded-lg transition-colors"
             >
               Copy JSX
             </button>
-            <div className="flex gap-2">
-              <button
-                onClick={downloadSvg}
-                className="flex-1 flex items-center justify-center gap-1.5 text-xs font-semibold h-9 rounded-md bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-colors"
-              >
-                <Download className="w-3.5 h-3.5" /> SVG
-              </button>
-              <button
-                type="button"
-                onClick={() => setLoopOn((v) => !v)}
-                className={`flex-1 flex items-center justify-center gap-1.5 text-xs font-semibold h-9 rounded-md transition-colors ${
-                  loopOn ? "bg-white text-black" : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-white"
-                }`}
-              >
-                <Repeat className="w-3.5 h-3.5" /> Loop
-              </button>
-            </div>
+
+            <button
+              onClick={downloadSvg}
+              className="w-full flex items-center justify-center gap-1.5 text-xs font-semibold h-9 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-colors"
+            >
+              <Download className="w-3.5 h-3.5" /> Download SVG
+            </button>
+
             <Link
               href={`/icons/${icon.slug}`}
               onClick={onClose}
-              className="w-full flex items-center justify-center gap-1.5 text-xs font-semibold h-9 rounded-md bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-colors"
+              className="w-full flex items-center justify-center gap-1.5 text-xs font-semibold h-9 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-400 hover:text-white transition-colors"
             >
               Customize <ArrowUpRight className="w-3.5 h-3.5" />
             </Link>
+
+            {icon.credit && (
+              <p className="text-[10px] text-zinc-600 text-center pt-1">by {icon.credit}</p>
+            )}
           </div>
         </div>
       </div>

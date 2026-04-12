@@ -50,6 +50,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.5,
     },
+    {
+      url: `${siteUrl}/requests`,
+      lastModified: await fileMtime(path.join(process.cwd(), "app", "requests", "page.tsx")),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
   ]
 
   // Documentation pages — lastModified from the .md file mtime

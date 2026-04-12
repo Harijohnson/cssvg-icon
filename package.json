@@ -11,11 +11,14 @@
     "index.ts",
     "icons/**/*.tsx",
     "icons/**/*.json",
-    "icons/**/*.svg"
+    "icons/**/*.svg",
+    "scripts/build-index.mjs"
   ],
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
+    "index": "node scripts/build-index.mjs",
+    "postinstall": "node scripts/build-index.mjs",
+    "dev": "npm run index && next dev --turbopack",
+    "build": "npm run index && next build",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",

@@ -3,10 +3,16 @@
 ## Installation
 
 ```bash
-# With npm
-npm install cssvg-icons
+# npm
+npm i cssvg-icons
 
-# With bun
+# pnpm
+pnpm add cssvg-icons
+
+# yarn
+yarn add cssvg-icons
+
+# bun
 bun add cssvg-icons
 ```
 

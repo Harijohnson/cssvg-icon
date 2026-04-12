@@ -91,7 +91,7 @@ export default async function DocPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <MarkdownPage content={content} title={title} />
+      <MarkdownPage content={content} title={title} showInstallBanner={slug === "introduction"} />
     </>
   );
 }

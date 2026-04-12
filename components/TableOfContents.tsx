@@ -15,7 +15,15 @@ interface TableOfContentsProps {
 
 export function TableOfContents({ headings = [] }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>("");
+  const [version, setVersion] = useState<string | null>(null);
   const observer = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    fetch("/api/version")
+      .then((r) => r.json())
+      .then((data) => setVersion(data.version))
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     const handleObserver = (entries: IntersectionObserverEntry[]) => {
@@ -96,18 +104,25 @@ export function TableOfContents({ headings = [] }: TableOfContentsProps) {
         </nav>
 
         {/* Playbook Card Inspiration */}
-        <div className="mt-12 p-4 rounded-xl bg-zinc-950 border border-zinc-900 space-y-4">
-          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
-            <div className="w-1 h-1 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
-            V1.0.0 Update
+        {version && (
+          <div className="mt-12 p-4 rounded-xl bg-zinc-950 border border-zinc-900 space-y-3">
+            <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+              <div className="w-1 h-1 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+              v{version} Released
+            </div>
+            <p className="text-xs text-zinc-500 leading-relaxed">
+              See what&apos;s new in this version — changelog, new icons, and fixes.
+            </p>
+            <a
+              href={`https://github.com/Harijohnson/cssvg-icon/releases/tag/v${version}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-center w-full bg-white text-black py-2 rounded-lg text-xs font-bold hover:bg-zinc-200 transition-colors"
+            >
+              Release Notes ↗
+            </a>
           </div>
-          <p className="text-xs text-zinc-500 leading-relaxed">
-            The documentation for cssvg-icon v1.0.0 is now live. Explore the new registry system.
-          </p>
-          <Link href="/docs" className="block text-center w-full bg-white text-black py-2 rounded-lg text-xs font-bold hover:bg-zinc-200 transition-colors">
-            Read Docs
-          </Link>
-        </div>
+        )}
       </div>
     </aside>
   );
