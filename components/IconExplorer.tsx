@@ -20,7 +20,7 @@ export default function IconExplorer({ initialIcons }: IconExplorerProps) {
   const [strokeWidth, setStrokeWidth] = useState(2);
   const [size, setSize] = useState(56);
   const [pickerOpen, setPickerOpen] = useState(false);
-  const [absoluteStroke, setAbsoluteStroke] = useState(false);
+  const [absoluteStroke, setAbsoluteStroke] = useState(true)
 
   const filteredIcons = useMemo(() => {
     const searchLower = search.toLowerCase();
@@ -150,6 +150,7 @@ export default function IconExplorer({ initialIcons }: IconExplorerProps) {
                 />
               </button>
             </div>
+
           </div>
         </aside>
 

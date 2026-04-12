@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import React from "react";
 
 export function Header() {
@@ -17,9 +16,6 @@ export function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const pathname = usePathname();
-  const isHomePage = pathname === "/";
 
   return (
     <header
@@ -54,7 +50,13 @@ export function Header() {
               Docs
             </Link>
             <Link
-              href="https://cssvg.com/"
+              href="/requests"
+              className="text-xs font-semibold text-zinc-400 hover:text-white transition-colors hidden sm:block"
+            >
+              Requests
+            </Link>
+            <Link
+              href="https://cssvg.com/projects"
               className="text-xs font-semibold text-zinc-400 hover:text-white transition-colors uppercase tracking-widest hidden lg:block"
             >
               Editor

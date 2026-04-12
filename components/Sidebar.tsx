@@ -26,7 +26,7 @@ export function Sidebar() {
   ];
 
   const resourceItems = [
-    { name: "SVG Editor", href: "https://cssvg.com/", icon: Code2 },
+    { name: "SVG Editor", href: "https://cssvg.com/projects", icon: Code2 },
   ];
 
   return (

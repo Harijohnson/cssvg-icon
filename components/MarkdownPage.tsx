@@ -8,13 +8,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { DOC_NAV } from "@/lib/navigation-data";
 import { DocLayout } from "./DocLayout";
+import InstallBanner from "./InstallBanner";
 
 interface MarkdownPageProps {
   content: string;
   title: string;
+  showInstallBanner?: boolean;
 }
 
-export function MarkdownPage({ content, title }: MarkdownPageProps) {
+export function MarkdownPage({ content, title, showInstallBanner }: MarkdownPageProps) {
   // Extract headings for Table of Contents
   const headings = content
     .split("\n")
@@ -45,27 +47,55 @@ export function MarkdownPage({ content, title }: MarkdownPageProps) {
       </h1>
 
       <article className="prose prose-invert prose-zinc max-w-none prose-headings:scroll-mt-24 prose-headings:tracking-tighter prose-headings:font-bold prose-h1:text-4xl prose-h1:lg:text-5xl prose-h2:border-b prose-h2:border-zinc-900 prose-h2:pb-2 prose-a:text-white prose-a:underline-offset-4 prose-pre:bg-zinc-950 prose-pre:border prose-pre:border-zinc-900 prose-code:text-zinc-300 prose-code:bg-zinc-900/50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-blockquote:border-l-zinc-800 prose-blockquote:text-zinc-500">
-        <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
-          components={{
-            h2: ({ children, ...props }) => {
+        {(() => {
+          const mdComponents = {
+            h2: ({ children, ...props }: React.ComponentPropsWithoutRef<"h2">) => {
               const id = String(children)
                 .toLowerCase()
                 .replace(/[^\w\s-]/g, "")
                 .replace(/\s+/g, "-");
               return <h2 id={id} {...props}>{children}</h2>;
             },
-            h3: ({ children, ...props }) => {
+            h3: ({ children, ...props }: React.ComponentPropsWithoutRef<"h3">) => {
               const id = String(children)
                 .toLowerCase()
                 .replace(/[^\w\s-]/g, "")
                 .replace(/\s+/g, "-");
               return <h3 id={id} {...props}>{children}</h3>;
             },
-          }}
-        >
-          {content}
-        </ReactMarkdown>
+          };
+
+          if (!showInstallBanner || !content.includes("## Installation")) {
+            return (
+              <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+                {content}
+              </ReactMarkdown>
+            );
+          }
+
+          const splitMarker = "## Installation";
+          const splitIndex = content.indexOf(splitMarker);
+          const before = content.slice(0, splitIndex);
+          const after = content.slice(splitIndex);
+
+          return (
+            <>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+                {before}
+              </ReactMarkdown>
+              <h2 id="installation" className="border-b border-zinc-900 pb-2 font-bold tracking-tighter scroll-mt-24">
+                Installation
+              </h2>
+              <p className="text-zinc-400 text-sm mt-1 mb-4">Install the package using your preferred package manager:</p>
+              <div className="not-prose my-6">
+                <InstallBanner />
+              </div>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+                {after.replace(/^## Installation\n\nInstall the package using your preferred package manager:\n\n/, "")}
+              </ReactMarkdown>
+            </>
+          );
+        })()}
       </article>
 
       {/* Page Navigation */}

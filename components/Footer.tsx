@@ -17,8 +17,8 @@ export function Footer() {
               <span className="font-bold tracking-tighter text-xl text-white">cssvg-icon</span>
             </Link>
             <p className="text-zinc-500 text-sm leading-relaxed max-w-xs">
-              An animated SVG icon system designed for modern web applications.
-              Built with performance and aesthetic excellence in mind.
+              Open-source animated SVG icons for React and Next.js.
+              Design in CSSVG, drop into your project, animate out of the box.
             </p>
           </div>
 
@@ -28,6 +28,12 @@ export function Footer() {
               <li><Link href="/" className="text-zinc-500 hover:text-white text-sm transition-colors">Icon Search</Link></li>
               <li><Link href="/docs/getting-started" className="text-zinc-500 hover:text-white text-sm transition-colors">Installation</Link></li>
               <li><Link href="/docs/usage" className="text-zinc-500 hover:text-white text-sm transition-colors">Usage</Link></li>
+              <li>
+                <Link href="/requests" className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+                  Request an Icon
+                  <svg viewBox="0 0 24 24" className="w-3 h-3 fill-none stroke-current stroke-2"><path d="M7 17L17 7M17 7H7M17 7v10" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -46,6 +52,7 @@ export function Footer() {
             <h4 className="text-white font-semibold text-sm mb-6 uppercase tracking-widest">Resources</h4>
             <ul className="space-y-4">
               <li><Link href="https://github.com/Harijohnson/cssvg-icon" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white text-sm transition-colors">GitHub</Link></li>
+              <li><Link href="/requests" className="text-zinc-500 hover:text-white text-sm transition-colors">Icon Requests</Link></li>
               <li><Link href="https://github.com/Harijohnson/cssvg-icon/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white text-sm transition-colors">Contributing</Link></li>
               <li><Link href="/privacy" className="text-zinc-500 hover:text-white text-sm transition-colors">Privacy Policy</Link></li>
               <li><Link href="/license" className="text-zinc-500 hover:text-white text-sm transition-colors">License</Link></li>

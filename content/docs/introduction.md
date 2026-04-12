@@ -13,6 +13,10 @@ A professional, scalable, and SEO-ready animated SVG icon system for Next.js and
 - **Minimalist Aesthetic**: Consistent pure black, white and gray theme that fits modern UI designs.
 - **Scalable Registry**: Automatically scans directory structures to discover and register new icons.
 
+## Installation
+
+Install the package using your preferred package manager:
+
 ## Open Source
 
 cssvg-icon is fully open source under the MIT license. Contributions are welcome — icons, bug fixes, docs, and more.

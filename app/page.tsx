@@ -3,6 +3,7 @@ import { getIconRegistry } from "@/lib/icons-registry";
 import IconExplorer from "@/components/IconExplorer";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import InstallBanner from "@/components/InstallBanner";
 
 export const metadata = {
   title: "cssvg-icon | Animated SVG Icon System",
@@ -35,6 +36,7 @@ export default async function HomePage() {
       <Header />
 
       <main className="grow max-w-ful mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 w-full">
+        <InstallBanner />
         {/* Hero Section */}
         {/* <section className="text-center mb-24 space-y-8 animate-in fade-in slide-in-from-top-4 duration-1000"> */}
         {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[10px] uppercase tracking-widest text-zinc-500 font-bold mb-4">
