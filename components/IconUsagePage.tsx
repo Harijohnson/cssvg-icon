@@ -7,7 +7,7 @@ import { ChromePicker } from "react-color";
 import { IconRegistryEntry } from "@/lib/icons-registry";
 import IconRenderer from "@/components/icon-renderer";
 import { Button } from "@/components/ui/button";
-import { Play, Pause } from "lucide-react";
+import { Play, Pause, MousePointer } from "lucide-react";
 
 type Tab = "react" | "vue" | "svelte" | "name";
 
@@ -79,6 +79,7 @@ export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
   const [copied, setCopied] = useState(false);
   const [animated, setAnimated] = useState(true);
   const [speed, setSpeed] = useState(1);
+  const [hoverToAnimate, setHoverToAnimate] = useState(false);
 
   const SPEEDS = [0.25, 0.5, 1, 1.5, 2, 3];
 
@@ -119,7 +120,7 @@ export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
         <div className="space-y-5 lg:sticky lg:top-28">
           {/* Preview */}
           <div className="rounded-2xl border border-zinc-800 bg-zinc-950 flex items-center justify-center aspect-square max-w-xs mx-auto lg:max-w-full">
-            <IconRenderer slug={icon.slug} color={color} strokeWidth={strokeWidth} size={size} animated={animated} speed={speed} />
+            <IconRenderer slug={icon.slug} color={color} strokeWidth={strokeWidth} size={size} animated={animated} speed={speed} hoverToAnimate={hoverToAnimate} />
           </div>
 
           {/* Controls */}
@@ -193,14 +194,28 @@ export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
             {/* Animated */}
             <div className="flex items-center justify-between pt-1">
               <span className="text-xs text-zinc-400">Animated</span>
-              <button
-                type="button"
-                onClick={() => setAnimated((v) => !v)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-colors"
-              >
-                {animated ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
-                {animated ? "Pause" : "Play"}
-              </button>
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => { setAnimated((v) => !v); setHoverToAnimate(false); }}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-colors"
+                >
+                  {animated && !hoverToAnimate ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
+                  {animated && !hoverToAnimate ? "Pause" : "Play"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setHoverToAnimate((v) => !v); setAnimated(true); }}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+                    hoverToAnimate
+                      ? "bg-white text-black"
+                      : "bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white"
+                  }`}
+                >
+                  <MousePointer className="w-3 h-3" />
+                  Hover
+                </button>
+              </div>
             </div>
 
             {/* Speed */}

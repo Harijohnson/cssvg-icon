@@ -22,6 +22,8 @@ interface IconRendererProps {
   animated?: boolean;
   /** Animation speed multiplier. 1 = normal, 2 = 2× faster, 0.5 = half speed. Default: 1 */
   speed?: number;
+  /** When true, animation plays only while hovering the wrapper. Overrides animated. Default: false */
+  hoverToAnimate?: boolean;
 }
 
 export default function IconRenderer({
@@ -33,6 +35,7 @@ export default function IconRenderer({
   absoluteStroke,
   animated = true,
   speed = 1,
+  hoverToAnimate = false,
 }: IconRendererProps) {
   const DynamicIcon = useMemo(() => {
     return dynamic<IconComponentProps>(() => import(`@/icons/${slug}/${slug}.tsx`), {
@@ -89,7 +92,10 @@ export default function IconRenderer({
       });
 
       // ── animated: pause / resume ───────────────────────────────
-      if (animated) {
+      // hoverToAnimate starts paused; hover events handle unpause/pause
+      if (hoverToAnimate) {
+        svg.pauseAnimations();
+      } else if (animated) {
         svg.unpauseAnimations();
       } else {
         svg.pauseAnimations();
@@ -114,15 +120,32 @@ export default function IconRenderer({
     }
 
     return () => observer?.disconnect();
-  }, [slug, absoluteStroke, animated, speed]);
+  }, [slug, absoluteStroke, animated, speed, hoverToAnimate]);
 
   const extraProps: Record<string, unknown> = {};
   if (color !== undefined) extraProps.color = color;
   if (strokeWidth !== undefined) extraProps.strokeWidth = strokeWidth;
   if (size !== undefined) extraProps.size = size;
 
+  const handleMouseEnter = () => {
+    if (!hoverToAnimate) return;
+    const svg = wrapperRef.current?.querySelector("svg") as SVGSVGElement | null;
+    svg?.unpauseAnimations();
+  };
+
+  const handleMouseLeave = () => {
+    if (!hoverToAnimate) return;
+    const svg = wrapperRef.current?.querySelector("svg") as SVGSVGElement | null;
+    svg?.pauseAnimations();
+  };
+
   return (
-    <div ref={wrapperRef} style={{ display: "contents" }}>
+    <div
+      ref={wrapperRef}
+      style={{ display: "contents" }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <DynamicIcon className={className} {...extraProps} />
     </div>
   );
