@@ -37,11 +37,32 @@ import HeartIcon from "cssvg-icons/icons/heart/heart";
 All icons accept the same props:
 
 | Prop | Type | Default | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `color` | `string` | `"currentColor"` | Stroke color |
 | `strokeWidth` | `number` | `2` | Stroke width (0.5–4) |
 | `size` | `number` | `40` | Width and height in px |
 | `className` | `string` | `""` | Extra CSS classes |
+
+## Animation Control
+
+Icons animate continuously by default. Use `withIconControls` to add `animated` and `hoverToAnimate` props without modifying the original components:
+
+```tsx
+import { Heart, withIconControls } from "cssvg-icons";
+
+const ControlledHeart = withIconControls(Heart);
+
+// Paused
+<ControlledHeart color="#ffffff" size={40} animated={false} />
+
+// Plays only on hover
+<ControlledHeart color="#ffffff" size={40} hoverToAnimate />
+```
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `animated` | `boolean` | `true` | `false` freezes the animation |
+| `hoverToAnimate` | `boolean` | `false` | Starts paused, plays only while hovered |
 
 ## Available Icons
 
