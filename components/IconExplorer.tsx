@@ -180,6 +180,7 @@ export default function IconExplorer({ initialIcons }: IconExplorerProps) {
                       strokeWidth={strokeWidth}
                       size={size}
                       absoluteStroke={absoluteStroke}
+                      hoverToAnimate={true}
                     />
                     <span className="text-[8px]  uppercase tracking-wide font-medium text-zinc-600 group-hover:text-zinc-400 transition-colors truncate w-full text-center">
                       {icon.name}

@@ -19,9 +19,11 @@ function getSnippet(
   size: number,
   animated: boolean,
   speed: number,
+  hoverToAnimate: boolean,
 ): string {
   const componentName = icon.name.replace(/\s+/g, "");
-  const animatedProp = !animated ? `\n      animated={false}` : "";
+  const animatedProp = !animated && !hoverToAnimate ? `\n      animated={false}` : "";
+  const hoverProp = hoverToAnimate ? `\n      hoverToAnimate` : "";
   const speedProp = speed !== 1 ? `\n      speed={${speed}}` : "";
   switch (tab) {
     case "react":
@@ -32,7 +34,7 @@ export default function App() {
     <${componentName}
       color="${color}"
       strokeWidth={${strokeWidth}}
-      size={${size}}${animatedProp}${speedProp}
+      size={${size}}${animatedProp}${hoverProp}${speedProp}
     />
   );
 }`;
@@ -45,7 +47,7 @@ import ${componentName} from "cssvg-icons/${icon.slug}";
   <${componentName}
     color="${color}"
     :stroke-width="${strokeWidth}"
-    :size="${size}"${!animated ? `\n    :animated="false"` : ""}${speed !== 1 ? `\n    :speed="${speed}"` : ""}
+    :size="${size}"${!animated && !hoverToAnimate ? `\n    :animated="false"` : ""}${hoverToAnimate ? `\n    :hover-to-animate="true"` : ""}${speed !== 1 ? `\n    :speed="${speed}"` : ""}
   />
 </template>`;
     case "svelte":
@@ -56,7 +58,7 @@ import ${componentName} from "cssvg-icons/${icon.slug}";
 <${componentName}
   color="${color}"
   strokeWidth={${strokeWidth}}
-  size={${size}}${!animated ? `\n  animated={false}` : ""}${speed !== 1 ? `\n  speed={${speed}}` : ""}
+  size={${size}}${!animated && !hoverToAnimate ? `\n  animated={false}` : ""}${hoverToAnimate ? `\n  hoverToAnimate` : ""}${speed !== 1 ? `\n  speed={${speed}}` : ""}
 />`;
     case "name":
       return componentName;
@@ -83,7 +85,7 @@ export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
 
   const SPEEDS = [0.25, 0.5, 1, 1.5, 2, 3];
 
-  const snippet = getSnippet(activeTab, icon, color, strokeWidth, size, animated, speed);
+  const snippet = getSnippet(activeTab, icon, color, strokeWidth, size, animated, speed, hoverToAnimate);
 
   const copy = () => {
     navigator.clipboard.writeText(snippet);

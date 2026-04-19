@@ -52,8 +52,11 @@ function ModalContent({
   }, [onClose]);
 
   const copyJsx = () => {
+    const name = icon.name.replace(/\s+/g, "");
+    const hoverProp = hoverToAnimate ? " hoverToAnimate" : "";
+    const animProp = !animated && !hoverToAnimate ? " animated={false}" : "";
     navigator.clipboard.writeText(
-      `<${icon.name.replace(/\s+/g, "")} color="${color}" strokeWidth={${strokeWidth}} size={${size}} />`
+      `<${name} color="${color}" strokeWidth={${strokeWidth}} size={${size}}${hoverProp}${animProp} />`
     );
     toast.success("JSX copied");
   };
