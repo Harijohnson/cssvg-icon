@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState, ComponentType } from "react";
+import { useRef, useEffect, ComponentType } from "react";
 
 export interface IconControlProps {
   className?: string;
@@ -20,14 +20,20 @@ export function withIconControls<T extends IconControlProps>(
     const { animated = true, hoverToAnimate = false, ...iconProps } = props as IconControlProps;
     const wrapperRef = useRef<HTMLSpanElement>(null);
     const shouldPauseOnMount = !animated || hoverToAnimate;
-    const [visible, setVisible] = useState(!shouldPauseOnMount);
 
     useEffect(() => {
-      const svg = wrapperRef.current?.querySelector("svg") as SVGSVGElement | null;
+      const wrapper = wrapperRef.current;
+      if (!wrapper) return;
+      const svg = wrapper.querySelector("svg") as SVGSVGElement | null;
       if (!svg) return;
-      if (hoverToAnimate) { svg.pauseAnimations(); }
-      else { animated ? svg.unpauseAnimations() : svg.pauseAnimations(); }
-      setVisible(true);
+      if (hoverToAnimate) {
+        svg.pauseAnimations();
+      } else if (animated) {
+        svg.unpauseAnimations();
+      } else {
+        svg.pauseAnimations();
+      }
+      wrapper.style.visibility = "visible";
     }, [animated, hoverToAnimate]);
 
     const onMouseEnter = () => {
@@ -42,7 +48,7 @@ export function withIconControls<T extends IconControlProps>(
     return (
       <span
         ref={wrapperRef}
-        style={{ display: "contents", visibility: visible ? "visible" : "hidden" }}
+        style={{ display: "contents", visibility: shouldPauseOnMount ? "hidden" : "visible" }}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >

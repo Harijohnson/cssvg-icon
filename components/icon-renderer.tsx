@@ -86,7 +86,7 @@ export default function IconRenderer({
             const newDur = `${Math.round(ms / (speed || 1))}ms`;
             el.setAttribute("dur", newDur);
             // Restart so the new dur takes effect immediately
-            try { (el as SVGAnimationElement).beginElement?.(); } catch (_) { /* noop */ }
+            try { (el as SVGAnimationElement).beginElement?.(); } catch { /* noop */ }
           }
         }
       });
