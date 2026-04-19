@@ -1,3 +1,4 @@
+export { default as AlignCenter } from "./icons/align-center/align-center";
 export { default as ArrowRight } from "./icons/arrow-right/arrow-right";
 export { default as BellRing } from "./icons/bell-ring/bell-ring";
 export { default as Check } from "./icons/check/check";
