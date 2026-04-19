@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useCallback, useState } from "react";
-import { X, ArrowUpRight, Download, Play, Pause } from "lucide-react";
+import { X, ArrowUpRight, Download, Play, Pause, MousePointer } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
 import { IconRegistryEntry } from "@/lib/icons-registry";
@@ -34,6 +34,7 @@ function ModalContent({
   const backdropRef = useRef<HTMLDivElement>(null);
   const [animated, setAnimated] = useState(true);
   const [speed, setSpeed] = useState(1);
+  const [hoverToAnimate, setHoverToAnimate] = useState(false);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
@@ -51,8 +52,11 @@ function ModalContent({
   }, [onClose]);
 
   const copyJsx = () => {
+    const name = icon.name.replace(/\s+/g, "");
+    const hoverProp = hoverToAnimate ? " hoverToAnimate" : "";
+    const animProp = !animated && !hoverToAnimate ? " animated={false}" : "";
     navigator.clipboard.writeText(
-      `<${icon.name.replace(/\s+/g, "")} color="${color}" strokeWidth={${strokeWidth}} size={${size}} />`
+      `<${name} color="${color}" strokeWidth={${strokeWidth}} size={${size}}${hoverProp}${animProp} />`
     );
     toast.success("JSX copied");
   };
@@ -149,18 +153,31 @@ function ModalContent({
                 absoluteStroke={absoluteStroke}
                 animated={animated}
                 speed={speed}
+                hoverToAnimate={hoverToAnimate}
               />
             </div>
 
-            {/* Play/Pause + Speed */}
+            {/* Play/Pause + Hover + Speed */}
             <div className="flex items-center gap-2">
               <button
                 type="button"
-                onClick={() => setAnimated((v) => !v)}
+                onClick={() => { setAnimated((v) => !v); setHoverToAnimate(false); }}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-colors"
               >
-                {animated ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
-                {animated ? "Pause" : "Play"}
+                {animated && !hoverToAnimate ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
+                {animated && !hoverToAnimate ? "Pause" : "Play"}
+              </button>
+              <button
+                type="button"
+                onClick={() => { setHoverToAnimate((v) => !v); setAnimated(true); }}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+                  hoverToAnimate
+                    ? "bg-white text-black"
+                    : "bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white"
+                }`}
+              >
+                <MousePointer className="w-3 h-3" />
+                Hover
               </button>
               <div className="flex items-center gap-1 bg-zinc-900 border border-zinc-800 rounded-lg p-0.5">
                 {SPEEDS.map((s) => (
