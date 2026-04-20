@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="100%" height="100%">
+  <g transform="translate(20,20) rotate(0,0,0) scale(1,1)">
+    <animateTransform attributeName="transform" type="translate" values="20,20;20,20;20,20;20,20;20,20;20,20;20,20;20,20" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.1425;0.285;0.4275;0.5725;0.715;0.8575;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" additive="replace" />
+    <animateTransform attributeName="transform" type="rotate" values="0,0,0;10,0,0;0,0,0;-10,0,0;10,0,0;0,0,0;-10,0,0;0,0,0" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.1425;0.285;0.4275;0.5725;0.715;0.8575;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" additive="sum" />
+    <animateTransform attributeName="transform" type="scale" values="1,1;1,1;1,1;1,1;1,1;1,1;1,1;1,1" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.1425;0.285;0.4275;0.5725;0.715;0.8575;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" additive="sum" />
+    <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" transform="translate(-12,-12)" fill="none" stroke="#bcbcbc" stroke-width="2" vector-effect="non-scaling-stroke">
+      <animate attributeName="opacity" values="1;1;1;1;1;1;1;1" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.1425;0.285;0.4275;0.5725;0.715;0.8575;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" />
+      <animate attributeName="stroke" values="#bcbcbc;#bcbcbc;#bcbcbc;#bcbcbc;#bcbcbc;#bcbcbc;#bcbcbc;#bcbcbc" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.1425;0.285;0.4275;0.5725;0.715;0.8575;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" />
+      <animate attributeName="stroke-width" values="2;2;2;2;2;2;2;2" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.1425;0.285;0.4275;0.5725;0.715;0.8575;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" />
+    </path>
+  </g>
+</svg>

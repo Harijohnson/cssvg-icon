@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="100%" height="100%">
+  <g transform="translate(14.5,20) rotate(0,0,0) scale(0.9,0.9)">
+    <animateTransform attributeName="transform" type="translate" values="14.5,20;14.5,20;14.5,20;14.5,20;14.5,20" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.255;0.5025;0.75;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" additive="replace" />
+    <animateTransform attributeName="transform" type="rotate" values="0,0,0;0,0,0;0,0,0;0,0,0;0,0,0" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.255;0.5025;0.75;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" additive="sum" />
+    <animateTransform attributeName="transform" type="scale" values="0.9,0.9;1,1;1.09,1.09;1.09,1.09;1.09,1.09" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.255;0.5025;0.75;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" additive="sum" />
+    <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" transform="translate(-6.5,-12)" fill="none" stroke="#bcbcbc" stroke-width="2" vector-effect="non-scaling-stroke">
+      <animate attributeName="opacity" values="1;1;1;1;1" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.255;0.5025;0.75;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" />
+      <animate attributeName="stroke" values="#bcbcbc;#bcbcbc;#bcbcbc;#bcbcbc;#bcbcbc" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.255;0.5025;0.75;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" />
+      <animate attributeName="stroke-width" values="2;2;2;2;2" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.255;0.5025;0.75;1" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" />
+    </path>
+  </g>
+  <g transform="translate(22.5,20) rotate(0,0,0) scale(0,0)">
+    <animateTransform attributeName="transform" type="translate" values="22.5,20;22.5,20;24.5,20" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.25;1" keySplines="0 0 1 1;0 0 1 1" additive="replace" />
+    <animateTransform attributeName="transform" type="rotate" values="0,0,0;0,0,0;0,0,0" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.25;1" keySplines="0 0 1 1;0 0 1 1" additive="sum" />
+    <animateTransform attributeName="transform" type="scale" values="0,0;0,0;0.85,0.85" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.25;1" keySplines="0 0 1 1;0 0 1 1" additive="sum" />
+    <path d="M16 9a5 5 0 0 1 0 6" transform="translate(-16.5,-12)" fill="none" stroke="#bcbcbc" stroke-width="2" vector-effect="non-scaling-stroke">
+      <animate attributeName="opacity" values="1;1;1" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.25;1" keySplines="0 0 1 1;0 0 1 1" />
+      <animate attributeName="stroke" values="#bcbcbc;#bcbcbc;#bcbcbc" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.25;1" keySplines="0 0 1 1;0 0 1 1" />
+      <animate attributeName="stroke-width" values="2;2;2" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.25;1" keySplines="0 0 1 1;0 0 1 1" />
+    </path>
+  </g>
+  <g transform="translate(24.68,20) rotate(0,0,0) scale(0,0)">
+    <animateTransform attributeName="transform" type="translate" values="24.68,20;24.68,20;28.68,20" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.4975;1" keySplines="0 0 1 1;0 0 1 1" additive="replace" />
+    <animateTransform attributeName="transform" type="rotate" values="0,0,0;0,0,0;0,0,0" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.4975;1" keySplines="0 0 1 1;0 0 1 1" additive="sum" />
+    <animateTransform attributeName="transform" type="scale" values="0,0;0,0;0.85,0.85" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.4975;1" keySplines="0 0 1 1;0 0 1 1" additive="sum" />
+    <path d="M19.364 18.364a9 9 0 0 0 0-12.728" transform="translate(-20.68,-12)" fill="none" stroke="#bcbcbc" stroke-width="2" vector-effect="non-scaling-stroke">
+      <animate attributeName="opacity" values="1;1;1" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.4975;1" keySplines="0 0 1 1;0 0 1 1" />
+      <animate attributeName="stroke" values="#bcbcbc;#bcbcbc;#bcbcbc" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.4975;1" keySplines="0 0 1 1;0 0 1 1" />
+      <animate attributeName="stroke-width" values="2;2;2" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.4975;1" keySplines="0 0 1 1;0 0 1 1" />
+    </path>
+  </g>
+  <g transform="translate(28.68,20) rotate(0,0,0) scale(0,0)">
+    <animateTransform attributeName="transform" type="translate" values="28.68,20;28.68,20;33.68,20" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.7525;1" keySplines="0 0 1 1;0 0 1 1" additive="replace" />
+    <animateTransform attributeName="transform" type="rotate" values="0,0,0;0,0,0;0,0,0" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.7525;1" keySplines="0 0 1 1;0 0 1 1" additive="sum" />
+    <animateTransform attributeName="transform" type="scale" values="0,0;0,0;1.05,1.05" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.7525;1" keySplines="0 0 1 1;0 0 1 1" additive="sum" />
+    <path d="M19.364 18.364a9 9 0 0 0 0-12.728" transform="translate(-20.68,-12)" fill="none" stroke="#bcbcbc" stroke-width="2" vector-effect="non-scaling-stroke">
+      <animate attributeName="opacity" values="1;1;1" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.7525;1" keySplines="0 0 1 1;0 0 1 1" />
+      <animate attributeName="stroke" values="#bcbcbc;#bcbcbc;#bcbcbc" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.7525;1" keySplines="0 0 1 1;0 0 1 1" />
+      <animate attributeName="stroke-width" values="2;2;2" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.7525;1" keySplines="0 0 1 1;0 0 1 1" />
+    </path>
+  </g>
+</svg>
