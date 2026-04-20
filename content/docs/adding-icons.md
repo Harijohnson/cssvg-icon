@@ -4,7 +4,7 @@ Follow these steps to contribute a new icon to the registry.
 
 ---
 
-## Step 1 — Fork the repository
+## Step 1 — Fork and clone the repository
 
 Go to [github.com/Harijohnson/cssvg-icon](https://github.com/Harijohnson/cssvg-icon) and click **Fork** to create your own copy.
 
@@ -18,8 +18,10 @@ cd cssvg-icon
 Install dependencies:
 
 ```bash
-npm install
+bun install
 ```
+
+> You can also use `npm install`, `pnpm install`, or `yarn`.
 
 ---
 
@@ -43,7 +45,7 @@ git checkout -b icon/bell
 
 Under `icons/` create a folder named after the slug and add three files:
 
-```
+```text
 icons/
   bell/
     bell.tsx    ← animated React component
@@ -58,7 +60,7 @@ All three files **must share the exact same name** as the folder (the slug).
 - Slug format: **lowercase, hyphen-separated** — e.g. `arrow-right`, `chevron-down`
 - No spaces, no underscores, no camelCase
 
-```
+```text
 ✅  icons/arrow-right/arrow-right.tsx
 ✅  icons/arrow-right/arrow-right.json
 ❌  icons/ArrowRight/ArrowRight.tsx
@@ -74,11 +76,12 @@ Go to [cssvg.com](https://cssvg.com) and design or open your icon.
 **Export settings:**
 
 | Setting | Value |
-|---|---|
+| --- | --- |
 | Canvas size | **40 × 40** |
 | Export format | **Animated** (not static) |
 | SVG camelCase toggle | **OFF** |
 | TSX camelCase toggle | **ON** |
+
 Paste the `.tsx` output into `icons/<slug>/<slug>.tsx`.
 
 ---
@@ -98,7 +101,7 @@ Paste the `.tsx` output into `icons/<slug>/<slug>.tsx`.
 ```
 
 | Field | Required | Description |
-|---|---|---|
+| --- | --- | --- |
 | `name` | ✅ | Title case readable name |
 | `slug` | ✅ | Matches folder and file name exactly |
 | `description` | ✅ | One sentence describing the icon |
@@ -123,7 +126,7 @@ git push origin icon/bell
 
 Go to your fork on GitHub and open a PR against the `main` branch of the original repo. Use the PR title format:
 
-```
+```text
 feat: add icon/<slug>
 ```
 
