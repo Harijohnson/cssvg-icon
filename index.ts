@@ -13,7 +13,6 @@ export { default as Download } from "./icons/download/download";
 export { default as Heart } from "./icons/heart/heart";
 export { default as Home } from "./icons/home/home";
 export { default as Image } from "./icons/image/image";
-export { default as Keyboard } from "./icons/keyboard/keyboard";
 export { default as Menu } from "./icons/menu/menu";
 export { default as Minus } from "./icons/minus/minus";
 export { default as Music } from "./icons/music/music";
