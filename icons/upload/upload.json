@@ -1,7 +1,7 @@
 {
   "name": "Upload",
   "slug": "upload",
-  "description": "Animated Upload icon",
+  "description": "Animated upload SVG icon for React and Next.js. Slides an arrow upward for file upload, publish, and data transfer interactions.",
   "tags": [
     "upload",
     "send",

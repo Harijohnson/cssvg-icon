@@ -1,7 +1,7 @@
 {
   "name": "Star Grow",
   "slug": "star-grow",
-  "description": "Animated star grow icon",
+  "description": "Animated star-grow SVG icon for React and Next.js. Scales and pops a star shape for favorites, ratings, and bookmark interactions.",
   "tags": [
     "star",
     "favorite",

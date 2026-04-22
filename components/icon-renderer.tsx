@@ -18,11 +18,8 @@ interface IconRendererProps {
   strokeWidth?: number;
   size?: number;
   absoluteStroke?: boolean;
-  /** Pause or play SMIL animations. Default: true (playing) */
   animated?: boolean;
-  /** Animation speed multiplier. 1 = normal, 2 = 2× faster, 0.5 = half speed. Default: 1 */
   speed?: number;
-  /** When true, animation plays only while hovering the wrapper. Overrides animated. Default: false */
   hoverToAnimate?: boolean;
 }
 
@@ -45,54 +42,59 @@ export default function IconRenderer({
   }, [slug, className]);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const absoluteStrokeRef = useRef(absoluteStroke);
+  absoluteStrokeRef.current = absoluteStroke;
 
-  // Single effect — runs all DOM patches after the SVG loads or props change.
-  // Uses MutationObserver only to detect the SVG being injected, then disconnects
-  // immediately so attribute writes don't re-trigger the observer.
   useEffect(() => {
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
 
-    let observer: MutationObserver | null = null;
+    let loadObserver: MutationObserver | null = null;
 
     const patch = () => {
       const svg = wrapper.querySelector("svg") as SVGSVGElement | null;
       if (!svg) return;
 
-      // Disconnect before writing attributes so we don't re-trigger
-      observer?.disconnect();
-      observer = null;
+      loadObserver?.disconnect();
+      loadObserver = null;
 
       // ── vector-effect ──────────────────────────────────────────
       svg.querySelectorAll("path, circle, line, rect, polyline, polygon, ellipse").forEach((el) => {
-        if (absoluteStroke) {
+        if (absoluteStrokeRef.current) {
           el.setAttribute("vector-effect", "non-scaling-stroke");
         } else {
           el.removeAttribute("vector-effect");
         }
       });
 
-      // ── speed: rewrite dur then restart each animation ─────────
+      // ── draw-on fix: remove strokeDashoffset so SMIL is sole controller ──
+      svg.querySelectorAll("path, circle, line, rect, polyline, polygon, ellipse").forEach((el) => {
+        if (el.hasAttribute("stroke-dasharray") && el.hasAttribute("stroke-dashoffset")) {
+          el.removeAttribute("stroke-dashoffset");
+        }
+      });
+
+      // ── speed: rewrite dur ────────────────────────────────────
+      const isFirstPatch = !svg.dataset.patched;
+      svg.dataset.patched = "1";
+
       svg.querySelectorAll("animateTransform, animate, animateMotion").forEach((el) => {
-        // Store original dur once
         if (!el.hasAttribute("data-original-dur")) {
           const orig = el.getAttribute("dur");
           if (orig) el.setAttribute("data-original-dur", orig);
         }
         const orig = el.getAttribute("data-original-dur");
-        if (orig) {
-          const ms = parseDur(orig);
-          if (ms > 0) {
-            const newDur = `${Math.round(ms / (speed || 1))}ms`;
-            el.setAttribute("dur", newDur);
-            // Restart so the new dur takes effect immediately
-            try { (el as SVGAnimationElement).beginElement?.(); } catch { /* noop */ }
-          }
+        if (!orig) return;
+        const ms = parseDur(orig);
+        if (ms <= 0) return;
+        const newDur = `${Math.round(ms / (speed || 1))}ms`;
+        el.setAttribute("dur", newDur);
+        if (!isFirstPatch) {
+          try { (el as SVGAnimationElement).beginElement?.(); } catch { /* noop */ }
         }
       });
 
       // ── animated: pause / resume ───────────────────────────────
-      // hoverToAnimate starts paused; hover events handle unpause/pause
       if (hoverToAnimate) {
         svg.pauseAnimations();
       } else if (animated) {
@@ -110,17 +112,38 @@ export default function IconRenderer({
       }
     };
 
-    // Run immediately in case SVG already exists
     patch();
 
-    // If SVG not yet in DOM (still loading), watch for it
     if (!wrapper.querySelector("svg")) {
-      observer = new MutationObserver(() => patch());
-      observer.observe(wrapper, { childList: true, subtree: true });
+      loadObserver = new MutationObserver(() => patch());
+      loadObserver.observe(wrapper, { childList: true, subtree: true });
     }
 
-    return () => observer?.disconnect();
-  }, [slug, absoluteStroke, animated, speed, hoverToAnimate]);
+    return () => loadObserver?.disconnect();
+  }, [slug, animated, speed, hoverToAnimate]);
+
+  // ── absoluteStroke: only touches vector-effect, never restarts animation ──
+  useEffect(() => {
+    const svg = wrapperRef.current?.querySelector("svg") as SVGSVGElement | null;
+    if (!svg) return;
+    svg.querySelectorAll("path, circle, line, rect, polyline, polygon, ellipse").forEach((el) => {
+      if (absoluteStroke) {
+        el.setAttribute("vector-effect", "non-scaling-stroke");
+      } else {
+        el.removeAttribute("vector-effect");
+      }
+    });
+  }, [absoluteStroke]);
+
+  useEffect(() => {
+    const svg = wrapperRef.current?.querySelector("svg") as SVGSVGElement | null;
+    if (!svg) return;
+    svg.querySelectorAll("path, circle, line, rect, polyline, polygon, ellipse").forEach((el) => {
+      if (el.hasAttribute("stroke-dasharray") && el.hasAttribute("stroke-dashoffset")) {
+        el.removeAttribute("stroke-dashoffset");
+      }
+    });
+  }, [color, strokeWidth, size]);
 
   const extraProps: Record<string, unknown> = {};
   if (color !== undefined) extraProps.color = color;
@@ -136,7 +159,15 @@ export default function IconRenderer({
   const handleMouseLeave = () => {
     if (!hoverToAnimate) return;
     const svg = wrapperRef.current?.querySelector("svg") as SVGSVGElement | null;
-    svg?.pauseAnimations();
+    if (!svg) return;
+    const anims = svg.querySelectorAll("animateTransform, animate, animateMotion");
+    let maxDurMs = 0;
+    anims.forEach((el) => {
+      const dur = el.getAttribute("dur") ?? el.getAttribute("data-original-dur");
+      if (dur) maxDurMs = Math.max(maxDurMs, parseDur(dur));
+    });
+    if (maxDurMs > 0) svg.setCurrentTime((maxDurMs - 1) / 1000);
+    svg.pauseAnimations();
   };
 
   return (

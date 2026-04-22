@@ -1,7 +1,7 @@
 {
   "name": "Phone",
   "slug": "phone",
-  "description": "Animated Phone icon",
+  "description": "Animated phone SVG icon for React and Next.js. Rings or vibrates for call controls, contact actions, and communication interfaces.",
   "tags": [
     "phone",
     "call",

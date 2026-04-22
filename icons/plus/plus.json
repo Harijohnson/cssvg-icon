@@ -1,7 +1,7 @@
 {
   "name": "Plus",
   "slug": "plus",
-  "description": "Animated plus icon",
+  "description": "Animated plus SVG icon for React and Next.js. Rotates or expands a plus symbol for add, create, expand, and insert actions.",
   "tags": [
     "plus",
     "add",

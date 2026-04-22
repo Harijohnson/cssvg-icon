@@ -1,7 +1,7 @@
 {
   "name": "Wave",
   "slug": "wave",
-  "description": "Animated Wave icon",
+  "description": "Animated wave SVG icon for React and Next.js. Ripples an ocean or sound wave for audio visualization, greeting, and ambient UI.",
   "tags": [
     "wave",
     "ocean",

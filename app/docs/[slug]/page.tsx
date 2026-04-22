@@ -49,10 +49,11 @@ export async function generateMetadata({ params }: PageProps) {
       siteName: "cssvg-icon",
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: `${title} | cssvg-icon Docs`,
       description,
       creator: "@cssvg_",
+      images: ["/og-image.png"],
     },
   };
 }
@@ -75,6 +76,29 @@ export default async function DocPage({ params }: PageProps) {
 
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://icon.cssvg.com").replace(/\/$/, "");
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: `${title} | cssvg-icon Docs`,
+    description: `Learn about ${title} in the cssvg-icon animated SVG icon system for Next.js and Tailwind CSS.`,
+    url: `${siteUrl}/docs/${slug}`,
+    inLanguage: "en-US",
+    isPartOf: {
+      "@type": "WebSite",
+      name: "cssvg-icon",
+      url: siteUrl,
+    },
+    author: {
+      "@type": "Person",
+      name: "Hari",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "cssvg-icon",
+      url: siteUrl,
+    },
+  };
+
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -90,6 +114,10 @@ export default async function DocPage({ params }: PageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
       <MarkdownPage content={content} title={title} showInstallBanner={slug === "introduction"} />
     </>

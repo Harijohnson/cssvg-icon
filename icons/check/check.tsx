@@ -29,20 +29,18 @@ export default function AnimatedScene({
         fill="none"
         aria-hidden="true"
       >
-      {/* Element 1: line */}
-      <g transform={"translate(4.81,19.07) rotate(37,0,0) scale(0.01,0.01)"}>
-        <animateTransform attributeName="transform" type="translate" values={"4.81,19.07;10.94,23.91;10.96,23.92"} dur={"2s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.215;1"} keySplines={"0 0 1 1;0 0 1 1"} additive="replace" />
-        <animateTransform attributeName="transform" type="rotate" values={"37,0,0;37,0,0;37,0,0"} dur={"2s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.215;1"} keySplines={"0 0 1 1;0 0 1 1"} additive="sum" />
-        <animateTransform attributeName="transform" type="scale" values={"0.01,0.01;1,1;1,1"} dur={"2s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.215;1"} keySplines={"0 0 1 1;0 0 1 1"} additive="sum" />
-        <line x1={6.5} y1={0} x2={-6.5} y2={0} fill="none" stroke={color} strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" style={{ opacity: 1 }} />
-      </g>
-
-      {/* Element 2: line */}
-      <g transform={"translate(16.26,27.85) rotate(-40,0,0) scale(0,0)"}>
-        <animateTransform attributeName="transform" type="translate" values={"16.26,27.85;16.26,27.85;26.19,19.44"} dur={"2s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.215;1"} keySplines={"0 0 1 1;0 0 1 1"} additive="replace" />
-        <animateTransform attributeName="transform" type="rotate" values={"-40,0,0;-40,0,0;-40,0,0"} dur={"2s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.215;1"} keySplines={"0 0 1 1;0 0 1 1"} additive="sum" />
-        <animateTransform attributeName="transform" type="scale" values={"0,0;0,0;1,1"} dur={"2s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.215;1"} keySplines={"0 0 1 1;0 0 1 1"} additive="sum" />
-        <line x1={-13} y1={0} x2={13} y2={0} fill="none" stroke={color} strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" style={{ opacity: 1 }} />
+      {/* Element 1: path */}
+      <g>
+        <animateTransform attributeName="transform" type="translate" values={"20,19.5;20,19.5"} dur={"5s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;1"} keySplines={"0 0 1 1"} additive="replace" />
+        <g>
+          <animateTransform attributeName="transform" type="rotate" values={"0,0,0;0,0,0"} dur={"5s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;1"} keySplines={"0 0 1 1"} additive="replace" />
+          <g>
+            <animateTransform attributeName="transform" type="scale" values={"1,1;1,1"} dur={"5s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;1"} keySplines={"0 0 1 1"} additive="replace" />
+            <path d="M4 12 L9 17 L20 6" transform={"translate(-12,-11.5)"} strokeDasharray={22.63} strokeDashoffset={22.63} fill="none" stroke={color} strokeWidth={strokeWidth} style={{ opacity: 1 }}>
+              <animate attributeName="stroke-dashoffset" values={"22.63;0"} dur={"5s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;1"} keySplines={"0 0 1 1"} />
+            </path>
+          </g>
+        </g>
       </g>
       </svg>
     </div>

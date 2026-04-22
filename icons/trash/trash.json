@@ -1,7 +1,7 @@
 {
   "name": "Trash",
   "slug": "trash",
-  "description": "Animated Trash icon",
+  "description": "Animated trash SVG icon for React and Next.js. Shakes a bin icon for delete, remove, and discard actions in lists and forms.",
   "tags": [
     "trash",
     "delete",

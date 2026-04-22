@@ -1,7 +1,7 @@
 {
   "name": "Pen",
   "slug": "pen",
-  "description": "Animated Pen icon",
+  "description": "Animated pen SVG icon for React and Next.js. Draws a writing stroke animation for edit actions, note-taking, and content authoring UI.",
   "tags": [
 	"pen",
 	"writing",

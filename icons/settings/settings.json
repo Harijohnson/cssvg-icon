@@ -1,7 +1,7 @@
 {
   "name": "Settings",
   "slug": "settings",
-  "description": "Animated settings icon",
+  "description": "Animated settings SVG icon for React and Next.js. Spins a gear or cog for configuration panels, preferences, and system controls.",
   "tags": [
     "settings",
     "gear",

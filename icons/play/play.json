@@ -1,7 +1,7 @@
 {
   "name": "Play",
   "slug": "play",
-  "description": "Animated play icon",
+  "description": "Animated play SVG icon for React and Next.js. Pulses a play triangle for video and audio player controls and media start interactions.",
   "tags": [
     "play",
     "start",

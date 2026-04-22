@@ -1,0 +1,14 @@
+{
+  "name": "Activity",
+  "slug": "activity",
+  "description": "Animated activity SVG icon for React and Next.js. Displays a pulsing event or log line animation, ideal for dashboards and history feeds.",
+  "tags": [
+    "activity",
+    "event",
+    "log",
+    "history"
+  ],
+  "link": "https://cssvg.com/share/9cbab54a-61e3-4f49-a07a-eefe8ce80728",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/"
+}

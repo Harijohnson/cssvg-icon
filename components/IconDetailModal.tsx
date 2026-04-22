@@ -80,7 +80,7 @@ function ModalContent({
     URL.revokeObjectURL(url);
   };
 
-  const SPEEDS = [0.25, 0.5, 1, 1.5, 2, 3];
+  const SPEEDS = [1, 1.5, 2, 3];
   const previewSize = Math.max(size, 80);
 
   return (

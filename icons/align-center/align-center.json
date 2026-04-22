@@ -1,7 +1,7 @@
 {
   "name": "Align Center",
   "slug": "align-center",
-  "description": "Animated align-center icon",
+  "description": "Animated align-center SVG icon for React and Next.js. Shows a text alignment animation, perfect for rich text editors and document UI.",
   "tags": [
     "text",
     "alignment",

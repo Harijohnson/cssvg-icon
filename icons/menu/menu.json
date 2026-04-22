@@ -1,7 +1,7 @@
 {
   "name": "Menu",
   "slug": "menu",
-  "description": "Animated menu icon",
+  "description": "Animated menu SVG icon for React and Next.js. Morphs hamburger bars for sidebar toggles, mobile navigation, and options menus.",
   "tags": [
     "bars",
     "navigation",

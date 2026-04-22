@@ -1,7 +1,7 @@
 {
   "name": "Heart",
   "slug": "heart",
-  "description": "Animated heart icon",
+  "description": "Animated heart SVG icon for React and Next.js. Pulses with a beating animation for likes, favorites, and emotion-driven UI interactions.",
   "tags": [
     "heart",
     "like",

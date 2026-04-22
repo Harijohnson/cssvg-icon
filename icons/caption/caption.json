@@ -1,7 +1,7 @@
 {
   "name": "Caption",
   "slug": "caption",
-  "description": "Caption icon",
+  "description": "Animated caption SVG icon for React and Next.js. Toggles a subtitle or text-overlay animation for video players and media accessibility controls.",
   "tags": [
     "subtitle",
     "text",

@@ -1,7 +1,7 @@
 {
   "name": "Camera",
   "slug": "camera",
-  "description": "Camera icon",
+  "description": "Animated camera SVG icon for React and Next.js. Simulates a shutter or focus animation for photo capture, webcam, and media upload interactions.",
   "tags": [
     "photography",
     "lens",

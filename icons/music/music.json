@@ -1,7 +1,7 @@
 {
   "name": "Music",
   "slug": "music",
-  "description": "Animated music icon",
+  "description": "Animated music SVG icon for React and Next.js. Bounces or pulses a musical note for audio players, playlists, and sound-enabled UI.",
   "tags": [
     "music",
     "audio",
