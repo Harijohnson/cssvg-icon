@@ -1,7 +1,7 @@
 {
   "name": "Refresh",
   "slug": "refresh",
-  "description": "Animated refresh icon",
+  "description": "Animated refresh SVG icon for React and Next.js. Spins a circular arrow for reload, sync, retry, and data update interactions.",
   "tags": [
     "refresh",
     "reload",

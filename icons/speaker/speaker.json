@@ -1,7 +1,7 @@
 {
   "name": "Speaker",
   "slug": "speaker",
-  "description": "Animated Speaker icon",
+  "description": "Animated speaker SVG icon for React and Next.js. Pulses volume waves for audio output, sound controls, and volume toggle UI.",
   "tags": [
     "speaker",
     "audio",

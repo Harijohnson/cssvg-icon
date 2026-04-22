@@ -53,21 +53,46 @@ export default async function IconDetailPage({ params }: PageProps) {
 
   if (!icon) notFound();
 
-  const jsonLd = {
+  const siteUrl = "https://icon.cssvg.com";
+
+  const iconJsonLd = {
     "@context": "https://schema.org",
-    "@type": "ImageObject",
-    name: icon.name,
+    "@type": "SoftwareSourceCode",
+    name: `${icon.name} Animated SVG Icon`,
     description: icon.description,
-    contentUrl: `https://icon.cssvg.com/icons/${slug}.svg`,
-    fileFormat: "image/svg+xml",
+    url: `${siteUrl}/icons/${slug}`,
+    codeRepository: "https://github.com/Harijohnson/cssvg-icon",
+    programmingLanguage: {
+      "@type": "ComputerLanguage",
+      name: "SVG",
+    },
+    runtimePlatform: "React, Next.js, Svelte, Vue",
     keywords: icon.tags.join(", "),
+    license: `${siteUrl}/license`,
+    author: {
+      "@type": "Person",
+      name: icon.credit ?? "Hari",
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: icon.name, item: `${siteUrl}/icons/${slug}` },
+    ],
   };
 
   return (
     <div className="min-h-screen bg-black text-white">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(iconJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <Header />
       <nav className="border-b border-zinc-900 bg-black/60 backdrop-blur-md">

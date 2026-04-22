@@ -1,7 +1,7 @@
 {
   "name": "Bell Ring",
   "slug": "bell-ring",
-  "description": "Animated bell ring icon",
+  "description": "Animated bell-ring SVG icon for React and Next.js. Plays a ringing shake animation for notifications, alerts, and alarm UI components.",
   "tags": [
     "bell",
     "notification",

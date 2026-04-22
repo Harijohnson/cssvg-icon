@@ -1,7 +1,7 @@
 {
   "name": "Search",
   "slug": "search",
-  "description": "Animated search icon",
+  "description": "Animated search SVG icon for React and Next.js. Scans with a magnifier animation for search inputs, lookup queries, and filter controls.",
   "tags": [
     "search",
     "find",

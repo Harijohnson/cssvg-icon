@@ -1,14 +1,14 @@
 {
   "name": "Check",
   "slug": "check",
-  "description": "Animated Check icon",
+  "description": "Animated check SVG icon for React and Next.js. Draws a checkmark stroke animation to confirm success, completion, or form validation.",
   "tags": [
 	"check" ,
   "done" ,
   "success" ,
   "complete"
   ],
-  "link": "https://cssvg.com/share/8961c751-ad0c-4065-9a6d-1736bf382c3b",
+  "link": "https://cssvg.com/share/ef962b13-33fe-4057-90d0-9a6dd9562fd2",
   "credit": "Hari",
   "reference": ""
 }

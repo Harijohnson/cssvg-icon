@@ -1,7 +1,7 @@
 {
   "name": "Podcast Mic",
   "slug": "podcast-mic",
-  "description": "Animated podcast microphone icon",
+  "description": "Animated podcast microphone SVG icon for React and Next.js. Pulses a mic animation for recording, broadcasting, and audio streaming UI.",
   "tags": [
     "podcast",
     "mic",

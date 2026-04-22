@@ -1,3 +1,4 @@
+export { default as Activity } from "./icons/activity/activity";
 export { default as AlignCenter } from "./icons/align-center/align-center";
 export { default as ArrowRight } from "./icons/arrow-right/arrow-right";
 export { default as Battery } from "./icons/battery/battery";

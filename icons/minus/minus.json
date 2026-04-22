@@ -1,7 +1,7 @@
 {
   "name": "Minus",
   "slug": "minus",
-  "description": "Animated Minus icon",
+  "description": "Animated minus SVG icon for React and Next.js. Slides a minus bar for collapse, quantity reduce, and accordion close interactions.",
   "tags": [
     "minus",
     "subtract",

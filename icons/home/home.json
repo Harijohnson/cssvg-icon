@@ -1,7 +1,7 @@
 {
   "name": "Home",
   "slug": "home",
-  "description": "Animated Home icon",
+  "description": "Animated home SVG icon for React and Next.js. Plays a subtle entrance animation for navigation home links and dashboard entry points.",
   "tags": [
 	"home",
 	"house",

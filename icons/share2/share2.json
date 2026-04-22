@@ -1,7 +1,7 @@
 {
   "name": "Share2",
   "slug": "share2",
-  "description": "Animated share icon",
+  "description": "Animated share2 SVG icon for React and Next.js. Pulses a social share node animation for forward, send, and social media post actions.",
   "tags": [
     "share",
 	"social media",

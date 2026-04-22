@@ -1,7 +1,7 @@
 {
   "name": "Battery",
   "slug": "battery",
-  "description": "Battery icon",
+  "description": "Animated battery SVG icon for React and Next.js. Visualizes charging or power-level state, useful in device dashboards and status indicators.",
   "tags": [
     "power",
     "charge",

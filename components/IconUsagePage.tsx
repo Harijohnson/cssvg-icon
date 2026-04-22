@@ -83,7 +83,7 @@ export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
   const [speed, setSpeed] = useState(1);
   const [hoverToAnimate, setHoverToAnimate] = useState(false);
 
-  const SPEEDS = [0.25, 0.5, 1, 1.5, 2, 3];
+  const SPEEDS = [1, 1.5, 2, 3];
 
   const snippet = getSnippet(activeTab, icon, color, strokeWidth, size, animated, speed, hoverToAnimate);
 

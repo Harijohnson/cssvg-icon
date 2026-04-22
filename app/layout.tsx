@@ -15,7 +15,7 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://cssvg.com").replace(/\/$/, "")
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://icon.cssvg.com").replace(/\/$/, "")
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -31,15 +31,25 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: siteUrl,
+    locale: "en_US",
     title: "cssvg-icon | Minimalist Icon System",
     description: "A clean, developer-first animated SVG icon registry for Next.js and Tailwind CSS.",
     siteName: "cssvg-icon",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "cssvg-icon — Animated SVG Icons for Next.js",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "cssvg-icon | Minimalist Icon System",
     description: "A clean, developer-first animated SVG icon registry for Next.js and Tailwind CSS.",
     creator: "@cssvg_",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,

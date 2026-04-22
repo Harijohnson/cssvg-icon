@@ -1,7 +1,7 @@
 {
   "name": "Star Spin",
   "slug": "star-spin",
-  "description": "Animated star spin icon",
+  "description": "Animated star-spin SVG icon for React and Next.js. Rotates a star for loading states, ratings, and decorative UI highlights.",
   "tags": [
     "star",
     "favorite",

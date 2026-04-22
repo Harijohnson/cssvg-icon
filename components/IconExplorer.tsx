@@ -20,7 +20,7 @@ export default function IconExplorer({ initialIcons }: IconExplorerProps) {
   const [strokeWidth, setStrokeWidth] = useState(2);
   const [size, setSize] = useState(56);
   const [pickerOpen, setPickerOpen] = useState(false);
-  const [absoluteStroke, setAbsoluteStroke] = useState(true)
+  const [absoluteStroke, setAbsoluteStroke] = useState(true);
 
   const filteredIcons = useMemo(() => {
     const searchLower = search.toLowerCase();
@@ -173,7 +173,7 @@ export default function IconExplorer({ initialIcons }: IconExplorerProps) {
                     <IconRenderer
                       slug={icon.slug}
                       className={cn(
-                        "w-5 h-5 text-white transition-transform duration-200",
+                        "text-white transition-transform duration-200",
                         "group-hover:scale-110"
                       )}
                       color={color}

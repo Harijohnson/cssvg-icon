@@ -1,7 +1,7 @@
 {
   "name": "Close",
   "slug": "close",
-  "description": "Animated Close icon",
+  "description": "Animated close SVG icon for React and Next.js. Spins or fades an X mark to dismiss modals, clear inputs, and cancel actions.",
   "tags": [
 	"cancel" ,
   "close", 

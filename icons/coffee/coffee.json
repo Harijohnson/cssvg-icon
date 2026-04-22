@@ -1,7 +1,7 @@
 {
   "name": "Coffee",
   "slug": "coffee",
-  "description": "Animated Coffee icon",
+  "description": "Animated coffee SVG icon for React and Next.js. Shows a steaming cup animation, perfect for loading states, breaks, or lifestyle app UI.",
   "tags": [
 	"coffee",
 	"beverage",

@@ -1,7 +1,7 @@
 {
   "name": "Pause",
   "slug": "pause",
-  "description": "Animated Pause icon",
+  "description": "Animated pause SVG icon for React and Next.js. Pulses pause bars for media players, video controls, and audio stream UI.",
   "tags": [
     "pause",
     "stop",

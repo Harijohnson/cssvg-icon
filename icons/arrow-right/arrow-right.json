@@ -1,7 +1,7 @@
 {
   "name": "Arrow Right",
   "slug": "arrow-right",
-  "description": "Animated arrow icon",
+  "description": "Animated arrow-right SVG icon for React and Next.js. Features a smooth sliding rightward animation for navigation, CTAs, and forward actions.",
   "tags": [
     "arrow",
     "right",

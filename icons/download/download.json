@@ -1,7 +1,7 @@
 {
   "name": "Download",
   "slug": "download",
-  "description": "Animated download icon",
+  "description": "Animated download SVG icon for React and Next.js. Features a sliding arrow-down animation for file download, save, and data fetch interactions.",
   "tags": [
     "download",
     "save",

@@ -1,7 +1,7 @@
 {
   "name": "Image",
   "slug": "image",
-  "description": "Animated image icon",
+  "description": "Animated image SVG icon for React and Next.js. Transitions with a reveal or fade animation for media galleries, photo uploads, and placeholders.",
   "tags": [
     "image",
     "photo",
