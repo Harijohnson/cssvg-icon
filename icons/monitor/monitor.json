@@ -1,0 +1,17 @@
+{
+  "name": "Monitor",
+  "slug": "monitor",
+  "description": "Animated monitor display SVG icon for React and Next.js. Represents desktop screens, displays, and system monitoring for tech and dashboard UI.",
+  "tags": [
+    "monitor",
+    "display",
+    "screen",
+    "desktop",
+    "computer",
+    "device",
+    "hardware"
+  ],
+  "link":"https://cssvg.com/share/adc860c1-d08f-414f-b7f3-1677aa6c6b07",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/monitor"
+}

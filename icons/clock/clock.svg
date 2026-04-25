@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="100%" height="100%">
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="20,20;20,20" dur="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" additive="replace" />
+    <g>
+      <animateTransform attributeName="transform" type="rotate" values="0,0,0;0,0,0" dur="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" additive="replace" />
+      <g>
+        <animateTransform attributeName="transform" type="translate" values="0,0;0,0" dur="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" additive="replace" />
+        <g>
+          <animateTransform attributeName="transform" type="scale" values="1,1;1,1" dur="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" additive="replace" />
+        <circle cx="0" cy="0" r="10" fill="none" stroke="#bcbcbc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+            <animate attributeName="opacity" values="1;1" dur="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" />
+            <animate attributeName="stroke" values="#bcbcbc;#bcbcbc" dur="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" />
+            <animate attributeName="stroke-width" values="2;2" dur="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" />
+        </circle>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="20,20;20,20" dur="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" additive="replace" />
+    <g>
+      <animateTransform attributeName="transform" type="rotate" values="0,0,0;360,0,0" dur="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" additive="replace" />
+      <g>
+        <animateTransform attributeName="transform" type="translate" values="2.4,0;2.4,0.07" dur="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" additive="replace" />
+        <g>
+          <animateTransform attributeName="transform" type="scale" values="0.05,0.05;0.05,0.05" dur="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" additive="replace" />
+        <line x1="-50" y1="0" x2="50" y2="0" fill="none" stroke="#bcbcbc" stroke-width="2" vector-effect="non-scaling-stroke">
+          <animate attributeName="stroke" values="#bcbcbc;#bcbcbc" dur="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" />
+          <animate attributeName="opacity" values="1;1" dur="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" />
+        </line>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

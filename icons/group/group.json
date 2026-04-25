@@ -1,0 +1,17 @@
+{
+  "name": "Group",
+  "slug": "group",
+  "description": "Animated group SVG icon for React and Next.js. Represents teams, collections, and grouped elements for collaboration and organizational UI.",
+  "tags": [
+    "group",
+    "team",
+    "collection",
+    "users",
+    "organization",
+    "collaboration",
+    "people"
+  ],
+  "link" : "https://cssvg.com/share/1da04d8d-1fbe-42e8-a89e-54494c92dc3a",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/group"
+}

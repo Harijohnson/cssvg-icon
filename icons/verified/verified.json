@@ -1,0 +1,17 @@
+{
+  "name": "Verified",
+  "slug": "verified",
+  "description": "Animated verified badge SVG icon for React and Next.js. Represents trust, authenticity, and confirmed status with a checkmark animation for profiles and certification UI.",
+  "tags": [
+    "verified",
+    "badge",
+    "checkmark",
+    "trusted",
+    "authentic",
+    "certified",
+    "confirmed"
+  ],
+  "link":"https://cssvg.com/share/e6bf6eea-b6b4-47b7-b694-4f979a0ec8ac",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/badge-check"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Database",
+  "slug": "database",
+  "description": "Animated database SVG icon for React and Next.js. Represents data storage, backend systems, and SQL or NoSQL databases for developer and infrastructure UI.",
+  "tags": [
+    "database",
+    "storage",
+    "data",
+    "server",
+    "sql",
+    "backend",
+    "infrastructure"
+  ],
+  "link":"https://cssvg.com/share/60105863-fdaa-4771-b862-532c6e17e0e7",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/database"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Error",
+  "slug": "error",
+  "description": "Animated error alert SVG icon for React and Next.js. Represents failures, warnings, and critical alerts with a pulsing or shaking effect for status and notification UI.",
+  "tags": [
+    "error",
+    "alert",
+    "warning",
+    "failure",
+    "critical",
+    "notification",
+    "status"
+  ],
+  "link" : "https://cssvg.com/share/5c407ff5-4d11-4174-af70-823d53a46910",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/circle-x"
+}

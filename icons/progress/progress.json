@@ -1,0 +1,17 @@
+{
+  "name": "Progress",
+  "slug": "progress",
+  "description": " Animated progress SVG icon for React and Next.js. Represents loading, processing, and ongoing tasks with a dynamic animation for status indicators and progress bars.",
+  "tags": [
+    "progress",
+	"loading",
+	"spinner",
+	"indicator",
+	"status",
+	"animation"
+
+  ],
+  "link" : "https://cssvg.com/share/aef03844-165a-49e3-b12e-8dce634be517",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/server"
+}

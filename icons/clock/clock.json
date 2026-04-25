@@ -1,0 +1,16 @@
+{
+  "name": "Clock",
+  "slug": "clock",
+  "description": " Animated clock SVG icon for React and Next.js. Represents time, schedules, and timers with a dynamic animation for time-related UI elements.",
+  "tags": [
+    "clock",
+	"time",
+	"schedule",
+	"timer",
+	"alarm",
+	"watch"
+  ],
+  "link" : "https://cssvg.com/share/aef03844-165a-49e3-b12e-8dce634be517",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/server"
+}
