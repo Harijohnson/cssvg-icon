@@ -1,0 +1,16 @@
+{
+  "name": "Warning",
+  "slug": "warning",
+  "description": " Animated warning SVG icon for React and Next.js. Represents loading, processing, and ongoing tasks with a dynamic animation for status indicators and progress bars.",
+  "tags": [
+    "warning",
+	"alert",
+	"caution",
+	"error",
+	"exclamation",
+	"notification"
+  ],
+  "link" : "https://cssvg.com/share/aef03844-165a-49e3-b12e-8dce634be517",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/server"
+}

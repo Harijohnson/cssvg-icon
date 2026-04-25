@@ -1,0 +1,17 @@
+{
+  "name": "Gauge",
+  "slug": "gauge",
+  "description": "Animated gauge speedometer SVG icon for React and Next.js. Represents speed, performance metrics, and load indicators for dashboards and monitoring UI.",
+  "tags": [
+    "gauge",
+    "speedometer",
+    "meter",
+    "performance",
+    "speed",
+    "metric",
+    "dashboard"
+  ],
+  "link" : "https://cssvg.com/share/52098858-6364-4bf8-8307-f65a40109a98",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/gauge"
+}

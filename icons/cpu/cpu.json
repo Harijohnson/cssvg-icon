@@ -1,0 +1,17 @@
+{
+  "name": "Cpu",
+  "slug": "cpu",
+  "description": "Animated CPU processor SVG icon for React and Next.js. Represents computing power, hardware, and processing with a chip design for tech dashboards and developer tools.",
+  "tags": [
+    "cpu",
+    "processor",
+    "chip",
+    "hardware",
+    "computing",
+    "technology",
+    "performance"
+  ],
+  "link": "https://cssvg.com/share/cc1189fb-1916-4b40-becf-82cd332e2108",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/cpu"
+}

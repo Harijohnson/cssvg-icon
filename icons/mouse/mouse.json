@@ -1,0 +1,16 @@
+{
+  "name": "Mouse",
+  "slug": "mouse",
+  "description": "Animated mouse SVG icon for React and Next.js. Features a bouncing or pulsing effect for computer peripherals, input devices, and technology-related UI.",
+  "tags": [
+    "mouse",
+	"computer",
+	"peripheral",
+	"input",
+	"technology"
+  ],
+  "link": "https://cssvg.com/share/95bdee43-9d8f-4788-bcff-ee04bd1aaf71",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/"
+}
+

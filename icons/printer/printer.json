@@ -1,0 +1,17 @@
+{
+  "name": "Printer",
+  "slug": "printer",
+  "description": "Animated printer SVG icon for React and Next.js. Represents printing, document output, and office hardware with a paper-feed animation for productivity and document UI.",
+  "tags": [
+    "printer",
+    "print",
+    "document",
+    "office",
+    "hardware",
+    "output",
+    "paper"
+  ],
+  "link":"https://cssvg.com/share/19b5bf14-29bc-43b7-af7b-63b4c05221d8",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/printer"
+}

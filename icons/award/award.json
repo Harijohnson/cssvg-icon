@@ -1,0 +1,16 @@
+{
+  "name": "Award",
+  "slug": "award",
+  "description": "Animated award badge SVG icon for React and Next.js. Represents achievements, recognition, and rewards with a ribbon or medal design for gamification and success UI.",
+  "tags": [
+    "award",
+    "badge",
+    "achievement",
+    "medal",
+    "recognition",
+    "trophy",
+    "reward"
+  ],
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/award"
+}

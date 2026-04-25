@@ -1,0 +1,20 @@
+{
+  "name": "Terminal",
+  "slug": "terminal",
+  "description": "Animated terminal SVG icon for React and Next.js. Represents command line interfaces, coding, and developer tools with a blinking cursor for dynamic UI elements.",
+  "tags": [
+    "terminal",
+	"command line",
+	"console",
+	"shell",
+	"cli",
+	"code",
+	"developer",
+	"programming",
+	"animated terminal icon"
+  ],
+  "link": "https://cssvg.com/share/046f3db2-1254-4771-be53-0615de5ad17d",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/"
+}
+ 

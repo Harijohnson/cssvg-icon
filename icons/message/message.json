@@ -1,0 +1,17 @@
+{
+  "name": "Message",
+  "slug": "message",
+  "description": "Animated message chat bubble SVG icon for React and Next.js. Represents messaging, comments, and communication with a typing or bounce animation for chat and support UI.",
+  "tags": [
+    "message",
+    "chat",
+    "bubble",
+    "comment",
+    "communication",
+    "conversation",
+    "notification"
+  ],
+  "link" : "https://cssvg.com/share/57221c87-3afa-41dc-8cbe-285253bc12bb" ,
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/message-square"
+}
