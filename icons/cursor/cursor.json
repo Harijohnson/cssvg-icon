@@ -1,0 +1,16 @@
+{
+  "name": "Cursor",
+  "slug": "cursor",
+  "description": "Animated cursor SVG icon for React and Next.js. Represents mouse pointers, interactive elements, click actions, and user input with a lively cursor animation.",
+  "tags": [
+    "cursor",
+    "pointer",
+    "mouse",
+    "click",
+    "input",
+    "interactive"
+  ],
+  "link": "https://cssvg.com/share/0a9591b8-8635-4abf-943f-8ea5708398f2",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/mouse-pointer"
+}

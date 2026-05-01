@@ -1,0 +1,16 @@
+{
+  "name": "Wifi",
+  "slug": "wifi",
+  "description": "Animated wifi SVG icon for React and Next.js. Represents wireless connectivity, network status, and internet signal with a dynamic animation.",
+  "tags": [
+    "wifi",
+    "wireless",
+    "network",
+    "internet",
+    "signal",
+    "connectivity"
+  ],
+  "link": "https://cssvg.com/share/0e088250-e806-4e1d-bf12-67ee2b3a6907",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/wifi"
+}

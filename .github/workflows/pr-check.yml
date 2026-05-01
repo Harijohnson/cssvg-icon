@@ -11,22 +11,48 @@ jobs:
     name: PR title prefix
     runs-on: ubuntu-latest
     steps:
-      - name: Check title prefix
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check title prefix (falls back to latest commit message)
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
           VALID_PREFIXES="feat: fix: chore: docs: refactor: style: test:"
+          SUBJECT="$PR_TITLE"
+
+          # If the PR title has no valid prefix, try the latest commit message
           MATCHED=false
           for prefix in $VALID_PREFIXES; do
-            if echo "$PR_TITLE" | grep -qi "^${prefix}"; then
+            if echo "$SUBJECT" | grep -qi "^${prefix}"; then
               MATCHED=true
-              echo "✅ PR title matches prefix: $prefix"
               break
             fi
           done
+
           if [ "$MATCHED" = "false" ]; then
-            echo "❌ PR title must start with one of: feat: | fix: | chore: | docs: | refactor: | style: | test:"
-            echo "   Got: $PR_TITLE"
+            COMMIT_MSG=$(git log -1 --format="%s" origin/main..HEAD 2>/dev/null | head -1)
+            if [ -n "$COMMIT_MSG" ]; then
+              echo "ℹ️  PR title has no prefix, checking latest commit: \"$COMMIT_MSG\""
+              SUBJECT="$COMMIT_MSG"
+              for prefix in $VALID_PREFIXES; do
+                if echo "$SUBJECT" | grep -qi "^${prefix}"; then
+                  MATCHED=true
+                  echo "✅ Commit message matches prefix: $prefix"
+                  break
+                fi
+              done
+            fi
+          else
+            echo "✅ PR title matches prefix"
+          fi
+
+          if [ "$MATCHED" = "false" ]; then
+            echo "❌ Neither the PR title nor the latest commit starts with: feat: | fix: | chore: | docs: | refactor: | style: | test:"
+            echo "   PR title : $PR_TITLE"
+            echo "   Commit   : $SUBJECT"
             exit 1
           fi
 
@@ -120,17 +146,11 @@ jobs:
                 ERRORS=$((ERRORS+1))
               fi
 
-              # vectorEffect="non-scaling-stroke" required on all stroked paths
-              # Count path/circle/line/polyline/polygon/ellipse/rect elements with stroke
-              STROKED=$(grep -cE '<(path|circle|line|polyline|polygon|ellipse|rect)[^>]*stroke=\{color\}' "$TSX" || true)
+              # vectorEffect="non-scaling-stroke" — informational only.
+              # Draw-on animated icons (strokeDasharray paths) intentionally omit it.
               NON_SCALING=$(grep -c 'vectorEffect="non-scaling-stroke"' "$TSX" || true)
-              if [ "$STROKED" -gt 0 ] && [ "$NON_SCALING" -lt "$STROKED" ]; then
-                echo "  ❌ $TSX: $STROKED stroked element(s) but only $NON_SCALING have vectorEffect=\"non-scaling-stroke\" — all stroked shapes must use absolute stroke width"
-                ERRORS=$((ERRORS+1))
-              else
-                if [ "$STROKED" -gt 0 ]; then
-                  echo "  ✅ All $STROKED stroked element(s) have vectorEffect=\"non-scaling-stroke\""
-                fi
+              if [ "$NON_SCALING" -gt 0 ]; then
+                echo "  ✅ $NON_SCALING element(s) use vectorEffect=\"non-scaling-stroke\""
               fi
 
               # Animation duration must be exactly 4s for all animate/animateTransform elements

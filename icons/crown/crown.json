@@ -1,0 +1,16 @@
+{
+  "name": "Crown",
+  "slug": "crown",
+  "description": "Animated crown SVG icon for React and Next.js. Represents royalty, premium plans, top rankings, and achievements with a regal animation.",
+  "tags": [
+    "crown",
+    "premium",
+    "royalty",
+    "king",
+    "top",
+    "achievement"
+  ],
+  "link": "https://cssvg.com/share/4fd01663-65fe-457e-bb3b-0b2e350831c9",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/crown"
+}

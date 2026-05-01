@@ -30,51 +30,93 @@ export default function AnimatedScene({
         aria-hidden="true"
       >
       {/* Element 1: path */}
-      <g transform={"translate(10,19.5) rotate(0,0,0) scale(1,2.54)"}>
+      <g>
         <animateTransform attributeName="transform" type="translate" values={"10,19.5;10,19.5;10,19.5;10,19.5"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
-        <animateTransform attributeName="transform" type="rotate" values={"0,0,0;0,0,0;0,0,0;0,0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="sum" />
-        <animateTransform attributeName="transform" type="scale" values={"1,2.54;1,1.16;1,1.89;1,1.09"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="sum" />
-        <path d="M2 10v3" transform={"translate(-2,-11.5)"} fill="none" stroke={color} strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" style={{ opacity: 1 }} />
+        <g>
+          <animateTransform attributeName="transform" type="rotate" values={"0,0,0;0,0,0;0,0,0;0,0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+          <g>
+            <animateTransform attributeName="transform" type="translate" values={"0,0;0,0;0,0;0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+            <g>
+              <animateTransform attributeName="transform" type="scale" values={"1,2.54;1,1.16;1,1.89;1,1.09"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+            <path d="M2 10v3" transform={"translate(-2,-11.5)"} fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" style={{ opacity: 1 }} />
+            </g>
+          </g>
+        </g>
       </g>
 
       {/* Element 2: path */}
-      <g transform={"translate(14,19.5) rotate(0,0,0) scale(1,1.99)"}>
+      <g>
         <animateTransform attributeName="transform" type="translate" values={"14,19.5;14,19.5;14,19.5;14,19.5"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
-        <animateTransform attributeName="transform" type="rotate" values={"0,0,0;0,0,0;0,0,0;0,0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="sum" />
-        <animateTransform attributeName="transform" type="scale" values={"1,1.99;1,1.39;1,1.63;1,0.89"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="sum" />
-        <path d="M6 6v11" transform={"translate(-6,-11.5)"} fill="none" stroke={color} strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" style={{ opacity: 1 }} />
+        <g>
+          <animateTransform attributeName="transform" type="rotate" values={"0,0,0;0,0,0;0,0,0;0,0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+          <g>
+            <animateTransform attributeName="transform" type="translate" values={"0,0;0,0;0,0;0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+            <g>
+              <animateTransform attributeName="transform" type="scale" values={"1,1.99;1,1.39;1,1.63;1,0.89"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+            <path d="M6 6v11" transform={"translate(-6,-11.5)"} fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" style={{ opacity: 1 }} />
+            </g>
+          </g>
+        </g>
       </g>
 
       {/* Element 3: path */}
-      <g transform={"translate(18,20) rotate(0,0,0) scale(1,0.75)"}>
+      <g>
         <animateTransform attributeName="transform" type="translate" values={"18,20;18,20;18,20;18,20"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
-        <animateTransform attributeName="transform" type="rotate" values={"0,0,0;0,0,0;0,0,0;0,0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="sum" />
-        <animateTransform attributeName="transform" type="scale" values={"1,0.75;1,0.49;1,0.3;1,1"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="sum" />
-        <path d="M10 3v18" transform={"translate(-10,-12)"} fill="none" stroke={color} strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" style={{ opacity: 1 }} />
+        <g>
+          <animateTransform attributeName="transform" type="rotate" values={"0,0,0;0,0,0;0,0,0;0,0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+          <g>
+            <animateTransform attributeName="transform" type="translate" values={"0,0;0,0;0,0;0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+            <g>
+              <animateTransform attributeName="transform" type="scale" values={"1,0.75;1,0.49;1,0.3;1,1"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+            <path d="M10 3v18" transform={"translate(-10,-12)"} fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" style={{ opacity: 1 }} />
+            </g>
+          </g>
+        </g>
       </g>
 
       {/* Element 4: path */}
-      <g transform={"translate(22,19.5) rotate(0,0,0) scale(1,0.73)"}>
+      <g>
         <animateTransform attributeName="transform" type="translate" values={"22,19.5;22,19.5;22,19.5;22,19.5"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
-        <animateTransform attributeName="transform" type="rotate" values={"0,0,0;0,0,0;0,0,0;0,0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="sum" />
-        <animateTransform attributeName="transform" type="scale" values={"1,0.73;1,2.38;1,3.13;1,1.48"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="sum" />
-        <path d="M14 8v7" transform={"translate(-14,-11.5)"} fill="none" stroke={color} strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" style={{ opacity: 1 }} />
+        <g>
+          <animateTransform attributeName="transform" type="rotate" values={"0,0,0;0,0,0;0,0,0;0,0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+          <g>
+            <animateTransform attributeName="transform" type="translate" values={"0,0;0,0;0,0;0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+            <g>
+              <animateTransform attributeName="transform" type="scale" values={"1,0.73;1,2.38;1,3.13;1,1.48"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+            <path d="M14 8v7" transform={"translate(-14,-11.5)"} fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" style={{ opacity: 1 }} />
+            </g>
+          </g>
+        </g>
       </g>
 
       {/* Element 5: path */}
-      <g transform={"translate(26,19.5) rotate(0,0,0) scale(1,1.35)"}>
+      <g>
         <animateTransform attributeName="transform" type="translate" values={"26,19.5;26,19.5;26,19.5;26,19.5"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
-        <animateTransform attributeName="transform" type="rotate" values={"0,0,0;0,0,0;0,0,0;0,0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="sum" />
-        <animateTransform attributeName="transform" type="scale" values={"1,1.35;1,0.34;1,1.08;1,1"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="sum" />
-        <path d="M18 5v13" transform={"translate(-18,-11.5)"} fill="none" stroke={color} strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" style={{ opacity: 1 }} />
+        <g>
+          <animateTransform attributeName="transform" type="rotate" values={"0,0,0;0,0,0;0,0,0;0,0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+          <g>
+            <animateTransform attributeName="transform" type="translate" values={"0,0;0,0;0,0;0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+            <g>
+              <animateTransform attributeName="transform" type="scale" values={"1,1.35;1,0.34;1,1.08;1,1"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+            <path d="M18 5v13" transform={"translate(-18,-11.5)"} fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" style={{ opacity: 1 }} />
+            </g>
+          </g>
+        </g>
       </g>
 
       {/* Element 6: path */}
-      <g transform={"translate(30,19.5) rotate(0,0,0) scale(1,1.15)"}>
+      <g>
         <animateTransform attributeName="transform" type="translate" values={"30,19.5;30,19.5;30,19.5;30,19.5"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
-        <animateTransform attributeName="transform" type="rotate" values={"0,0,0;0,0,0;0,0,0;0,0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="sum" />
-        <animateTransform attributeName="transform" type="scale" values={"1,1.15;6.75,6.75;3.34,1.33;1,2.5"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="sum" />
-        <path d="M22 10v3" transform={"translate(-22,-11.5)"} fill="none" stroke={color} strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" style={{ opacity: 1 }} />
+        <g>
+          <animateTransform attributeName="transform" type="rotate" values={"0,0,0;0,0,0;0,0,0;0,0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+          <g>
+            <animateTransform attributeName="transform" type="translate" values={"0,0;0,0;0,0;0,0"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+            <g>
+              <animateTransform attributeName="transform" type="scale" values={"1,1.15;1,6.75;1,1.33;1,2.5"} dur={"4s"} repeatCount={"indefinite"} calcMode={"spline"} keyTimes={"0;0.3325;0.6675;1"} keySplines={"0 0 1 1;0 0 1 1;0 0 1 1"} additive="replace" />
+            <path d="M22 10v3" transform={"translate(-22,-11.5)"} fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" style={{ opacity: 1 }} />
+            </g>
+          </g>
+        </g>
       </g>
       </svg>
     </div>

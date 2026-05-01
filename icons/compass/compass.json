@@ -1,0 +1,16 @@
+{
+  "name": "Compass",
+  "slug": "compass",
+  "description": "Animated compass SVG icon for React and Next.js. Represents navigation, direction, exploration, and orientation with a smooth spinning animation.",
+  "tags": [
+    "compass",
+    "navigation",
+    "direction",
+    "explore",
+    "map",
+    "orientation"
+  ],
+  "link": "https://cssvg.com/share/f0b09b26-350f-4ddf-a3d9-1f4bb57312c1",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/compass"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "CloudSun",
+  "slug": "cloud-sun",
+  "description": "Animated cloud sun SVG icon for React and Next.js. Represents partly cloudy weather, forecasts, and outdoor conditions with a lively animation.",
+  "tags": [
+    "cloud",
+    "sun",
+    "weather",
+    "forecast",
+    "partly-cloudy",
+    "sky"
+  ],
+  "link": "https://cssvg.com/share/c9701935-de48-44f7-bc94-396eb082156a",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/cloud-sun"
+}
