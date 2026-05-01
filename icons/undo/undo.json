@@ -1,0 +1,16 @@
+{
+  "name": "Undo",
+  "slug": "undo",
+  "description": "Animated undo SVG icon for React and Next.js. Represents undoing actions, reverting changes, and stepping back in edit history with a reverse-arc animation.",
+  "tags": [
+    "undo",
+    "back",
+    "revert",
+    "action",
+    "edit",
+    "history"
+  ],
+  "link": "https://cssvg.com/share/2f1dc88c-d6b8-4889-806d-a5c6d0df1213",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/undo"
+}

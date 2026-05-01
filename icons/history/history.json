@@ -1,0 +1,16 @@
+{
+  "name": "History",
+  "slug": "history",
+  "description": "Animated history SVG icon for React and Next.js. Represents browsing history, undo actions, time travel, and past records with a clock-back animation.",
+  "tags": [
+    "history",
+    "undo",
+    "time",
+    "past",
+    "clock",
+    "revert"
+  ],
+  "link": "https://cssvg.com/share/64f2828f-1ff3-4112-aa07-708c4bda7c30",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/history"
+}

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="100%" height="100%">
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="20.1,20.07;20.1,20.07" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" additive="replace" />
+    <g>
+      <animateTransform attributeName="transform" type="rotate" values="0,0,0;0,0,0" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" additive="replace" />
+      <g>
+        <animateTransform attributeName="transform" type="translate" values="0,0;0,0" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" additive="replace" />
+        <g>
+          <animateTransform attributeName="transform" type="scale" values="1,1;1,1" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" additive="replace" />
+        <path d="M7 3.5c5-2 7 2.5 3 4C1.5 10 2 15 5 16c5 2 9-10 14-7s.5 13.5-4 12c-5-2.5.5-11 6-2" transform="translate(-12.1,-12.07)" fill="none" stroke="#bcbcbc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="54.92" stroke-dashoffset="54.92">
+            <animate attributeName="opacity" values="1;1" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" />
+            <animate attributeName="stroke" values="#bcbcbc;#bcbcbc" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" />
+            <animate attributeName="stroke-width" values="2;2" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" />
+            <animate attributeName="stroke-dashoffset" values="54.92;0" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0 0 1 1" />
+        </path>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

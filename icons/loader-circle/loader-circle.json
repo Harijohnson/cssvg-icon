@@ -1,0 +1,16 @@
+{
+  "name": "LoaderCircle",
+  "slug": "loader-circle",
+  "description": "Animated loader circle SVG icon for React and Next.js. A spinning circular loader for loading states, spinners, and progress indicators.",
+  "tags": [
+    "loader",
+    "circle",
+    "spinner",
+    "loading",
+    "progress",
+    "wait"
+  ],
+  "link": "https://cssvg.com/share/d2660079-be97-495c-9558-448e81d74b47",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/loader-circle"
+}

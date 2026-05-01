@@ -1,0 +1,16 @@
+{
+  "name": "Redo",
+  "slug": "redo",
+  "description": "Animated redo SVG icon for React and Next.js. Represents redo actions, reapplying changes, and moving forward in edit history with a forward-arc animation.",
+  "tags": [
+    "redo",
+    "forward",
+    "repeat",
+    "action",
+    "edit",
+    "history"
+  ],
+  "link": "https://cssvg.com/share/3754aca3-4fea-4107-ba42-6ea9a606537f",
+  "credit": "Hari",
+  "reference": "https://lucide.dev/icons/redo"
+}

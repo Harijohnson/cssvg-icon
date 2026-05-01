@@ -59,7 +59,10 @@ export default function IconRenderer({
       loadObserver = null;
 
       // ── vector-effect ──────────────────────────────────────────
+      // Skip dash-animated paths — their dasharray values are in SVG units
+      // and non-scaling-stroke would break the draw-on animation.
       svg.querySelectorAll("path, circle, line, rect, polyline, polygon, ellipse").forEach((el) => {
+        if (el.hasAttribute("stroke-dasharray")) return;
         if (absoluteStrokeRef.current) {
           el.setAttribute("vector-effect", "non-scaling-stroke");
         } else {
@@ -123,10 +126,13 @@ export default function IconRenderer({
   }, [slug, animated, speed, hoverToAnimate]);
 
   // ── absoluteStroke: only touches vector-effect, never restarts animation ──
+  // Skip elements with strokeDasharray — those are draw-on animated paths whose
+  // dash values are in SVG coordinate units; non-scaling-stroke breaks them.
   useEffect(() => {
     const svg = wrapperRef.current?.querySelector("svg") as SVGSVGElement | null;
     if (!svg) return;
     svg.querySelectorAll("path, circle, line, rect, polyline, polygon, ellipse").forEach((el) => {
+      if (el.hasAttribute("stroke-dasharray")) return;
       if (absoluteStroke) {
         el.setAttribute("vector-effect", "non-scaling-stroke");
       } else {
