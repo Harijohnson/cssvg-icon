@@ -22,7 +22,7 @@ export default function InstallBanner() {
   return (
     <div className="flex flex-col items-center mb-12">
       {/* Tab row */}
-      <div className="flex items-center gap-1 bg-zinc-900 border border-zinc-800 mb-4 rounded-xl p-1 ">
+      <div className="flex items-center gap-1 bg-zinc-900 border border-zinc-800 rounded-xl mb-4 p-1">
         {TABS.map((tab, i) => (
           <button
             key={tab.label}
