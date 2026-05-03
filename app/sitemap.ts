@@ -27,6 +27,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0,
     },
     {
+      url: `${siteUrl}/icons`,
+      lastModified: await fileMtime(path.join(process.cwd(), "app", "icons", "page.tsx")),
+      changeFrequency: "daily",
+      priority: 0.95,
+    },
+    {
       url: `${siteUrl}/docs`,
       lastModified: await fileMtime(path.join(process.cwd(), "content", "docs")),
       changeFrequency: "weekly",

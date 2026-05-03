@@ -121,12 +121,12 @@ export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
         {/* ── Left: Preview + Controls ── */}
         <div className="space-y-5 lg:sticky lg:top-28">
           {/* Preview */}
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-950 flex items-center justify-center aspect-square max-w-xs mx-auto lg:max-w-full">
+          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 flex items-center justify-center aspect-square max-w-xs mx-auto lg:max-w-full">
             <IconRenderer slug={icon.slug} color={color} strokeWidth={strokeWidth} size={size} animated={animated} speed={speed} hoverToAnimate={hoverToAnimate} />
           </div>
 
           {/* Controls */}
-          <div className="rounded-xl border border-zinc-900 bg-zinc-950 p-4 space-y-4">
+          <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-4 space-y-4">
             <h3 className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Controls</h3>
 
             {/* Color */}
@@ -137,12 +137,12 @@ export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
                   type="text"
                   value={color}
                   onChange={(e) => setColor(e.target.value)}
-                  className="flex-1 bg-zinc-900 border border-zinc-800 rounded px-2 py-1.5 text-xs text-zinc-200 font-mono focus:outline-none focus:border-zinc-600"
+                  className="flex-1 bg-zinc-900 border border-zinc-800 rounded-lg px-2 py-1.5 text-xs text-zinc-200 font-mono focus:outline-none focus:border-zinc-600"
                 />
                 <button
                   type="button"
                   onClick={() => setPickerOpen((o) => !o)}
-                  className="w-8 h-8 rounded border border-zinc-700 shrink-0"
+                  className="w-8 h-8 rounded-lg border border-zinc-700 shrink-0"
                   style={{ backgroundColor: color }}
                   aria-label="Open color picker"
                 />
@@ -241,7 +241,7 @@ export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
           </div>
 
           {/* Actions */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 rounded-2xl">
             <Button
               onClick={downloadSvg}
               variant="outline"
@@ -254,7 +254,7 @@ export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
                 href={icon.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-1.5 text-xs font-semibold text-blue-400 hover:text-blue-300 bg-blue-950/50 hover:bg-blue-950 border border-blue-800/50 transition-colors py-2 rounded-md"
+                className="w-full flex items-center justify-center gap-1.5 text-xs font-semibold text-blue-400 hover:text-blue-300 bg-blue-950/50 hover:bg-blue-950 border border-blue-800/50 transition-colors py-2 rounded-xl"
               >
                 Want more customization?
                 <svg viewBox="0 0 24 24" className="w-3 h-3 fill-none stroke-current stroke-2"><path d="M7 17L17 7M17 7H7M17 7v10" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -269,7 +269,7 @@ export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
           <div className="space-y-3">
             <div className="flex flex-wrap gap-1.5">
               {icon.tags.map((tag) => (
-                <span key={tag} className="text-[9px] px-2 py-0.5 rounded-full bg-zinc-900 text-zinc-500 border border-zinc-800">
+                <span key={tag} className="text-[9px] px-2 py-0.5 rounded-md bg-zinc-900 text-zinc-500 border border-zinc-800">
                   {tag}
                 </span>
               ))}
@@ -281,7 +281,7 @@ export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
           </div>
 
           {/* Code block */}
-          <div className="rounded-xl border border-zinc-800 overflow-hidden">
+          <div className="rounded-2xl border border-zinc-800 overflow-hidden">
             {/* Tabs */}
             <div className="flex border-b border-zinc-800 bg-zinc-950">
               {TABS.map((t) => (
@@ -316,7 +316,7 @@ export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
 
           {/* Icon details */}
           {(icon.credit || icon.reference) && (
-            <div className="rounded-xl border border-zinc-900 bg-zinc-950 p-4 space-y-3">
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-4 space-y-3">
               <h3 className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Details</h3>
               {icon.credit && (
                 <div className="flex items-center justify-between text-xs">
@@ -348,7 +348,7 @@ export default function IconUsagePage({ icon }: { icon: IconRegistryEntry }) {
               href={`https://github.com/Harijohnson/cssvg-icon/issues/new?template=icon-request.md&title=Icon+request:+${encodeURIComponent(icon.name)}+variant&labels=icon-request`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1.5 w-full py-2 rounded-lg text-xs font-semibold text-blue-400 hover:text-blue-300 bg-blue-950/50 hover:bg-blue-950 border border-blue-800/50 transition-colors"
+              className="flex items-center justify-center gap-1.5 w-full py-2 rounded-xl text-xs font-semibold text-blue-400 hover:text-blue-300 bg-blue-950/50 hover:bg-blue-950 border border-blue-800/50 transition-colors"
             >
               Request a variant
               <svg viewBox="0 0 24 24" className="w-3 h-3 fill-none stroke-current stroke-2"><path d="M7 17L17 7M17 7H7M17 7v10" strokeLinecap="round" strokeLinejoin="round" /></svg>

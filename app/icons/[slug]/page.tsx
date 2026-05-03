@@ -80,7 +80,8 @@ export default async function IconDetailPage({ params }: PageProps) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-      { "@type": "ListItem", position: 2, name: icon.name, item: `${siteUrl}/icons/${slug}` },
+      { "@type": "ListItem", position: 2, name: "Icons", item: `${siteUrl}/icons` },
+      { "@type": "ListItem", position: 3, name: icon.name, item: `${siteUrl}/icons/${slug}` },
     ],
   };
 
@@ -98,11 +99,11 @@ export default async function IconDetailPage({ params }: PageProps) {
       <nav className="border-b border-zinc-900 bg-black/60 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 h-11 flex items-center">
           <Link
-            href="/"
+            href="/icons"
             className="flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-xs font-medium"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
-            Back to gallery
+            Back to icon library
           </Link>
         </div>
       </nav>

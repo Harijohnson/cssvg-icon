@@ -108,7 +108,7 @@ function ModalContent({
                   key={tag}
                   type="button"
                   onClick={() => { onTagClick?.(tag); onClose(); }}
-                  className="text-[9px] px-1.5 py-0.5 rounded-full bg-zinc-800 text-zinc-500 border border-zinc-700 hover:bg-zinc-700 hover:text-zinc-300 transition-colors cursor-pointer"
+                  className="text-[9px] px-1.5 py-0.5 rounded-md bg-zinc-800 text-zinc-500 border border-zinc-700 hover:bg-zinc-700 hover:text-zinc-300 transition-colors cursor-pointer"
                 >
                   {tag}
                 </button>
@@ -120,14 +120,14 @@ function ModalContent({
               href={icon.link ?? "https://cssvg.com"}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-md text-[10px] font-semibold text-blue-400 hover:text-blue-300 bg-blue-950/50 hover:bg-blue-950 border border-blue-800/50 transition-colors"
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[10px] font-semibold text-blue-400 hover:text-blue-300 bg-blue-950/50 hover:bg-blue-950 border border-blue-800/50 transition-colors"
             >
               Edit in cssvg
               <ArrowUpRight className="w-3 h-3" />
             </a>
             <button
               onClick={onClose}
-              className="p-1.5 rounded-md text-zinc-500 hover:text-white hover:bg-zinc-800 transition-colors"
+              className="p-1.5 rounded-lg text-zinc-500 hover:text-white hover:bg-zinc-800 transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
@@ -205,14 +205,14 @@ function ModalContent({
 
             <button
               onClick={copyJsx}
-              className="w-full bg-white text-black hover:bg-zinc-200 font-bold h-9 text-xs rounded-lg transition-colors"
+              className="w-full bg-white text-black hover:bg-zinc-200 font-bold h-9 text-xs rounded-xl transition-colors"
             >
               Copy JSX
             </button>
 
             <button
               onClick={downloadSvg}
-              className="w-full flex items-center justify-center gap-1.5 text-xs font-semibold h-9 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-colors"
+              className="w-full flex items-center justify-center gap-1.5 text-xs font-semibold h-9 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-colors"
             >
               <Download className="w-3.5 h-3.5" /> Download SVG
             </button>
@@ -220,7 +220,7 @@ function ModalContent({
             <Link
               href={`/icons/${icon.slug}`}
               onClick={onClose}
-              className="w-full flex items-center justify-center gap-1.5 text-xs font-semibold h-9 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-400 hover:text-white transition-colors"
+              className="w-full flex items-center justify-center gap-1.5 text-xs font-semibold h-9 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-400 hover:text-white transition-colors"
             >
               Customize <ArrowUpRight className="w-3.5 h-3.5" />
             </Link>

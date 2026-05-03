@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
 import { cn } from "@/lib/utils"
 import { Analytics } from "@vercel/analytics/next"
+import { SITE_URL, BASE_TITLE, BASE_DESCRIPTION, BASE_KEYWORDS, BASE_OG_IMAGE } from "@/lib/metadata"
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'})
 
@@ -15,39 +16,30 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://icon.cssvg.com").replace(/\/$/, "")
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "cssvg-icon | Minimalist Icon System",
+    default: BASE_TITLE,
     template: "%s | cssvg-icon",
   },
-  description: "A clean, developer-first animated SVG icon registry for Next.js and Tailwind CSS.",
-  keywords: ["svg icons", "animated icons", "next.js", "tailwind", "cssvg", "react icons"],
+  description: BASE_DESCRIPTION,
+  keywords: BASE_KEYWORDS,
   alternates: {
-    canonical: siteUrl,
+    canonical: SITE_URL,
   },
   openGraph: {
     type: "website",
-    url: siteUrl,
+    url: SITE_URL,
     locale: "en_US",
-    title: "cssvg-icon | Minimalist Icon System",
-    description: "A clean, developer-first animated SVG icon registry for Next.js and Tailwind CSS.",
+    title: BASE_TITLE,
+    description: BASE_DESCRIPTION,
     siteName: "cssvg-icon",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "cssvg-icon — Animated SVG Icons for Next.js",
-      },
-    ],
+    images: BASE_OG_IMAGE,
   },
   twitter: {
     card: "summary_large_image",
-    title: "cssvg-icon | Minimalist Icon System",
-    description: "A clean, developer-first animated SVG icon registry for Next.js and Tailwind CSS.",
+    title: BASE_TITLE,
+    description: BASE_DESCRIPTION,
     creator: "@cssvg_",
     images: ["/og-image.png"],
   },

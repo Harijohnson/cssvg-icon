@@ -25,7 +25,7 @@ export function Footer() {
           <div>
             <h4 className="text-white font-semibold text-sm mb-6 uppercase tracking-widest">Library</h4>
             <ul className="space-y-4">
-              <li><Link href="/" className="text-zinc-500 hover:text-white text-sm transition-colors">Icon Search</Link></li>
+              <li><Link href="/icons" className="text-zinc-500 hover:text-white text-sm transition-colors">Icon Library</Link></li>
               <li><Link href="/docs/getting-started" className="text-zinc-500 hover:text-white text-sm transition-colors">Installation</Link></li>
               <li><Link href="/docs/usage" className="text-zinc-500 hover:text-white text-sm transition-colors">Usage</Link></li>
               <li>
