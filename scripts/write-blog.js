@@ -162,12 +162,14 @@ series: "Animated SVG Icons with CSS"
   console.log('Calling OpenRouter API to generate blog post…');
 
   const stream = await openrouter.chat.send({
-    model: 'arcee-ai/trinity-large-thinking:free',
-    messages: [
-      { role: 'system', content: systemPrompt },
-      { role: 'user', content: `${topicInstruction}\n\nHere is the cssvg-icons codebase for reference:\n${codebaseContext}` },
-    ],
-    stream: true,
+    chatRequest: {
+      model: 'arcee-ai/trinity-large-thinking:free',
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: `${topicInstruction}\n\nHere is the cssvg-icons codebase for reference:\n${codebaseContext}` },
+      ],
+      stream: true,
+    },
   });
 
   let response = '';
@@ -183,7 +185,11 @@ series: "Animated SVG Icons with CSS"
   }
 
   if (!response) throw new Error('OpenRouter returned an empty response');
-  return response;
+
+  // Strip wrapping ```markdown ... ``` fences some models add
+  const stripped = response.trim();
+  const fenceMatch = stripped.match(/^```(?:markdown)?\s*\n([\s\S]*?)(?:\n```\s*)?$/i);
+  return fenceMatch ? fenceMatch[1].trim() : stripped;
 }
 
 // ── main ──────────────────────────────────────────────────────────────────────

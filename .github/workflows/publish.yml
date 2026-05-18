@@ -24,6 +24,9 @@ jobs:
   # ── 1. CI — lint + type-check + build ──────────────────────────────────────
   ci:
     name: CI checks
+    if: |
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true) ||
+      (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v'))
     runs-on: ubuntu-latest
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
