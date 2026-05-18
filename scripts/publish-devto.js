@@ -260,6 +260,7 @@ async function main() {
     execSync('git config user.email "github-actions[bot]@users.noreply.github.com"');
     execSync('git add data/devto-topics.json');
     execSync('git diff --cached --quiet || git commit -m "chore: mark topic as published on dev.to"');
+    execSync('git pull --rebase origin main');
     execSync('git push');
   }
 }
