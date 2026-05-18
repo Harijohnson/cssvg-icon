@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "title": "Animated SVG Icons in React: Why SMIL Still Wins in 2025",
+    "topic": "smil-vs-css-animation",
+    "tags": ["svg", "react", "animation", "webdev"],
+    "seoTitle": "Animated SVG Icons in React: Why SMIL Still Wins in 2025",
+    "seoDescription": "SMIL animations inside SVG icons are self-contained, require zero JS at runtime, and work perfectly in React and Next.js. Here's why and how.",
+    "imagePrompt": "Dark UI showing animated SVG icons glowing on a black background, React component code on the right, monochrome minimal design, professional developer tool aesthetic, 16:9"
+  },
+  {
+    "id": 2,
+    "title": "How to Build an Animated SVG Icon Library for React and Next.js",
+    "topic": "build-icon-library",
+    "tags": ["svg", "react", "nextjs", "tutorial"],
+    "seoTitle": "How to Build an Animated SVG Icon Library for React and Next.js",
+    "seoDescription": "Step-by-step guide to building a tree-shakeable animated SVG icon library with React, Next.js App Router, and SMIL animations. From folder structure to npm publish.",
+    "imagePrompt": "Folder tree of a React icon library on a dark terminal background, glowing SVG icon previews arranged in a grid, minimal dark developer aesthetic, 16:9"
+  },
+  {
+    "id": 3,
+    "title": "SMIL animateTransform Explained: Translate, Rotate, Scale in SVG Icons",
+    "topic": "smil-animatetransform",
+    "tags": ["svg", "smil", "animation", "tutorial"],
+    "seoTitle": "SMIL animateTransform Explained: Translate, Rotate, Scale in SVG Icons",
+    "seoDescription": "A deep dive into SMIL animateTransform — how additive, replace, and sum modes work together to create multi-step icon animations without a single line of JavaScript.",
+    "imagePrompt": "SVG path elements with motion trails and transform axes labeled, dark background, glowing white strokes, technical diagram style, 16:9"
+  },
+  {
+    "id": 4,
+    "title": "Tree-Shaking SVG Icons in Next.js: Zero Bundle Cost Per Icon",
+    "topic": "tree-shaking-icons",
+    "tags": ["nextjs", "performance", "svg", "webdev"],
+    "seoTitle": "Tree-Shaking SVG Icons in Next.js: Zero Bundle Cost Per Icon",
+    "seoDescription": "How to structure an SVG icon library so unused icons are never bundled. Dynamic imports, per-slug rendering, and App Router patterns for near-zero icon bundle cost.",
+    "imagePrompt": "Bundle analyzer treemap on a dark background with SVG icon nodes highlighted in white, webpack/next.js build stats visual, minimal technical aesthetic, 16:9"
+  },
+  {
+    "id": 5,
+    "title": "Animated Bell Icon: Anatomy of a SMIL Ringing Animation",
+    "topic": "bell-icon-anatomy",
+    "tags": ["svg", "smil", "animation", "icons"],
+    "seoTitle": "Animated Bell Icon: Anatomy of a SMIL Ringing Animation Step by Step",
+    "seoDescription": "Break down the bell-ring animated SVG icon frame by frame — keyTimes, keySplines, additive transforms, and the math behind the natural swing motion.",
+    "imagePrompt": "Animated bell SVG icon on pure black background with keyframe timeline overlaid, white stroke bell shape with motion arc, technical breakdown style, 16:9"
+  },
+  {
+    "id": 6,
+    "title": "SVG Icon Accessibility: aria-hidden, focusable, and Screen Reader Best Practices",
+    "topic": "svg-icon-accessibility",
+    "tags": ["a11y", "svg", "accessibility", "webdev"],
+    "seoTitle": "SVG Icon Accessibility: aria-hidden, focusable, and Screen Reader Best Practices",
+    "seoDescription": "How to make animated SVG icons fully accessible. Covers aria-hidden, role, title elements, focusable=false, and when to use aria-label vs visually hidden text.",
+    "imagePrompt": "Accessibility audit panel overlaid on SVG icon grid on a dark background, white and zinc color scheme, professional dev tools aesthetic, 16:9"
+  },
+  {
+    "id": 7,
+    "title": "Pausing and Controlling SMIL Animations in React with pauseAnimations()",
+    "topic": "control-smil-animations-react",
+    "tags": ["react", "svg", "animation", "javascript"],
+    "seoTitle": "Pausing and Controlling SMIL Animations in React with pauseAnimations()",
+    "seoDescription": "How to programmatically pause, resume, and control playback speed of SMIL SVG animations in React using SVGAnimationElement APIs and useRef.",
+    "imagePrompt": "Play/pause control buttons overlaid on animated SVG icons, dark UI with white controls, React code snippet visible, minimal dark aesthetic, 16:9"
+  },
+  {
+    "id": 8,
+    "title": "Designing Consistent Animated Icons: The 40×40 Canvas System",
+    "topic": "icon-design-system",
+    "tags": ["design", "svg", "icons", "designsystem"],
+    "seoTitle": "Designing Consistent Animated Icons: The 40×40 Canvas System Explained",
+    "seoDescription": "How using a fixed 40×40 viewBox for every icon creates a consistent optical baseline, simplifies animation math, and makes stroke widths predictable at any size.",
+    "imagePrompt": "Grid of SVG icons all on 40x40 canvases with alignment guides overlaid, dark background, monochrome icon set, design system reference sheet aesthetic, 16:9"
+  },
+  {
+    "id": 9,
+    "title": "Using cssvg-icons in Your Next.js Project: Installation to First Icon",
+    "topic": "cssvg-icons-getting-started",
+    "tags": ["nextjs", "icons", "tutorial", "react"],
+    "seoTitle": "Using cssvg-icons in Your Next.js Project: Installation to First Icon",
+    "seoDescription": "A practical getting-started guide for the cssvg-icons npm package — install, import, customize color, strokeWidth, size, and animate your first icon in under 5 minutes.",
+    "imagePrompt": "Terminal window showing npm install cssvg-icons on dark background, Next.js app with animated icon visible in browser, developer setup aesthetic, 16:9"
+  },
+  {
+    "id": 10,
+    "title": "keySplines and keyTimes in SMIL: The Secret to Natural-Looking Icon Motion",
+    "topic": "smil-keysplines-keytimes",
+    "tags": ["svg", "smil", "animation", "tutorial"],
+    "seoTitle": "keySplines and keyTimes in SMIL: The Secret to Natural-Looking Icon Motion",
+    "seoDescription": "Understand exactly how SMIL keySplines (cubic bezier control points) and keyTimes (progress offsets) combine to produce eased, natural animations — with worked examples.",
+    "imagePrompt": "Cubic bezier curve editor on dark background with SVG animation timeline, white curve handles, motion path overlaid on icon, technical visualization, 16:9"
+  },
+  {
+    "id": 11,
+    "title": "SVG stroke vs fill: Why Animated Stroke Icons Scale Better",
+    "topic": "svg-stroke-vs-fill",
+    "tags": ["svg", "css", "icons", "design"],
+    "seoTitle": "SVG stroke vs fill: Why Animated Stroke Icons Scale Better at Any Size",
+    "seoDescription": "Why stroke-based SVG icons with vectorEffect=non-scaling-stroke are superior for animated icon libraries — crisp edges, consistent weight, and easier SMIL transforms.",
+    "imagePrompt": "Two sets of SVG icons side by side — fill-based vs stroke-based — on dark background showing quality difference at multiple sizes, design comparison aesthetic, 16:9"
+  },
+  {
+    "id": 12,
+    "title": "Building an Icon Search and Explorer UI with Next.js App Router",
+    "topic": "icon-explorer-ui",
+    "tags": ["nextjs", "react", "ui", "tutorial"],
+    "seoTitle": "Building an Icon Search and Explorer UI with Next.js App Router",
+    "seoDescription": "How to build a live icon explorer — real-time search, color picker, stroke/size controls — using Next.js App Router, Tailwind CSS v4, and client components.",
+    "imagePrompt": "Dark icon explorer UI with search bar, color picker, and grid of animated SVG icons, Tailwind CSS component layout, professional product screenshot, 16:9"
+  },
+  {
+    "id": 13,
+    "title": "Animated Loader Icons: Spinner, Progress, and Loader-Circle Patterns",
+    "topic": "animated-loader-icons",
+    "tags": ["svg", "animation", "ux", "icons"],
+    "seoTitle": "Animated Loader Icons: Spinner, Progress, and Loader-Circle SVG Patterns",
+    "seoDescription": "How to build and use animated loader, spinner, and progress SVG icons with SMIL. Covers rotation, stroke-dashoffset tricks, and seamless loop timing.",
+    "imagePrompt": "Multiple animated loader and spinner SVG icons in various states on a dark background, glowing white strokes, minimal loading UI aesthetic, 16:9"
+  },
+  {
+    "id": 14,
+    "title": "Dynamic Icon Metadata and SEO for Icon Library Sites",
+    "topic": "icon-seo-metadata",
+    "tags": ["seo", "nextjs", "webdev", "icons"],
+    "seoTitle": "Dynamic Icon Metadata and SEO for Icon Library Sites with Next.js",
+    "seoDescription": "How to generate per-icon metadata, JSON-LD ImageObject structured data, dynamic sitemaps, and OG images for an icon library built with Next.js App Router.",
+    "imagePrompt": "SEO audit panel showing icon library site metadata on dark background, structured data JSON visible, search result preview cards, technical SEO aesthetic, 16:9"
+  },
+  {
+    "id": 15,
+    "title": "Publishing an Animated SVG Icon Library to npm: A Complete CI/CD Guide",
+    "topic": "publish-icon-library-npm",
+    "tags": ["npm", "ci", "github", "tutorial"],
+    "seoTitle": "Publishing an Animated SVG Icon Library to npm: A Complete CI/CD Guide",
+    "seoDescription": "How to set up GitHub Actions to auto-bump version, run typecheck and lint, validate icon files, and publish your React icon library to npm on every PR merge.",
+    "imagePrompt": "GitHub Actions workflow diagram on dark background with npm publish success terminal output, CI/CD pipeline visualization, developer tools aesthetic, 16:9"
+  }
+]
