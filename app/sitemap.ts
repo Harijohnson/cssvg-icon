@@ -3,6 +3,7 @@ import path from "path"
 import { MetadataRoute } from "next"
 
 import { getIconRegistry } from "@/lib/icons-registry"
+import { getAllSeoPosts } from "@/lib/seo-posts"
 
 export const dynamic = "force-dynamic"
 
@@ -95,5 +96,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   )
 
-  return [...corePages, ...docPages, ...iconPages]
+  // SEO blog listing page
+  const seoBlogPage: MetadataRoute.Sitemap = [
+    {
+      url: `${siteUrl}/seo`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+  ]
+
+  // Individual SEO blog post pages
+  const seoPosts = await getAllSeoPosts()
+  const seoDir = path.join(process.cwd(), "seo")
+  const seoPostPages: MetadataRoute.Sitemap = await Promise.all(
+    seoPosts.map(async (post) => ({
+      url: `${siteUrl}/seo/${post.slug}`,
+      lastModified: await fileMtime(path.join(seoDir, post.filename)),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }))
+  )
+
+  return [...corePages, ...docPages, ...iconPages, ...seoBlogPage, ...seoPostPages]
 }
