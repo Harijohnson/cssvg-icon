@@ -1,0 +1,42 @@
+name: Write Weekly Blog Post
+
+on:
+  schedule:
+    # Every Monday at 09:00 IST = 03:30 UTC
+    - cron: '30 3 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  write-blog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Write blog post via OpenRouter API
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: node scripts/write-blog.js
+
+      - name: Commit and push blog post
+        run: |
+          git config user.name "cssvg-icon-blog-bot"
+          git config user.email "bot@cssvg.com"
+          git add seo/
+          git diff --cached --quiet || git commit -m "seo: add weekly blog post"
+          git push

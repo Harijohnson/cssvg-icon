@@ -25,6 +25,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@openrouter/sdk": "^0.12.35",
     "@tailwindcss/typography": "^0.5.19",
     "@types/react-color": "^3.0.13",
     "@vercel/analytics": "^2.0.1",
