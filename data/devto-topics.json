@@ -29,7 +29,11 @@
     ],
     "seoTitle": "How to Build an Animated SVG Icon Library for React and Next.js",
     "seoDescription": "Step-by-step guide to building a tree-shakeable animated SVG icon library with React, Next.js App Router, and SMIL animations. From folder structure to npm publish.",
-    "imagePrompt": "Folder tree of a React icon library on a dark terminal background, glowing SVG icon previews arranged in a grid, minimal dark developer aesthetic, 16:9"
+    "imagePrompt": "Folder tree of a React icon library on a dark terminal background, glowing SVG icon previews arranged in a grid, minimal dark developer aesthetic, 16:9",
+    "published": true,
+    "publishedAt": "2026-05-19T11:52:32.316Z",
+    "coverImageUrl": null,
+    "devtoUrl": "https://dev.to/animated-svg-icons-in-react-why-smil-still-wins-in-2026-31cj-temp-slug-3762968"
   },
   {
     "id": 3,
