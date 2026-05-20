@@ -47,7 +47,11 @@
     ],
     "seoTitle": "SMIL animateTransform Explained: Translate, Rotate, Scale in SVG Icons",
     "seoDescription": "A deep dive into SMIL animateTransform — how additive, replace, and sum modes work together to create multi-step icon animations without a single line of JavaScript.",
-    "imagePrompt": "SVG path elements with motion trails and transform axes labeled, dark background, glowing white strokes, technical diagram style, 16:9"
+    "imagePrompt": "SVG path elements with motion trails and transform axes labeled, dark background, glowing white strokes, technical diagram style, 16:9",
+    "published": true,
+    "publishedAt": "2026-05-20T11:40:05.991Z",
+    "coverImageUrl": null,
+    "devtoUrl": "https://dev.to/animated-svg-icons-in-react-why-smil-still-wins-in-2026-474o-temp-slug-1408528"
   },
   {
     "id": 4,
