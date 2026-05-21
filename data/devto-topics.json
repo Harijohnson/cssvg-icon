@@ -65,7 +65,11 @@
     ],
     "seoTitle": "Tree-Shaking SVG Icons in Next.js: Zero Bundle Cost Per Icon",
     "seoDescription": "How to structure an SVG icon library so unused icons are never bundled. Dynamic imports, per-slug rendering, and App Router patterns for near-zero icon bundle cost.",
-    "imagePrompt": "Bundle analyzer treemap on a dark background with SVG icon nodes highlighted in white, webpack/next.js build stats visual, minimal technical aesthetic, 16:9"
+    "imagePrompt": "Bundle analyzer treemap on a dark background with SVG icon nodes highlighted in white, webpack/next.js build stats visual, minimal technical aesthetic, 16:9",
+    "published": true,
+    "publishedAt": "2026-05-21T11:59:29.454Z",
+    "coverImageUrl": null,
+    "devtoUrl": "https://dev.to/animated-svg-icons-in-react-why-smil-still-wins-in-2026-4hih-temp-slug-8076387"
   },
   {
     "id": 5,
