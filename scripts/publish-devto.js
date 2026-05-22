@@ -81,19 +81,6 @@ function findNextPost(topics) {
     }
   }
 
-  // Fallback: find any .md file whose topic hasn't been published yet
-  // (matches by file order if title doesn't match exactly)
-  const unpublishedTopics = topics.filter((t) => !t.devtoUrl);
-  if (unpublishedTopics.length === 0) return null;
-
-  for (const filename of mdFiles) {
-    const filepath = path.join(SEO_DIR, filename);
-    const content = fs.readFileSync(filepath, 'utf8');
-    // Pick the first unpublished topic and pair with the first unmatched file
-    const topic = unpublishedTopics[0];
-    return { topic, filename, filepath, content };
-  }
-
   return null;
 }
 
@@ -260,8 +247,8 @@ async function main() {
     execSync('git config user.email "github-actions[bot]@users.noreply.github.com"');
     execSync('git add data/devto-topics.json');
     execSync('git diff --cached --quiet || git commit -m "chore: mark topic as published on dev.to"');
-    execSync('git pull --rebase origin main');
-    execSync('git push');
+    execSync('git pull --rebase origin main', { stdio: 'inherit' });
+    execSync('git push origin main', { stdio: 'inherit' });
   }
 }
 

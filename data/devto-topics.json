@@ -6,7 +6,11 @@
     "tags": ["svg", "react", "animation", "webdev"],
     "seoTitle": "Animated SVG Icons in React: Why SMIL Still Wins in 2026",
     "seoDescription": "SMIL animations inside SVG icons are self-contained, require zero JS at runtime, and work perfectly in React and Next.js. Here's why and how.",
-    "imagePrompt": "Dark UI showing animated SVG icons glowing on a black background, React component code on the right, monochrome minimal design, professional developer tool aesthetic, 16:9"
+    "imagePrompt": "Dark UI showing animated SVG icons glowing on a black background, React component code on the right, monochrome minimal design, professional developer tool aesthetic, 16:9",
+    "published": true,
+    "publishedAt": "2026-05-22T00:00:00.000Z",
+    "coverImageUrl": null,
+    "devtoUrl": "https://dev.to/harijn72/animated-svg-icons-in-react-why-smil-still-wins-in-2026"
   },
   {
     "id": 2,
