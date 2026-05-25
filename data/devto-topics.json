@@ -83,7 +83,11 @@
     ],
     "seoTitle": "Animated Bell Icon: Anatomy of a SMIL Ringing Animation Step by Step",
     "seoDescription": "Break down the bell-ring animated SVG icon frame by frame — keyTimes, keySplines, additive transforms, and the math behind the natural swing motion.",
-    "imagePrompt": "Animated bell SVG icon on pure black background with keyframe timeline overlaid, white stroke bell shape with motion arc, technical breakdown style, 16:9"
+    "imagePrompt": "Animated bell SVG icon on pure black background with keyframe timeline overlaid, white stroke bell shape with motion arc, technical breakdown style, 16:9",
+    "published": true,
+    "publishedAt": "2026-05-25T12:16:10.836Z",
+    "coverImageUrl": null,
+    "devtoUrl": "https://dev.to/animated-bell-icon-anatomy-of-a-smil-ringing-animation-21ca-temp-slug-7742037"
   },
   {
     "id": 6,
